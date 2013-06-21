@@ -1,0 +1,9 @@
+RewriteEngine on
+#RewriteCond %{REQUEST_FILENAME} !-f        //此处有大坑。加上这句可保证一般css、js文件正常加载。(注意删掉这句注释哦)
+
+RewriteCond $1 !^(index\.php|css|styles|images|scripts|robots\.txt)
+
+#RewriteRule ^(styles|images|scripts) adminica/$1
+
+RewriteRule ^(.*)$ index.php/$1 [L]
+
