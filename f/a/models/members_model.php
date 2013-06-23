@@ -25,13 +25,13 @@ class members_model extends CI_Model {
 		return $result;
 	}
 	
-	/* 新增一条 */
+	/* 新增一条  */
 	function insertOne(){
 		$member = array(
 			'username' => $this->input->post('name'),
 			'email' => $this->input->post('email'),
 			'phone' => $this->input->post('phone'),
-			'type' => $this->input->post('cate'),
+			'type' => $this->input->post('cate'), //团购 groupbuy ; 活动 actions
 			'objectid' => $this->input->post('objectid'),
 		);
 		return $this->db->insert($this->this_table, $member);

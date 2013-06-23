@@ -20,32 +20,28 @@ class Members extends CI_Controller {
 	
 	
 	//用户添加
-	function memberAdd($format = 'json'){
+	function memberAdd(){
 		$result['status'] = 0;
 		if (!$this->memberUnique()) {
 			if($this->input->post()){
 				if($this->members_model->insertOne()){
 					$result['status'] = 1; 
+					$result['msg'] = "恭喜你,报名成功.";
 				}
 			}
 		}
 		else{
-			$result = array(
-				'msg' => "用户已经参加过本活动",
-			);
+			$result['msg'] = "用户已经参加过本活动";
 		}
-		
-		switch ($format){
-				case 'json':
-					echo json_encode($result);
-				break;
-			
-				case 'test':
+		$format = ($this->input->post("format")) ? $this->input->post("format") : 'json';
+		switch (strtolower($format)){
+				case 'array':
 					print_r($result);
 				break;
-			
 				default:
+					echo json_encode($result);
 			}
+		die;
 	}
 	/*
 	 * 用户重复判断

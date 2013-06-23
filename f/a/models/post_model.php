@@ -97,10 +97,27 @@ class Post_model extends CI_Model {
 		}
 		return $tmp;
 	}
-	/**
-		为 jquery dataTable 提供数据
-	 */
 
+	/**
+	 * 返回文章列表
+	 * 根据提交的category 来指定分类,不提供则默认所有
+	 * perpage 每页条数 page 请求的页数 不提供默认第一页 20个
+	 */
+	function getArticlesList($category, $perpage , $page){
+		$result['total'] = $this->db->count_all_results($this->post_table);
+		$this->db->select('*');
+		$this->db->from($this->post_table);
+		if ($category != '') {
+			$result['total'] = $this->db->count_all_results($this->post_table)->where($category_idField,$category);
+			$this->db->where($this->category_idField, $category );
+		}
+		$result['lists'] = $this->db->limit($perpage, ($page-1)*$perpage);
+		return $result;
+	}
+
+	/**
+	 *	为 jquery dataTable 提供数据
+	 */
 	 function getArticles($where,$order = ''){
 		/* Array of database columns which should be read and sent back to DataTables. Use a space where
 		 * you want to insert a non-database field (for example a counter or static image)

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<style>
+		.content {
+			width: 960px;
+			position: relative;
+			margin: 0 auto;
+			line-height: 22px;
+			font: 12px/1em "Microsoft Yahei", "冬青黑体简体中文 w3", Arial, Helvetica, sans-serif, "宋体"
+		}
+		.describe {
+			font-size: 11px;
+			color: #999;
+		}
+		.require {
+			color: #f00;
+		}
+		
+	</style>
+		<title>接口测试 <?php echo @$title2nd;?> </title>
+	</head>
+	<body>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<a class="brand" href="#">项目测试</a>
+			<ul class="nav">
+				<li class="active"><a href="#">api接口测试</a></li>
+			</ul>
+		</div>
+	</div>
+		<div class="content">
+			<table cellpadding="0" cellspacing="0" class="table table-bordered table-hover table-condensed">
+				<tbody><caption><blockquote><p><h1>Inertface Test</h4></p></blockquote></caption>
+				<thead>
+					<th width="30%">应用接口名称</th>
+					<th>测试应用接口</th>
+					<th width="30%">参数&amp;说明</th>
+				</thead>
+				<!-- one line ############################################## //-->
+				<tr>
+					<td>用户报名/参团
+					<br>
+					url:/members/members/memberAdd </td>
+					<td>
+						<form class="form-horizontal" method="post" action="http://localhost/kunting/members/members/memberAdd">
+							<fieldset>
+								<div class="control-group">
+									<label class="control-label" for="inputname">用户名:</label>
+									<div class="controls">
+										<input id="inputname" type="text" name="name" value="" placeholder="输入用户名">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputemail">Email:</label>
+									<div class="controls">
+										<input id="inputemail" type="text" name="email" value="" placeholder="输入邮箱地址">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputphone">电话号码:</label>
+									<div class="controls">
+										<input id="inputphone" type="text" name="phone" value="" placeholder="输入电话号码">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputcate">选择类型:</label>
+									<div class="controls">
+										<select id="inputcate" name="cate">
+										<option value="actions" selected="">活动报名</option>
+										<option value="groupbuy">团购参团</option>
+									</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputobjectid">项目ID</label>
+									<div class="controls">
+										<input id="inputobjectid" type="text" name="objectid" value="" placeholder="输入项目ID">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputdatatype">数据类型：</label>
+									<div class="controls">
+									<select id="inputdatatype" name="format">
+										<option value="json" selected="">JSON</option>
+										<option value="array">PHP数组</option>
+									</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<div class="controls">
+										<a href="#resultBox" role="button" class="btn" data-toggle="modal">提交</a>
+									</div>
+								</div>
+							<fieldset>
+						</form>
+					</td>
+					<td>
+						<ol>
+							<li class="require">name-&gt; 用户名</li>
+							<li class="require">email-&gt; 邮箱地址</li>
+							<li class="require">phone-&gt; 电话号码</li>
+							<li class="require">cate-&gt; 项目类型 <br/>(活动报名:actions; 参加团购:groupbuy)</li>
+							<li class="require">objectid-&gt; 项目id<br/>(也就是活动的id或者团购的id)</li>
+						</ol>
+					</td>
+				</tr>
+				<!-- ################################################### //-->
+			
+			<!-- one line ############################################## //-->
+				<tr>
+					<td>获取文章列表
+					<br>
+					url:/post/article/list </td>
+					<td>
+						<form class="form-horizontal" method="post" action="http://localhost/kunting/post/article/list">
+							<fieldset>
+								<div class="control-group">
+									<label class="control-label" for="inputname">用户名:</label>
+									<div class="controls">
+										<input id="inputname" type="text" name="name" value="" placeholder="输入用户名">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputemail">Email:</label>
+									<div class="controls">
+										<input id="inputemail" type="text" name="email" value="" placeholder="输入邮箱地址">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputphone">电话号码:</label>
+									<div class="controls">
+										<input id="inputphone" type="text" name="phone" value="" placeholder="输入电话号码">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputcate">选择类型:</label>
+									<div class="controls">
+										<select id="inputcate" name="cate">
+										<option value="actions" selected="">活动报名</option>
+										<option value="groupbuy">团购参团</option>
+									</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputobjectid">项目ID</label>
+									<div class="controls">
+										<input id="inputobjectid" type="text" name="objectid" value="" placeholder="输入项目ID">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputdatatype">数据类型：</label>
+									<div class="controls">
+									<select id="inputdatatype" name="format">
+										<option value="json" selected="">JSON</option>
+										<option value="array">PHP数组</option>
+									</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<div class="controls">
+										<a href="#resultBox" role="button" class="btn" data-toggle="modal">提交</a>
+									</div>
+								</div>
+							<fieldset>
+						</form>
+					</td>
+					<td>
+						<ol>
+							<li class="require">name-&gt; 用户名</li>
+							<li class="require">email-&gt; 邮箱地址</li>
+							<li class="require">phone-&gt; 电话号码</li>
+							<li class="require">cate-&gt; 项目类型 <br/>(活动报名:actions; 参加团购:groupbuy)</li>
+							<li class="require">objectid-&gt; 项目id<br/>(也就是活动的id或者团购的id)</li>
+						</ol>
+					</td>
+				</tr>
+			<!-- ################################################### //-->
+			</tbody></table>
+		</div>
+
+		<!-- 结果页面弹出层 -->
+		<div id="resultBox" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="myModalLabel">测试结果</h3>
+		  </div>
+		  <div class="modal-body">
+			<pre></pre>
+		  </div>
+		  <div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+		  </div>
+		</div>
+		<!-- ################ -->
+	<SCRIPT LANGUAGE="JavaScript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></SCRIPT>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="scripts/jquery.form.js"></script>
+	<SCRIPT LANGUAGE="JavaScript">
+	<!--
+	$(document).ready(function() { 
+		var options = { 
+			target: '#resultBox .modal-body pre',   // target element(s) to be updated with server response 
+		}; 
+	 
+		// bind to the form's submit event 
+		$("a[href='#resultBox']").bind("click", function(){
+			var this_form = $(this).parents("form");
+			this_form.ajaxSubmit(options); 
+			//return false; 
+		}); 
+	}); 
+	//-->
+	</SCRIPT>
+</body></html>
