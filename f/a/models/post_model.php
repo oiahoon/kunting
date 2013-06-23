@@ -108,13 +108,19 @@ class Post_model extends CI_Model {
 		$this->db->select('*');
 		$this->db->from($this->post_table);
 		if ($category != '') {
-			$result['total'] = $this->db->count_all_results($this->post_table)->where($category_idField,$category);
-			$this->db->where($this->category_idField, $category );
+			$this->db->where($this->category_idField, $category );	
 		}
-		$result['lists'] = $this->db->limit($perpage, ($page-1)*$perpage);
+		$this->db->limit($perpage, ($page-1)*$perpage);
+		$result['lists'] = $this->db->get()->result_array();
+		$result['total'] = $this->db->from($this->post_table)->where($this->category_idField, $category)->count_all_results();
 		return $result;
 	}
 
+	function getArticlesById()
+	{
+		
+		
+	}
 	/**
 	 *	为 jquery dataTable 提供数据
 	 */

@@ -10,22 +10,26 @@ class Posts extends CI_Controller {
 	}
 
 	/* 文章列表 */
-	public function list()
+	public function articlelists()
 	{
 		$result['status'] = 0;
-		$category = $this->input->post("type") ? $this->input->post("type") ; ''; 
+		$category = $this->input->post("type") ? $this->input->post("type") : ''; 
 		$perpage = $this->input->post('perpage') ? $this->input->post('perpage') : 20; 
 		$page = $this->input->post('page') ? $this->input->post('page') : 0;
 		$result['articles'] = $this->articles->getArticlesList($category, $perpage , $page);
-		switch (strtolower($this->input->post("format"))) {
-			case 'array':
-				print_r($result);
-				break;
-			
-			default:
-				echo json_encode($result);
-				break;
+		if($result['articles']) $result['status'] = 1;
+		yaoprint($result, $this->input->post("format"));
+	}
+
+	/* 文章内容 */
+	public function articledetail()
+	{
+		$result['status'] = 0;
+		$id = $this->input->post("id") ? $this->input->post("id") : ''; 
+		if ($id != '') {
+			$result['article'] = $this->articles->getById($id);
+			if($result['article']) $result['status'] = 1;
 		}
-		die;
+		yaoprint($result, $this->input->post("format"));
 	}
 }

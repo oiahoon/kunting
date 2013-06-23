@@ -109,47 +109,37 @@
 				</tr>
 				<!-- ################################################### //-->
 			
-			<!-- one line ############################################## //-->
+				<!-- one line ########################################## //-->
 				<tr>
 					<td>获取文章列表
 					<br>
-					url:/post/article/list </td>
+					url:/posts/articlelists</td>
 					<td>
-						<form class="form-horizontal" method="post" action="http://localhost/kunting/post/article/list">
+						<form class="form-horizontal" method="post" action="http://localhost/kunting/posts/articlelists">
 							<fieldset>
 								<div class="control-group">
-									<label class="control-label" for="inputname">用户名:</label>
+									<label class="control-label" for="inputtype">分类:</label>
 									<div class="controls">
-										<input id="inputname" type="text" name="name" value="" placeholder="输入用户名">
+										<select id="inputtype" name="type">
+											<option value="1" selected="">活动</option>
+											<option value="2">资讯</option>
+											<option value="3">团购</option>
+										</select>
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="inputemail">Email:</label>
+									<label class="control-label" for="inputperpage">每页条数:</label>
 									<div class="controls">
-										<input id="inputemail" type="text" name="email" value="" placeholder="输入邮箱地址">
+										<input id="inputperpage" type="text" name="perpage" value="20" placeholder="输入每页条数">
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="inputphone">电话号码:</label>
+									<label class="control-label" for="inputpage">页码:</label>
 									<div class="controls">
-										<input id="inputphone" type="text" name="phone" value="" placeholder="输入电话号码">
+										<input id="inputpage" type="text" name="page" value="1" placeholder="输入页码">
 									</div>
 								</div>
-								<div class="control-group">
-									<label class="control-label" for="inputcate">选择类型:</label>
-									<div class="controls">
-										<select id="inputcate" name="cate">
-										<option value="actions" selected="">活动报名</option>
-										<option value="groupbuy">团购参团</option>
-									</select>
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="inputobjectid">项目ID</label>
-									<div class="controls">
-										<input id="inputobjectid" type="text" name="objectid" value="" placeholder="输入项目ID">
-									</div>
-								</div>
+								
 								<div class="control-group">
 									<label class="control-label" for="inputdatatype">数据类型：</label>
 									<div class="controls">
@@ -169,11 +159,48 @@
 					</td>
 					<td>
 						<ol>
-							<li class="require">name-&gt; 用户名</li>
-							<li class="require">email-&gt; 邮箱地址</li>
-							<li class="require">phone-&gt; 电话号码</li>
-							<li class="require">cate-&gt; 项目类型 <br/>(活动报名:actions; 参加团购:groupbuy)</li>
-							<li class="require">objectid-&gt; 项目id<br/>(也就是活动的id或者团购的id)</li>
+							<li class="require">type-&gt; 分类<br/>资讯:1;活动:2;团购:3;</li>
+							<li class="require">perpage-&gt; 每页记录条数</li>
+							<li class="require">page-&gt; 页码</li>
+						</ol>
+					</td>
+				</tr>
+			<!-- ################################################### //-->
+			<!-- one line ########################################## //-->
+				<tr>
+					<td>获取文章内容
+					<br>
+					url:/posts/articledetail</td>
+					<td>
+						<form class="form-horizontal" method="post" action="http://localhost/kunting/posts/articledetail">
+							<fieldset>
+								<div class="control-group">
+									<label class="control-label" for="inputid">文章ID:</label>
+									<div class="controls">
+										<input id="inputid" type="text" name="id" value="10" placeholder="输入文章的ID">
+									</div>
+								</div>
+								
+								<div class="control-group">
+									<label class="control-label" for="inputdatatype">数据类型：</label>
+									<div class="controls">
+									<select id="inputdatatype" name="format">
+										<option value="json" selected="">JSON</option>
+										<option value="array">PHP数组</option>
+									</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<div class="controls">
+										<a href="#resultBox" role="button" class="btn" data-toggle="modal">提交</a>
+									</div>
+								</div>
+							<fieldset>
+						</form>
+					</td>
+					<td>
+						<ol>
+							<li class="require">id-&gt; 文章的id</li>
 						</ol>
 					</td>
 				</tr>

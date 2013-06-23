@@ -18,12 +18,7 @@ class Test extends CI_Controller {
 			'msg' => "this is a test.",
 			'license' => $_POST['license'],
 		);
-		if(strtolower($_POST['format']) == 'json'){
-			echo json_encode($result);
-		}
-		else{
-			print_r($result);
-		}
+		yaoprint($result, $_POST['format']);
 		die;
 		
 	}
