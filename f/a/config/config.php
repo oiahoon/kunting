@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://www.yaophpwork.com/kunting/';
+$config['base_url']	= 'http://localhost/kunting/';
 date_default_timezone_set("Asia/Shanghai");
 /*
 |--------------------------------------------------------------------------
