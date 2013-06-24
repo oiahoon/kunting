@@ -94,7 +94,7 @@
 										<a href="#resultBox" role="button" class="btn" data-toggle="modal">提交</a>
 									</div>
 								</div>
-							<fieldset>
+							</fieldset>
 						</form>
 					</td>
 					<td>
@@ -115,7 +115,7 @@
 					<br>
 					url:/posts/articlelists</td>
 					<td>
-						<form class="form-horizontal" method="post" action="http://localhost/kunting/posts/articlelists">
+						<form class="form-horizontal" method="post" action="<?php echo site_url('posts/articlelists');?>">
 							<fieldset>
 								<div class="control-group">
 									<label class="control-label" for="inputtype">分类:</label>
@@ -154,7 +154,7 @@
 										<a href="#resultBox" role="button" class="btn" data-toggle="modal">提交</a>
 									</div>
 								</div>
-							<fieldset>
+							</fieldset>
 						</form>
 					</td>
 					<td>
@@ -172,7 +172,7 @@
 					<br>
 					url:/posts/articledetail</td>
 					<td>
-						<form class="form-horizontal" method="post" action="http://localhost/kunting/posts/articledetail">
+						<form class="form-horizontal" method="post" action="<?php echo site_url('posts/articledetail');?>">
 							<fieldset>
 								<div class="control-group">
 									<label class="control-label" for="inputid">文章ID:</label>
@@ -195,12 +195,93 @@
 										<a href="#resultBox" role="button" class="btn" data-toggle="modal">提交</a>
 									</div>
 								</div>
-							<fieldset>
+							</fieldset>
 						</form>
 					</td>
 					<td>
 						<ol>
 							<li class="require">id-&gt; 文章的id</li>
+						</ol>
+					</td>
+				</tr>
+			<!-- ################################################### //-->
+			<!-- one line ########################################## //-->
+				<tr>
+					<td>获取Groupbuy Status
+					<br>
+					url:/settings/groupbuy_s</td>
+					<td>
+						<form class="form-horizontal" method="post" action="<?php echo site_url('settings/groupbuy_s');?>">
+							<fieldset>
+
+								<div class="control-group">
+									<label class="control-label" for="inputdatatype">数据类型：</label>
+									<div class="controls">
+									<select id="inputdatatype" name="format">
+										<option value="json" selected="">JSON</option>
+										<option value="array">PHP数组</option>
+									</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<div class="controls">
+										<a href="#resultBox" role="button" class="btn" data-toggle="modal">提交</a>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</td>
+					<td>
+						<ol>
+							<li >Need none params.</li>
+						</ol>
+					</td>
+				</tr>
+			<!-- ################################################### //-->
+			<!-- one line ########################################## //-->
+				<tr>
+					<td> Shortting Url
+					<br>
+					url:/adonice/short_url</td>
+					<td>
+						<form class="form-horizontal" method="get" action="<?php echo site_url('adonice/short_url');?>">
+							<fieldset>
+								<div class="control-group">
+									<label class="control-label" for="inputurl">Url:</label>
+									<div class="controls">
+										<input id="inputurl" type="text" name="url" value="http://www.qq.com" placeholder="输入 Url">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputtype">Type</label>
+									<div class="controls">
+									<select id="inputtype" name="type">
+										<option value="1" selected="">Long->Short</option>
+										<option value="2">Short->Long</option>
+									</select>
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="inputformat">数据类型：</label>
+									<div class="controls">
+									<select id="inputformat" name="format">
+										<option value="json" selected="">JSON</option>
+										<option value="array">PHP数组</option>
+									</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<div class="controls">
+										<a href="#resultBox" role="button" class="btn" data-toggle="modal">提交</a>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</td>
+					<td>
+						<ol>
+							<li >Need none params.</li>
 						</ol>
 					</td>
 				</tr>

@@ -20,6 +20,7 @@ class Adonice extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->Model('admin_model');
+		$this->load->Model('settings_model');
 	}
 	public function index()
 	{	
@@ -33,6 +34,7 @@ class Adonice extends CI_Controller {
 		}else{
 			$this->load->Model("post_model");
 			$data['top_article'] = $this->post_model->gettopbytype(1);
+			$data['settings'] = $this->settings_model->getsetting();
 			$data['title']['top'] = "后台首页";
 			$data['title']['small'] = "(此页暂时为空)";
 			$this->load->view('empty',$data);
@@ -46,7 +48,8 @@ class Adonice extends CI_Controller {
 	 *
 	 */
 	 function short_url($long_url = ''){
-		if($this->input->get("long_url")) $long_url = $this->input->get("long_url");
+		if($this->input->get_post("url")) $url = $this->input->get_post('url');
+		/*
 		$api_ = "http://open.t.qq.com/api/short_url/shorten";
 		$params = array(
 			"format" => "json",	//返回格式
@@ -59,8 +62,10 @@ class Adonice extends CI_Controller {
 			//"pf" => "php-sdk2.0beta",
 			"sig" => "mwOsYxY27uo3lIUE/5k0qHbZ/Nw="
 		);
-
-		$params['long_url'] = $long_url;
+		*/
+		$api_ = "http://jucelin.com/lab/short.php";
+		$params['type'] = $this->input->get_post('type');
+		$result['origin_url'] = $params['url'] = $url;
 		$temp = array();
 		foreach($params as $key => $value){
 			$temp[] = $key."=".$value;
@@ -68,9 +73,9 @@ class Adonice extends CI_Controller {
 		$query_string = '?'.implode("&",$temp);
 		$api_full_url = $api_.$query_string;
 
-		$result = json_decode( file_get_contents($api_full_url));
-
-		echo "http://url.cn/".$result->data->short_url;
+		$result['new_url'] = file_get_contents($api_full_url);
+		yaoprint($result,$this->input->get_post('format'));die;
+		echo "http://t.cn/".$result->data->short_url;
 	 }
 	
 

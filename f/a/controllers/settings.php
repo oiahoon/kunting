@@ -10,16 +10,23 @@ class Settings extends CI_Controller {
 		$this->load->Model('settings_model',"setting");
 	}
 
-	/* 团购开关 */
+
+	/* 团购开关 & return current groupbuy status */
 	function groupbuy_s(){
 		$result = array('status'=>1);
-		if($this->input->post()){
+		$thispost = $this->input->post();
+		if(isset($thispost['groupbuy_s'])){
 			if(!$this->setting->groupbuyswitch()){
 				$result = array('status'=>0);
 			}
 		}else{
 			$result['groupbuy_s'] = $this->setting->getsetting("groupbuy_s");
 		}
-		echo json_encode($result);die;
+		yaoprint($result,$this->input->post('format'));die;
+	}
+
+	/* get the Settings status by key , if no key ,then return all settings assoc_array*/
+	function getSettingByKey($key = ''){
+		return $this->setting->getSetting($key);
 	}
 }

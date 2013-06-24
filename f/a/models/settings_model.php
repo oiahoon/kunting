@@ -25,11 +25,22 @@ class Settings_model extends CI_Model {
 		}
 	}
 
-	/* 获取setting的值 */
-	function getsetting($key){
-		$query = $this->db->get_where($this->dbtable, array('key' => $key));
-		if($result = array_shift($query->result())){
-			return $result->value;
+	/* 获取setting的值  */
+	function getsetting($key = ''){
+		if ($key) {	
+			$query = $this->db->get_where($this->dbtable, array('key' => $key));
+			if($result = array_shift($query->result())){
+				return $result->value;
+			}
+		}
+		else{
+			$query = $this->db->get($this->dbtable);
+			if($results = $query->result()){
+				foreach ($results as $row) {
+					$result[$row->key] = $row->value;
+				}
+				return $result;
+			}
 		}
 	}
 

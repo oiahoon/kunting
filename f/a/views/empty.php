@@ -29,8 +29,8 @@
 								<label>团购开关</label>
 								<div>
 									<div class="jqui_radios">
-									<input type="radio" name="groupbuy_s" id="groupbuy_yes" jq-data="1" checked="checked"/><label for="groupbuy_yes">开启</label>
-									<input type="radio" name="groupbuy_s" id="groupbuy_no" jq-data="0"/><label for="groupbuy_no">关闭</label>
+									<input type="radio" name="groupbuy_s" id="groupbuy_yes" jq-data="1" <?php if($settings['groupbuy_s']) echo 'checked="checked"';?>/><label for="groupbuy_yes">开启</label>
+									<input type="radio" name="groupbuy_s" id="groupbuy_no" jq-data="0" <?php if(!$settings['groupbuy_s']) echo 'checked="checked"';?>/><label for="groupbuy_no">关闭</label>
 									</div>
 								</div>
 							</fieldset>
@@ -39,7 +39,7 @@
 								$(document).ready(function(){
 									  $(".jqui_radios input[name='groupbuy_s']").change(function(){
 										var val = $("input[name='groupbuy_s']:checked").attr("jq-data");//获得选中的radio的值
-										$.post("<?php echo site_url('settings/groupbuy_s');?>", {groupbuy_s:val},  function(data) {
+										$.post("<?php echo site_url('settings/groupbuy_s');?>", {groupbuy_s:val, format:'json'},  function(data) {
 											//alert(data);
 										});
 									  });
