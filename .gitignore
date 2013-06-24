@@ -180,8 +180,6 @@ Desktop.ini
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
-f/a/config/database.php
-f/a/config/config.php
 
 # Mac crap
 .DS_Store
@@ -222,3 +220,6 @@ pip-log.txt
 */logs/!index.html
 */cache/*
 */cache/!index.html
+
+f/a/config/database.php
+f/a/config/config.php

@@ -138,12 +138,14 @@ class Article extends CI_Controller {
 			$result['aaData'][$key][] = $value['author'];
 
 			if($this->session->userdata('group_name')){
-				$result['aaData'][$key][] =  '<a href="'.site_url('post/article/topit/'.$value['id']).'"><button class="blue tiny"><div class="ui-icon ui-icon-pencil"></div><span>置顶</span></button></a>&nbsp;/&nbsp;<a href="'.site_url('post/article/edit/id/'.$value['id']).'"><button class="blue tiny"><div class="ui-icon ui-icon-pencil"></div><span>修改</span></button></a>&nbsp;/&nbsp;<a onclick="delete_confirm('.$value['id'].')"><button class="red tiny"><div class="ui-icon ui-icon-trash"></div><span>删除</span></button></a>';
+				$button_color = $value['orders']==1 ? "orange" : "green";
+				$button_icon = $value['orders']==1 ? "minusthick" : "arrowthickstop-1-n";
+				$button_text = $value['orders']==1 ? "取消置顶" : "置顶";
+				$result['aaData'][$key][] =  '<a href="'.site_url('post/article/topit/'.$value['id']).'"><button class="'.$button_color.' tiny"><div class="ui-icon ui-icon-'.$button_icon.'"></div><span>'.$button_text.'</span></button></a>&nbsp;/&nbsp;<a href="'.site_url('post/article/edit/id/'.$value['id']).'"><button class="blue tiny"><div class="ui-icon ui-icon-pencil"></div><span>修改</span></button></a>&nbsp;/&nbsp;<a onclick="delete_confirm('.$value['id'].')"><button class="red tiny"><div class="ui-icon ui-icon-trash"></div><span>删除</span></button></a>';
 			}else{
 				$result['aaData'][$key][] = '';
 			}
 		}
-		
 		unset($result["aaaData"]);
 		//print_r($result);exit;
 		echo json_encode($result);
