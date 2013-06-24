@@ -207,7 +207,7 @@
 			<!-- ################################################### //-->
 			<!-- one line ########################################## //-->
 				<tr>
-					<td>获取Groupbuy Status
+					<td>获取团购开关
 					<br>
 					url:/settings/groupbuy_s</td>
 					<td>
@@ -240,7 +240,7 @@
 			<!-- ################################################### //-->
 			<!-- one line ########################################## //-->
 				<tr>
-					<td> Shortting Url
+					<td>短链接
 					<br>
 					url:/adonice/short_url</td>
 					<td>
@@ -281,7 +281,8 @@
 					</td>
 					<td>
 						<ol>
-							<li >Need none params.</li>
+							<li class="require">url-&gt; 准备转换的url</li>
+							<li class="require">type-&gt; 转换的方式</li>
 						</ol>
 					</td>
 				</tr>
