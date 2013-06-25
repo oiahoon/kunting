@@ -10,7 +10,7 @@
 			</div>
 		</div>
 
-		<?php include 'includes/components/template_options.php'?>
+		<?php #include 'includes/components/template_options.php'?>
 
 
 <!-- Google Analytics Code (Remove if not needed)
