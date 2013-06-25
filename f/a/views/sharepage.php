@@ -27,9 +27,7 @@
 			position: relative;
 			margin: 0 auto;
 	}
-	body {
-		padding-top: 40px;
-	}
+
     </style>
 
 	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -42,16 +40,14 @@
 </head>
 <body>
 
-<div class="navbar navbar-inverse navbar navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-static-top">
 		<div class="navbar-inner">
-			<a class="brand" href="#"><h3><?php echo $title['small'];?></h3></a>
+			<a class="brand"><?php echo $title['small'];?></a>
 		</div>
 	</div>
 
 <div class="container">
-	<p class="text-center">
-		<?php echo str_replace(array('&quot;','/..'),array('"',''),$share['content']);?>
-	</p>
+	<?php echo str_replace(array('&quot;','/..'),array('"',''),$share['content']);?>	
 </div>
  <!-- Le javascript
     ================================================== -->
@@ -63,7 +59,7 @@
 <SCRIPT LANGUAGE="JavaScript">
 <!--
 	$(document).ready(function(){
-		$('img').wrap('<ul class="thumbnails"></ul>').wrap('<li class="span4"></li>').wrap('<a href="#" class="thumbnail"></div>');
+		$('img').addClass("imgc").wrap('<ul class="thumbnails"></ul>').wrap('<li class="span4"></li>').wrap('<a href="#" class="thumbnail"></div>');
 		//<ul class="thumbnails">  <li class="span4">    <a href="#" class="thumbnail">
 	});
 //-->
