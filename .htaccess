@@ -1,10 +1,11 @@
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 
-RewriteCond $1 !^(index\.php|css|styles|images|scripts|bootstrap|robots\.txt)
+RewriteCond $1 !^(index\.php|css|styles|images|scripts|uploads|bootstrap|robots\.txt)
 
 #RewriteRule ^(styles|images|scripts) adminica/$1
 
 RewriteRule ^(.*)$ index.php/$1 [L]
-
+#不管何时都把uploads指向根目录
+RewriteRule ^.*/uploads/(.*) uploads/$1 [L]
 

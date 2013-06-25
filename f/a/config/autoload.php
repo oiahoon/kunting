@@ -80,7 +80,7 @@ $autoload['helper'] = array('url','common');
 |
 */
 
-$autoload['config'] = array('email');
+$autoload['config'] = array('email','kunting_setting');
 
 
 /*

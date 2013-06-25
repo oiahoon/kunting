@@ -108,7 +108,7 @@ class Article extends CI_Controller {
 		}
 		$params = $this->uri->uri_to_assoc(4);
 		if(isset($params['id'])) $viewdata['post'] = $this->article_model->getById($params['id']);
-		$this->load->view('posteditor',$viewdata);
+		$this->load->view('posteditor_tinymce',$viewdata);
 	}
 
 	/* 删除一条 */

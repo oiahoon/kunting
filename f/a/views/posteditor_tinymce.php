@@ -33,6 +33,7 @@
 								<input type="text" name="title[2nd]" value="<?php echo empty($post['title_2nd'])?'':$post['title_2nd'];?>">
 							</div>
 						</fieldset>
+						<?php if($category != $this->config->item('category')['sharepage']['id']){?>
 						<fieldset class="label_side top">
 							<label>封面图片<span>(用于列表页显示)</span></label>
 							<div> 								
@@ -41,7 +42,8 @@
 								</div>
 							</div>
 						</fieldset>
-						<?php if($category==3){?>
+						<?php }?>
+						<?php if($category==$this->config->item('category')['groupbuy']['id']){?>
 						<fieldset class="label_side top">
 							<label>标题图片<span></span></label>
 							<div> 
@@ -55,9 +57,10 @@
 						<textarea id="content" class="tinyeditor" name="content"><?php echo empty($post['content'])?'':$post['content'];?></textarea>
 <SCRIPT LANGUAGE="JavaScript">
 	<!--
-		tinymce.PluginManager.load('moxiemanager', "http://www.yaophpwork.com/kunting/scripts/tinymce/plugins/moxiemanager/plugin.min.js");
+		tinymce.PluginManager.load('moxiemanager', "<?php echo base_url('scripts/tinymce/plugins/moxiemanager/plugin.min.js');?>");
 		tinymce.init({
 			selector: "textarea",
+				height: 380,
 			plugins: [
 				"advlist autolink lists link image charmap print preview anchor",
 				"searchreplace visualblocks code fullscreen",

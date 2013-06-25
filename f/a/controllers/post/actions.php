@@ -60,7 +60,7 @@ class Actions extends CI_Controller {
 				}
 			}
 		}
-		$this->load->view('posteditor',$viewdata);
+		$this->load->view('posteditor_tinymce',$viewdata);
 	}
 	/* 修改资讯 */
 	function edit(){
@@ -102,13 +102,13 @@ class Actions extends CI_Controller {
 		}
 		$params = $this->uri->uri_to_assoc(4);
 		if(isset($params['id'])) $viewdata['post'] = $this->actions_model->getById($params['id']);
-		$this->load->view('posteditor',$viewdata);
+		$this->load->view('posteditor_tinymce',$viewdata);
 	}
 
 	/* 删除一条 */
 	function delete(){
 		$this->actions_model->deletArticleById($this->uri->segment(5));
-		redirect("post/article", "refresh");
+		redirect("post/actions", "refresh");
 	}
 	//为活动页面提供表格数据
 	function articleList_dataTable()

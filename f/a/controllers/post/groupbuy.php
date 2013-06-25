@@ -61,7 +61,7 @@ class Groupbuy extends CI_Controller {
 				}
 			}	
 		}
-		$this->load->view('posteditor',$viewdata);
+		$this->load->view('posteditor_tinymce',$viewdata);
 	}
 	/* 修改资讯 */
 	function edit(){
@@ -105,13 +105,13 @@ class Groupbuy extends CI_Controller {
 		}
 		$params = $this->uri->uri_to_assoc(4);
 		if(isset($params['id'])) $viewdata['post'] = $this->groupbuy_model->getById($params['id']);
-		$this->load->view('posteditor',$viewdata);
+		$this->load->view('posteditor_tinymce',$viewdata);
 	}
 
 	/* 删除一条 */
 	function delete(){
 		$this->groupbuy_model->deletArticleById($this->uri->segment(5));
-		redirect("post/article", "refresh");
+		redirect("post/groupbuy", "refresh");
 	}
 	
 	//为资讯页面提供表格数据

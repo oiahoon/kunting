@@ -13,3 +13,9 @@ $congfig['groupbuy_s'] = array(
 	'1' => "开启",
 	'0' => "关闭"
 );
+$config['category'] = array(
+	'article' => array('id'=>'1','name' => "资讯"),
+	'actions' => array('id'=>'2','name' => "活动"),
+	'groupbuy' => array('id'=>'3','name' => "团购"),
+	'sharepage' => array('id'=>'4','name' => "分享"),
+);
