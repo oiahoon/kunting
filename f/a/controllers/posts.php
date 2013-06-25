@@ -32,4 +32,21 @@ class Posts extends CI_Controller {
 		}
 		yaoprint($result, $this->input->post("format"));
 	}
+
+	/* 分享页面 */
+	function sharepage(){
+		$id = $this->uri->segment(2) ? $this->uri->segment(2) : $this->uri->segment(4);
+		if($id){
+			$data = $this->articles->getById($id);
+		}
+		//保证取到的是分享
+		if($data['category_id'] != $this->config->item('category')['sharepage']['id']) 
+			die(json_encode(array('status'=>'0')));
+		$viewdata = array( 
+			'title' => array('top' => '分享页面','small' => $data['title']),
+			'ctl' => "sharepage",
+			'share' => $data,
+			);
+		$this->load->view('sharepage',$viewdata);
+	}
 }

@@ -9,3 +9,5 @@ RewriteRule ^(.*)$ index.php/$1 [L]
 #不管何时都把uploads指向根目录
 RewriteRule ^.*/uploads/(.*) uploads/$1 [L]
 
+
+
