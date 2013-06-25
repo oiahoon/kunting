@@ -47,6 +47,7 @@
 							//-->
 							</SCRIPT>
 						</div>
+						<!-- ////////////////////-->
 						<div class="col_70">
 							<fieldset class="right">
 								<label>当前置顶资讯</label>
@@ -57,7 +58,32 @@
 						</div>
 					</div>
 				</div>
-
+				
+				<div class="columns">
+						<div class="col_30">
+							<fieldset>
+								<label>一键生成短链</label>
+								<div>
+									<div class="jqui_radios">
+									<input type="radio" name="groupbuy_s" id="groupbuy_yes" jq-data="1" <?php if($settings['groupbuy_s']) echo 'checked="checked"';?>/><label for="groupbuy_yes">生成</label>
+									<input type="radio" name="groupbuy_s" id="groupbuy_no" jq-data="0" <?php if(!$settings['groupbuy_s']) echo 'checked="checked"';?>/><label for="groupbuy_no">关闭</label>
+									</div>
+								</div>
+							</fieldset>
+							<SCRIPT LANGUAGE="JavaScript">
+							<!--
+								$(document).ready(function(){
+									  $(".jqui_radios input[name='groupbuy_s']").change(function(){
+										var val = $("input[name='groupbuy_s']:checked").attr("jq-data");//获得选中的radio的值
+										$.post("<?php echo site_url('settings/groupbuy_s');?>", {groupbuy_s:val, format:'json'},  function(data) {
+											//alert(data);
+										});
+									  });
+								});
+							//-->
+							</SCRIPT>
+						</div>
+						<!-- ////////////////////-->
 			</div>
 		</div>
 <?php include 'includes/core/document_foot.php'?>
