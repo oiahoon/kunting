@@ -222,3 +222,5 @@ pip-log.txt
 
 f/a/config/database.php
 f/a/config/config.php
+
+scripts/tinymce/plugins/moxiemanager/data/
