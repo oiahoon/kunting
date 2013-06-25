@@ -70,7 +70,7 @@ class Article extends CI_Controller {
 				}
 			}
 		}
-		$this->load->view('posteditor',$viewdata);
+		$this->load->view('posteditor_tinymce',$viewdata);
 	}
 	/* 修改资讯 */
 	function edit(){
