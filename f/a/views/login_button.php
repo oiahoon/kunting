@@ -10,18 +10,18 @@
 								<div class="section">
 									<div class="alert dismissible alert_light">
 										<img width="24" height="24" src="images/icons/small/grey/locked.png">
-										<strong>Welcome to Adminica.</strong> Please enter your details to login.
+										<strong>欢迎登录后台.</strong> 请输入帐号密码登录.
 									</div>
 								</div>
 								<form action="<?php echo site_url();?>/admin/check_login" method="post" class="validate_form">
 								<fieldset class="label_side top">
-									<label for="username_field">Username<span>or email address</span></label>
+									<label for="username_field">用户名<span></span></label>
 									<div>
 										<input type="text" id="username_field" name="username_field" class="required">
 									</div>
 								</fieldset>
 								<fieldset class="label_side bottom">
-									<label for="password_field">Password<span><a href="#">Do you remember?</a></span></label>
+									<label for="password_field">密码<span></span></label>
 									<div>
 										<input type="password" id="password_field" name="password_field" class="required">
 									</div>
@@ -29,18 +29,14 @@
 								<div class="button_bar clearfix">
 									<button class="wide" type="submit">
 										<img src="images/icons/small/white/key_2.png">
-										<span>Login</span>
+										<span>登录</span>
 									</button>
 								</div>
 								</form>
 							</div>
 						</div>
 					</div>
-					<a href="<?php echo site_url();?>" id="login_logo"><span>Adminica</span></a>
-					<button data-dialog="dialog_register" class="dialog_button send_right" style="margin-top:10px;">
-						<img src="images/icons/small/white/user.png">
-						<span>Not Registered ?</span>
-					</button>
+					<a href="<?php echo site_url();?>" id="login_logo"><span>Kunting</span></a>
 				</div>
 			</div>
 		<?php include 'includes/dialogs/dialog_register.php'?>

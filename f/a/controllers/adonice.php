@@ -77,6 +77,25 @@ class Adonice extends CI_Controller {
 		yaoprint($result,$this->input->get_post('format'));die;
 		echo "http://t.cn/".$result->data->short_url;
 	 }
+
+	 function shorten(){
+	 	if($this->input->get_post('url')) {
+	 		$url = $this->input->get_post('url');
+	 		$api_ = "http://open.t.qq.com/api/short_url/shorten";
+			$params = array(
+				"format" => "json",	//返回格式
+				"appid" => "801058005",	//appid
+				"openid" => "A697394BC7D6D84D3E92BF3BBF3DCBA0",	//
+				"openkey" => "4A98F802B453D6E06E6E08A68615BB8F",
+				//"clientip" => "125.69.143.247",
+				"reqtime" => time(),
+				"wbversion" => "1",
+				//"pf" => "php-sdk2.0beta",
+				"sig" => "mwOsYxY27uo3lIUE/5k0qHbZ/Nw="
+			);
+	 	}
+	 	yaoprint(array('status'=>0));
+	 }
 	
 
 }

@@ -120,7 +120,9 @@ class Article extends CI_Controller {
 	/* 资讯置顶 只有一个置顶，其余的都恢复 */
 	function topit(){
 		$id = $this->uri->segment(4);
-		$this->article_model->topit($id,"1");
+		$orders = $this->uri->segment(5);
+		if($orders > 1) $this->article_model->topit($id,"1");
+		else $this->article_model->untopit($id,"1");
 		redirect("post/article", "refresh");
 	}
 	//为资讯页面提供表格数据
@@ -141,7 +143,7 @@ class Article extends CI_Controller {
 				$button_color = $value['orders']==1 ? "orange" : "green";
 				$button_icon = $value['orders']==1 ? "minusthick" : "arrowthickstop-1-n";
 				$button_text = $value['orders']==1 ? "取消置顶" : "置顶";
-				$result['aaData'][$key][] =  '<a href="'.site_url('post/article/topit/'.$value['id']).'"><button class="'.$button_color.' tiny"><div class="ui-icon ui-icon-'.$button_icon.'"></div><span>'.$button_text.'</span></button></a>&nbsp;/&nbsp;<a href="'.site_url('post/article/edit/id/'.$value['id']).'"><button class="blue tiny"><div class="ui-icon ui-icon-pencil"></div><span>修改</span></button></a>&nbsp;/&nbsp;<a onclick="delete_confirm('.$value['id'].')"><button class="red tiny"><div class="ui-icon ui-icon-trash"></div><span>删除</span></button></a>';
+				$result['aaData'][$key][] =  '<a href="'.site_url('post/article/topit/'.$value['id'].'/'.$value['orders']).'"><button class="'.$button_color.' tiny"><div class="ui-icon ui-icon-'.$button_icon.'"></div><span>'.$button_text.'</span></button></a>&nbsp;/&nbsp;<a href="'.site_url('post/article/edit/id/'.$value['id']).'"><button class="blue tiny"><div class="ui-icon ui-icon-pencil"></div><span>修改</span></button></a>&nbsp;/&nbsp;<a onclick="delete_confirm('.$value['id'].')"><button class="red tiny"><div class="ui-icon ui-icon-trash"></div><span>删除</span></button></a>';
 			}else{
 				$result['aaData'][$key][] = '';
 			}

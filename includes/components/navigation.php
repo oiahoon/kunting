@@ -1,4 +1,5 @@
 <div id="nav_top" class="dropdown_menu clearfix round_top">
+	<!-- 
 	<ul class="clearfix">
 		<li class="icon_only"><a href="index.php" class="pjax"><img src="images/icons/small/grey/laptop.png"/><span class="display_none">Home</span></a></li>
 
@@ -78,7 +79,7 @@
 			</ul>
 		</li>
 	</ul>
-
+-->
 	<div id="mobile_nav">
 		<div class="main"></div>
 		<div class="side"></div>

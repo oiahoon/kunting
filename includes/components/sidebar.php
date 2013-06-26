@@ -1,7 +1,7 @@
 <div id="sidebar" class="sidebar pjax_links">
 	<div class="cog">+</div>
 
-	<a href="index.php" class="logo"><span>Adminica</span></a>
+	<a href="index.php" class="logo"><span>Kunting</span></a>
 
 	<div class="user_box dark_box clearfix">
 		<img src="images/interface/profile.jpg" width="55" alt="Profile Pic" />
@@ -55,12 +55,5 @@
 		</li>
 	</ul>
 
-	<div id="search_side" class="dark_box"><form><input class="" type="text" placeholder="Search Adminica..."></form></div>
-
-	<ul id="side_links" class="side_links" style="margin-bottom:0;">
-		<li><a href="#">Documentation</a>
-		<li><a href="#">Support Forum</a></li>
-		<li><a href="#">Contact</a></li>
-		<li><a href="#">Subscribe</a></li>
-	</ul>
+	
 </div><!-- #sidebar -->

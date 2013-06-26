@@ -24,7 +24,14 @@
 	<!-- Styles -->
 
 		<link rel="stylesheet" href="styles/adminica/reset.css">
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,700">
+		<style>
+			@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+		</style>
 
 
 		<!-- NOTE: The following css files have been combined and minified into plugins.css
