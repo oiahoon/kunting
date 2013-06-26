@@ -49,8 +49,7 @@
 
 		<li><a href="#"><img src="images/icons/small/grey/cog_2.png"/>后台配置</a>
 			<ul class="drawer">
-				<li><a href="#">帐号</a></li>
-				<li><a href="#">系统</a></li>
+				<li><a href="<?php echo base_url('adonice/systemsetting');?>">系统配置</a></li>
 			</ul>
 		</li>
 	</ul>

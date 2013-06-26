@@ -8,6 +8,48 @@ class Settings_model extends CI_Model {
         parent::__construct();
     }
 	
+	/* 存储系统配置 */
+	function save($param)
+	{
+		$info = $this->getByKey($param['key']);
+		if($info)
+		{
+			return $this->update($param);
+		}
+		else
+		{
+			return $this->add($param);
+		}
+	}
+
+	/* 插入一条系统配置 */
+	function add($param)
+	{
+		return $this->db->insert($this->dbtable, $param);
+	}
+
+	/* 更新配置 $param array('key', 'value') */
+	function update($param)
+	{
+		$this->db->where('key', $param['key']);unset($param['key']);
+		return $this->db->update($this->dbtable, $param); 
+	}
+
+	/* 查询一条配置 */
+	function getByKey($key = '')
+	{
+		if($key == '')
+		{
+			$query = $this->db->get($this->dbtable);
+			$results = $query->result();
+		}
+		else
+		{
+			$query = $this->db->get_where($this->dbtable, array('key' => $key));
+			$result = array_shift($query->result());
+		}
+		return $result;
+	}
 	/* 改变团购开关的值 */
 	function groupbuyswitch(){
 		$key = 'groupbuy_s';

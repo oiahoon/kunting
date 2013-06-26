@@ -42,6 +42,22 @@ class Adonice extends CI_Controller {
 		}
 	}
 	
+	/* 系统设置 */
+	function systemsetting(){
+		$viewdata = array(
+			'title' => array('top' => "系统配置",
+							'small' => "(系统的一些配置信息)"),
+			'systemsetting' => $this->settings_model->getsetting(),
+			);
+		if($this->input->post()){
+			$params = $this->input->post();
+			foreach ($params as $key => $value) {
+				$this->settings_model->save(array('key'=>$key,'value'=>$value));
+			}
+			redirect("adonice/systemsetting", "refresh");
+		}
+		$this->load->view('systemsetting', $viewdata);
+	}
 	/**
 	 *  短链
 	 *
@@ -54,7 +70,7 @@ class Adonice extends CI_Controller {
 		$api_ = "http://open.t.qq.com/api/short_url/shorten";
 		$params = array(
 			"format" => "json",	//返回格式
-			"appid" => "801058005",	//appid
+			"appid" => "801378227",	//appid
 			"openid" => "A697394BC7D6D84D3E92BF3BBF3DCBA0",	//
 			"openkey" => "4A98F802B453D6E06E6E08A68615BB8F",
 			//"clientip" => "125.69.143.247",
@@ -79,22 +95,20 @@ class Adonice extends CI_Controller {
 	 }
 
 	 function shorten(){
+		$this->load->library('Snoopy');
 	 	if($this->input->get_post('url')) {
 	 		$url = $this->input->get_post('url');
-	 		$api_ = "http://open.t.qq.com/api/short_url/shorten";
+	 		$api_ = "http://api.weibo.com/2/short_url/shorten.json";
 			$params = array(
-				"format" => "json",	//返回格式
-				"appid" => "801058005",	//appid
-				"openid" => "A697394BC7D6D84D3E92BF3BBF3DCBA0",	//
-				"openkey" => "4A98F802B453D6E06E6E08A68615BB8F",
-				//"clientip" => "125.69.143.247",
-				"reqtime" => time(),
-				"wbversion" => "1",
-				//"pf" => "php-sdk2.0beta",
-				"sig" => "mwOsYxY27uo3lIUE/5k0qHbZ/Nw="
+				"source" => "3366000357",	//appid
+				'url_long' => $url
 			);
+			$api_full_url = $api_.'?source=3366000357&url_long='.$url;
+			$this->snoopy->fetch($api_full_url);
+			$result['data'] = json_decode($this->snoopy->results,true);
+			$result['data']  = json_decode('{"urls":[{"result":true,"url_short":"http://t.cn/h5mwx","url_long":"http://www.baidu.com","type":25}]}',true);
 	 	}
-	 	yaoprint(array('status'=>0));
+	 	yaoprint($result,$this->input->get_post('format'));
 	 }
 	
 

@@ -244,7 +244,7 @@
 					<br>
 					url:/adonice/short_url</td>
 					<td>
-						<form class="form-horizontal" method="get" action="<?php echo site_url('adonice/short_url');?>">
+						<form class="form-horizontal" method="get" action="<?php echo site_url('adonice/shorten');?>">
 							<fieldset>
 								<div class="control-group">
 									<label class="control-label" for="inputurl">Url:</label>
@@ -252,16 +252,7 @@
 										<input id="inputurl" type="text" name="url" value="http://www.qq.com" placeholder="输入 Url">
 									</div>
 								</div>
-								<div class="control-group">
-									<label class="control-label" for="inputtype">Type</label>
-									<div class="controls">
-									<select id="inputtype" name="type">
-										<option value="1" selected="">Long->Short</option>
-										<option value="2">Short->Long</option>
-									</select>
-									</div>
-								</div>
-
+								
 								<div class="control-group">
 									<label class="control-label" for="inputformat">数据类型：</label>
 									<div class="controls">
