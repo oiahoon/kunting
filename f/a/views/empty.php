@@ -52,7 +52,10 @@
 							<fieldset class="right">
 								<label>当前置顶资讯</label>
 								<div class="clearfix">
-									<label><h2><a href="<?php echo site_url('post/article/edit/id/'.$top_article['id']);?>"  style="color:blue;"><?php echo $top_article['title'];?></a></h2></label>
+									<label><h2>
+									<?php if($top_article){?>
+									<a href="<?php echo site_url('post/article/edit/id/'.$top_article['id']);?>"  style="color:blue;"><?php echo $top_article['title'];?></a>
+									<?php }else{?>当前没有置顶的资讯<?php }?></h2></label>
 								</div>
 							</fieldset>
 						</div>

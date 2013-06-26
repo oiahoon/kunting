@@ -79,7 +79,7 @@ class Post_model extends CI_Model {
 		$this->db->select("id,title");
 		$this->db->from($this->post_table);
 		$this->db->where($this->category_idField,  $type);
-		$this->db->order_by("orders", "asc"); 
+		$this->db->where("orders", "1"); 
 		$this->db->limit(1);
 		$query = $this->db->get();
 		return($query->row_array());
