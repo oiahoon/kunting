@@ -48,6 +48,7 @@ class Adonice extends CI_Controller {
 	 *
 	 */
 	 function short_url($long_url = ''){
+	 	$result['status'] = 1;
 		if($this->input->get_post("url")) $url = $this->input->get_post('url');
 		/*
 		$api_ = "http://open.t.qq.com/api/short_url/shorten";
@@ -73,9 +74,8 @@ class Adonice extends CI_Controller {
 		$query_string = '?'.implode("&",$temp);
 		$api_full_url = $api_.$query_string;
 
-		$result['new_url'] = file_get_contents($api_full_url);
+		$result['data'] = file_get_contents($api_full_url);
 		yaoprint($result,$this->input->get_post('format'));die;
-		echo "http://t.cn/".$result->data->short_url;
 	 }
 
 	 function shorten(){

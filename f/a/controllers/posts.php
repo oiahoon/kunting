@@ -16,8 +16,8 @@ class Posts extends CI_Controller {
 		$category = $this->input->post("type") ? $this->input->post("type") : ''; 
 		$perpage = $this->input->post('perpage') ? $this->input->post('perpage') : 20; 
 		$page = $this->input->post('page') ? $this->input->post('page') : 0;
-		$result['articles'] = $this->articles->getArticlesList($category, $perpage , $page);
-		if($result['articles']) $result['status'] = 1;
+		$result['data'] = $this->articles->getArticlesList($category, $perpage , $page);
+		if($result['data']) $result['status'] = 1;
 		yaoprint($result, $this->input->post("format"));
 	}
 
@@ -27,8 +27,8 @@ class Posts extends CI_Controller {
 		$result['status'] = 0;
 		$id = $this->input->post("id") ? $this->input->post("id") : ''; 
 		if ($id != '') {
-			$result['article'] = $this->articles->getById($id);
-			if($result['article']) $result['status'] = 1;
+			$result['data'] = $this->articles->getById($id);
+			if($result['data']) $result['status'] = 1;
 		}
 		yaoprint($result, $this->input->post("format"));
 	}

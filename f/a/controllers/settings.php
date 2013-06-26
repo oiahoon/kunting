@@ -20,7 +20,7 @@ class Settings extends CI_Controller {
 				$result = array('status'=>0);
 			}
 		}else{
-			$result['groupbuy_s'] = $this->setting->getsetting("groupbuy_s");
+			$result['data'] = $this->setting->getsetting("groupbuy_s");
 		}
 		yaoprint($result,$this->input->post('format'));die;
 	}

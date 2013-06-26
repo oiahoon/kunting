@@ -45,7 +45,7 @@
 					<br>
 					url:/members/members/memberAdd </td>
 					<td>
-						<form class="form-horizontal" method="post" action="http://localhost/kunting/members/members/memberAdd">
+						<form class="form-horizontal" method="post" action="<?php echo site_url('members/members/memberAdd');?>">
 							<fieldset>
 								<div class="control-group">
 									<label class="control-label" for="inputname">用户名:</label>

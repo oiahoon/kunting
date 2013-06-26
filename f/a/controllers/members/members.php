@@ -33,15 +33,7 @@ class Members extends CI_Controller {
 		else{
 			$result['msg'] = "用户已经参加过本活动";
 		}
-		$format = ($this->input->post("format")) ? $this->input->post("format") : 'json';
-		switch (strtolower($format)){
-				case 'array':
-					print_r($result);
-				break;
-				default:
-					echo json_encode($result);
-			}
-		die;
+		yaoprint($result,$this->input->get_post('format'));die;
 	}
 	/*
 	 * 用户重复判断
