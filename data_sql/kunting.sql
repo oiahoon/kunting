@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 4.0.1
 -- http://www.phpmyadmin.net
 --
--- 主机: localhost
--- 生成日期: 2013 年 06 月 23 日 16:30
--- 服务器版本: 5.5.24-log
--- PHP 版本: 5.4.3
+-- Host: localhost
+-- Generation Time: Jun 27, 2013 at 02:48 PM
+-- Server version: 5.5.31-0ubuntu0.13.04.1
+-- PHP Version: 5.4.9-4ubuntu2.1
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- 数据库: `kunting`
+-- Database: `kunting`
 --
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `admin_group`
+-- Table structure for table `admin_group`
 --
 
 CREATE TABLE IF NOT EXISTS `admin_group` (
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `admin_group` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- 转存表中的数据 `admin_group`
+-- Dumping data for table `admin_group`
 --
 
 INSERT INTO `admin_group` (`id`, `group_name`, `order`) VALUES
@@ -44,7 +44,7 @@ INSERT INTO `admin_group` (`id`, `group_name`, `order`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `admin_users`
+-- Table structure for table `admin_users`
 --
 
 CREATE TABLE IF NOT EXISTS `admin_users` (
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `admin_users` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- 转存表中的数据 `admin_users`
+-- Dumping data for table `admin_users`
 --
 
 INSERT INTO `admin_users` (`id`, `username`, `password`, `group_id`, `last_login`) VALUES
@@ -66,7 +66,7 @@ INSERT INTO `admin_users` (`id`, `username`, `password`, `group_id`, `last_login
 -- --------------------------------------------------------
 
 --
--- 表的结构 `category`
+-- Table structure for table `category`
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `category` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- 转存表中的数据 `category`
+-- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`id`, `name`, `alias`) VALUES
@@ -88,17 +88,17 @@ INSERT INTO `category` (`id`, `name`, `alias`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `content`
+-- Table structure for table `content`
 --
 
 CREATE TABLE IF NOT EXISTS `content` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `content` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
--- 转存表中的数据 `content`
+-- Dumping data for table `content`
 --
 
 INSERT INTO `content` (`id`, `content`) VALUES
@@ -106,12 +106,13 @@ INSERT INTO `content` (`id`, `content`) VALUES
 (9, '<p>阿斯打三打三打啊 &nbsp;</p><div>阿斯打三打三打啊 &nbsp;阿斯打三打三打啊 &nbsp;阿斯打三打三打啊 &nbsp;阿斯打三打三打啊 &nbsp;阿斯打三打三打啊 &nbsp;阿斯打三打三打啊 &nbsp;阿斯打三打三打啊 &nbsp;阿斯打三打三打啊 &nbsp;阿斯打三打三打啊 &nbsp;阿斯打三打三打啊 &nbsp;阿斯打三打三打啊 &nbsp;阿斯打三打三打啊 &nbsp;阿斯打三打三打啊 &nbsp;阿<strong>斯打三打三打啊 &nbsp;阿斯打三打三打啊</strong> &nbsp;阿斯打三打三打啊 &nbsp;阿斯打三打三打啊 &nbsp;</div>'),
 (10, '啊是打算'),
 (11, '啊是打算asda'),
-(12, 'asdasdasdasd阿道夫哈哈是否');
+(12, 'asdasdasdasd阿道夫哈哈是否'),
+(13, '<p>阿斯打维酸</p>\n<p><img src=&quot;../../../uploads/97.gif&quot; alt=&quot;&quot; width=&quot;60&quot; height=&quot;50&quot; /> <img src=&quot;../../../uploads/971.gif&quot; alt=&quot;&quot; width=&quot;60&quot; height=&quot;50&quot; />阿斯打阿斯打打算&nbsp;<img src=&quot;../../../uploads/inngQI.jpg&quot; alt=&quot;&quot; width=&quot;480&quot; height=&quot;321&quot; />阿斯打死阿斯打速度维酸&nbsp;<img src=&quot;../../../uploads/secondarytile.png&quot; alt=&quot;&quot; width=&quot;120&quot; height=&quot;120&quot; />阿斯打啊啊速度 &nbsp;</p>');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `members`
+-- Table structure for table `members`
 --
 
 CREATE TABLE IF NOT EXISTS `members` (
@@ -123,25 +124,26 @@ CREATE TABLE IF NOT EXISTS `members` (
   `objectid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `phone_obj` (`phone`,`objectid`) COMMENT '电话-活动'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
--- 转存表中的数据 `members`
+-- Dumping data for table `members`
 --
 
 INSERT INTO `members` (`id`, `username`, `email`, `phone`, `type`, `objectid`) VALUES
-(1, '丁继勇', 'ding@kt.com', '13222222222', 'groupbuy', 8),
-(2, '打酱油', 'dajyou@kt.com', '13111111111', 'groupbuy', 9),
-(3, '丁继勇', 'ding@kt.com', '13111111111', 'actions', 8),
-(4, '打酱油', 'dajyou@kt.com', '13222222222', 'actions', 9),
-(5, 'dingj', 'ding@qq.com', '13115212649', 'actions', 12),
-(10, '阿三打扫打扫', '4296411@qq.com', '9564621', 'groupbuy', 5),
-(11, '', '', '0', 'actions', 0);
+(1, '丁继勇', 'ding@kt.com', 13222222222, 'groupbuy', 8),
+(2, '打酱油', 'dajyou@kt.com', 13111111111, 'groupbuy', 9),
+(3, '丁继勇', 'ding@kt.com', 13111111111, 'actions', 8),
+(4, '打酱油', 'dajyou@kt.com', 13222222222, 'actions', 9),
+(5, 'dingj', 'ding@qq.com', 13115212649, 'actions', 12),
+(10, '阿三打扫打扫', '4296411@qq.com', 9564621, 'groupbuy', 5),
+(11, '', '', 0, 'actions', 0),
+(12, 'huangyuyaoasd', '4296411@qq.com', 13115212649, 'actions', 1);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `member_activity`
+-- Table structure for table `member_activity`
 --
 
 CREATE TABLE IF NOT EXISTS `member_activity` (
@@ -156,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `member_activity` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `post`
+-- Table structure for table `post`
 --
 
 CREATE TABLE IF NOT EXISTS `post` (
@@ -170,25 +172,27 @@ CREATE TABLE IF NOT EXISTS `post` (
   `imagecover` varchar(64) DEFAULT '' COMMENT '封面图片',
   `imagetitle` varchar(64) DEFAULT '',
   `orders` int(11) NOT NULL DEFAULT '9' COMMENT '置顶用排序',
+  `short_link` varchar(64) DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
--- 转存表中的数据 `post`
+-- Dumping data for table `post`
 --
 
-INSERT INTO `post` (`id`, `category_id`, `title`, `title_2nd`, `content_id`, `create_date`, `author`, `imagecover`, `imagetitle`, `orders`) VALUES
-(8, 1, '主标题11', '副标题44444', 8, '2013-06-17 00:39:47', 'admin', '63_832159_30314cf3105aa0a.jpg', '', 1),
-(9, 2, '活动主标题', '活动副标题', 9, '2013-06-17 12:18:11', 'admin', '20110812113437285.jpg', '', 2),
-(10, 3, '团购aaaaaaaaa', '团购二标', 10, '2013-06-17 16:29:25', 'admin', '971.gif', '63_832159_30314cf3105aa0a.jpg', 9),
-(11, 3, '团购ccccccccccc', '团购二标', 10, '2013-06-17 16:29:25', 'admin', 'asd', '', 9),
-(12, 3, '团购ccccccccccccc', '团购二标12', 11, '2013-06-19 00:53:45', 'admin', '', '', 9),
-(13, 1, 'zixun2222222', 'title222222222222', 12, '2013-06-19 01:07:46', 'admin', '6628711bgw1dlgxcqyv6tj.jpg', '', 9);
+INSERT INTO `post` (`id`, `category_id`, `title`, `title_2nd`, `content_id`, `create_date`, `author`, `imagecover`, `imagetitle`, `orders`, `short_link`) VALUES
+(8, 1, '主标题11', '副标题44444', 8, '2013-06-17 00:39:47', 'admin', '63_832159_30314cf3105aa0a.jpg', '', 9, 'http://t.cn/zHDH1b2'),
+(9, 2, '活动主标题', '活动副标题', 9, '2013-06-17 12:18:11', 'admin', '20110812113437285.jpg', '', 2, 'http://t.cn/zHDm3oR'),
+(10, 3, '团购aaaaaaaaa', '团购二标', 10, '2013-06-17 16:29:25', 'admin', '971.gif', '63_832159_30314cf3105aa0a.jpg', 9, 'http://t.cn/zHDm3YB'),
+(11, 3, '团购ccccccccccc', '团购二标', 10, '2013-06-17 16:29:25', 'admin', 'asd', '', 9, 'http://t.cn/zHDm3rf'),
+(12, 3, '团购ccccccccccccc', '团购二标12', 11, '2013-06-19 00:53:45', 'admin', '', '', 9, 'http://t.cn/zHDm17i'),
+(13, 1, 'zixun2222222', 'title222222222222', 12, '2013-06-19 01:07:46', 'admin', '6628711bgw1dlgxcqyv6tj.jpg', '', 9, 'http://t.cn/zHDm1GI'),
+(14, 4, '分享主标题', '分享副标题', 13, '2013-06-26 09:36:30', 'admin', '', '', 9, 'http://t.cn/zHDm1XJ');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `settings`
+-- Table structure for table `settings`
 --
 
 CREATE TABLE IF NOT EXISTS `settings` (
@@ -199,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- 转存表中的数据 `settings`
+-- Dumping data for table `settings`
 --
 
 INSERT INTO `settings` (`id`, `key`, `value`) VALUES
@@ -208,7 +212,7 @@ INSERT INTO `settings` (`id`, `key`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
@@ -224,7 +228,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=153322 ;
 
 --
--- 转存表中的数据 `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`uid`, `email`, `username`, `password`, `status`, `reg_date`, `reset_key`) VALUES
