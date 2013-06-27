@@ -19,20 +19,40 @@ class Feedback extends CI_Controller {
 		$this->load->view('feedbacks',$viewdata);
 	}
 
-	function feedback(){
+	function newFeedback(){
+		$this->load->library('session');
 		$result['status'] = 0;
 		$result['msg'] = "反馈失败";
-		$one = array(
-			'username' => $this->input->post('name'),
-			'email' => $this->input->post('email'),
-			'phone' => $this->input->post('phone'),
-			'content' => $this->input->post('content'),
-			'version' => $this->input->post('version'),
-			'created_at' => date("Y-m-d H:i:s"),
-		);
-		if($this->feedback->insert($one)){
-			$result['status'] = 1;
-			$result['msg'] = "谢谢反馈";
+		//间隔大于300秒以上才可以
+		if(time() - $this->session->userdata('feedback_at') > 300){
+			$one = array(
+				'username' => $this->input->post('name'),
+				'email' => $this->input->post('email'),
+				'phone' => $this->input->post('phone'),
+				'content' => $this->input->post('content'),
+				'version' => $this->input->post('version'),
+				'created_at' => date("Y-m-d H:i:s"),
+			);
+			if($this->feedback->insert($one)){
+				//发邮件
+				$this->load->Model('emailsend_model','emailsend');
+				$config = $this->emailsend->getEmailConfig();
+				$to = $config['emailusername'];
+		 		$title = '用户反馈('.$one['username'].')';
+		 		$body = implode('<br/>',$one);
+		 		$this->emailsend->sendEmail($config, $to, '', $title,  $body);
+
+				$result['status'] = 1;
+				$result['msg'] = "谢谢反馈";
+				$sessiondata = array(
+	                   'username'  => $this->input->post('name'),
+	                   'feedback_at' => time(),
+	               );
+				$this->session->set_userdata($sessiondata);
+			}
+		}
+		else{
+			$result['msg'] = "提交的太频繁,请稍候";
 		}
 		yaoprint($result,$this->input->post('format'));
 	}

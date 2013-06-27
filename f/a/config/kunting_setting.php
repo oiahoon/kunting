@@ -19,3 +19,9 @@ $config['category'] = array(
 	'groupbuy' => array('id'=>'3','name' => "团购"),
 	'sharepage' => array('id'=>'4','name' => "分享"),
 );
+
+$config['mail_name']='焦常云';
+$config['mail_passwd']='19870511';
+$config['mail_address']='4296411@qq.com';
+$config['mail_smtp']='smtp.qq.com';
+$config['mail_smtp_port']=25;

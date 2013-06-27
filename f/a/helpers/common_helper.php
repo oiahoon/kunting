@@ -19,3 +19,4 @@ function yaoprint($data, $format = 'json')
 				break;
 		}
 }
+

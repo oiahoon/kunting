@@ -284,7 +284,7 @@
 					<br>
 					url:feedback/feedback </td>
 					<td>
-						<form class="form-horizontal" method="post" action="<?php echo site_url('feedback/feedback');?>">
+						<form class="form-horizontal" method="post" action="<?php echo site_url('feedback/newFeedback');?>">
 							<fieldset>
 								<div class="control-group">
 									<label class="control-label" for="inputname">用户名:</label>
@@ -344,6 +344,57 @@
 					</td>
 				</tr>
 				<!-- ################################################### //-->
+				<!-- one line ########################################## //-->
+				<tr>
+					<td>发邮件测试
+					<br>
+					url:adonice/emailtest</td>
+					<td>
+						<form class="form-horizontal" method="post" action="<?php echo site_url('adonice/emailtest');?>">
+							<fieldset>
+								<div class="control-group">
+									<label class="control-label" for="inputtitle">标题:</label>
+									<div class="controls">
+										<input id="inputtitle" type="text" name="title" value="" placeholder="输入邮件标题">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputcontent">内容:</label>
+									<div class="controls">
+										<textarea rows="3" name="content" placeholder="输入邮件">测试-邮件内容。测试-邮件内容。测试-邮件内容。</textarea>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputemailto">收件人:</label>
+									<div class="controls">
+										<input id="inputemailto" type="text" name="emailto" value="" placeholder="输入收件人地址">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputformat">数据类型：</label>
+									<div class="controls">
+									<select id="inputformat" name="format">
+										<option value="json" selected="">JSON</option>
+										<option value="array">PHP数组</option>
+									</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<div class="controls">
+										<a href="#resultBox" role="button" class="btn" data-toggle="modal">提交</a>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</td>
+					<td>
+						<ol>
+							<li class="require">url-&gt; 准备转换的url</li>
+							<li class="require">type-&gt; 转换的方式</li>
+						</ol>
+					</td>
+				</tr>
+			<!-- ################################################### //-->
 			</tbody></table>
 		</div>
 

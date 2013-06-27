@@ -19,7 +19,7 @@
 										<span>用于发送和接收邮件的地址</span>
 									</label>
 									<div>
-										<input type="text" name="email" id="email" value="<?php echo @$systemsetting['email']?>" class="required">
+										<input type="text" name="emailusername" id="emailusername" value="<?php echo @$systemsetting['emailusername']?>" class="required">
 										<div class="required_tag"></div>
 									</div>
 								</fieldset>
@@ -48,6 +48,19 @@
 									</div>
 								</fieldset>
 							</div>
+							
+							<div class="col_50">
+								<fieldset class="label_side label_small top right">
+									<label for="text_field_inline">SMTP
+									<span>邮箱的smtp</span>
+									</label>
+									<div>
+										<input type="text" name="emailhost" id="emailhost" value="<?php echo @$systemsetting['emailhost']?>" class="required">
+										<div class="required_tag"></div>
+									</div>
+								</fieldset>
+							</div>
+
 						</div>
 					</div>
 				</div>
@@ -73,7 +86,7 @@
 						<div class="columns clearfix">
 							<div class="col_50">
 								<fieldset class="label_side label_small top">
-									<label for="text_field_inline">登陆帐号
+									<label for="text_field_inline">登陆帐号(暂未生效)
 										<span>用户登陆后台的帐号</span>
 									</label>
 									<div>
@@ -84,7 +97,7 @@
 							</div>
 							<div class="col_50">
 								<fieldset class="label_side label_small top right">
-									<label for="text_field_inline">登陆密码
+									<label for="text_field_inline">登陆密码(暂未生效)
 									<span>用于登陆后台的密码</span>
 									</label>
 									<div>

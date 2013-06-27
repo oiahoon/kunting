@@ -135,5 +135,26 @@ class Adonice extends CI_Controller {
 	 	yaoprint($result,$this->input->get_post('format'));
 	 }
 	
-
+	 /* 发邮件测试 */
+	 function emailtest(){
+	 	$result['status'] = 0;
+	 	$this->load->Model('emailsend_model','emailsend');
+	 	$config = $this->emailsend->getEmailConfig();
+	 	if(count($config) == 4){
+	 		$to = $this->input->post('emailto');
+	 		$title = $this->input->post('title');
+	 		$body = $this->input->post('content');
+	 		$email_result = $this->emailsend->sendEmail($config, $to, '', $title,  $body);
+	 		if($email_result === true){
+	 			$result['status'] = 1;
+	 		}
+	 		else{
+	 			$result['msg'] = $email_result;
+	 			}
+	 	}
+	 	else{
+	 		$result['msg'] = '参数配置不够,请查看后台配置';
+	 	}
+	 	yaoprint($result,$this->input->post('format'));
+	 }
 }
