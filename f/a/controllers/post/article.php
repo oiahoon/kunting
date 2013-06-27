@@ -15,6 +15,7 @@ class Article extends CI_Controller {
 			'title' => array('top' => '资讯列表','small' => '(点击标题查看预览页面)'),
 			'ctl' => "article",
 			);
+		$viewdata['side_current_id'] = 2;
 		$this->load->view('articles',$viewdata);
 	}
 
@@ -70,6 +71,7 @@ class Article extends CI_Controller {
 				}
 			}
 		}
+		$viewdata['side_current_id'] = 2;
 		$this->load->view('posteditor_tinymce',$viewdata);
 	}
 	/* 修改资讯 */
@@ -108,6 +110,7 @@ class Article extends CI_Controller {
 		}
 		$params = $this->uri->uri_to_assoc(4);
 		if(isset($params['id'])) $viewdata['post'] = $this->article_model->getById($params['id']);
+		$viewdata['side_current_id'] = 2;
 		$this->load->view('posteditor_tinymce',$viewdata);
 	}
 

@@ -25,6 +25,7 @@ class Adonice extends CI_Controller {
 	public function index()
 	{	
 		$data['admin_group'] = $this->admin_model->get_admin_group();
+		$data['side_current_id'] = 1;
 		session_start();
 		if(!$this->session->userdata('login')){
 			$data['title']['top'] = "后台登陆";
@@ -56,6 +57,7 @@ class Adonice extends CI_Controller {
 			}
 			redirect("adonice/systemsetting", "refresh");
 		}
+		$viewdata['side_current_id'] = 6;
 		$this->load->view('systemsetting', $viewdata);
 	}
 	/**

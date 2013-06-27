@@ -15,6 +15,7 @@ class Groupbuy extends CI_Controller {
 			'title' => array('top' => '团购列表','small' => '(点击标题查看预览页面)'),
 			'ctl' => "groupbuy",
 			);
+		$viewdata['side_current_id'] = 3;
 		$this->load->view('articles',$viewdata);
 	}
 	
@@ -61,6 +62,7 @@ class Groupbuy extends CI_Controller {
 				}
 			}	
 		}
+		$viewdata['side_current_id'] = 3;
 		$this->load->view('posteditor_tinymce',$viewdata);
 	}
 	/* 修改资讯 */
@@ -105,6 +107,7 @@ class Groupbuy extends CI_Controller {
 		}
 		$params = $this->uri->uri_to_assoc(4);
 		if(isset($params['id'])) $viewdata['post'] = $this->groupbuy_model->getById($params['id']);
+		$viewdata['side_current_id'] = 3;
 		$this->load->view('posteditor_tinymce',$viewdata);
 	}
 
@@ -142,6 +145,7 @@ class Groupbuy extends CI_Controller {
 			'category' => '3',
 			'ctl' => "groupbuy",
 			);
+		$viewdata['side_current_id'] = 3;
 		$this->load->view('members',$viewdata);
 	}
 

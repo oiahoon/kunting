@@ -1,6 +1,6 @@
 <?php include 'includes/core/document_head.php'?>
 	<div id="pjax">
-		<div id="wrapper" data-adminica-side-top="2">
+		<div id="wrapper" data-adminica-side-top="<?php echo $side_current_id;?>">
 			<?php include 'includes/components/topbar.php'?>
 			<?php include 'includes/components/sidebar.php'?>
 			<?php include 'includes/components/stackbar.php'?></div><!-- Closing Div for Stack Nav, you can boxes under the stack before this -->

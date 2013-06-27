@@ -1,6 +1,6 @@
 <?php include 'includes/core/document_head.php'?>
 	<div id="pjax">
-		<div id="wrapper" data-adminica-nav-top="6" data-adminica-nav-inner="1">
+		<div id="wrapper" data-adminica-side-top="<?php echo $side_current_id ;?>">
 			<?php include 'includes/components/topbar.php'?>
 			<?php include 'includes/components/sidebar.php'?>
 			<?php include 'includes/components/stackbar.php'?></div><!-- Closing Div for Stack Nav, you can boxes under the stack before this -->
@@ -67,12 +67,12 @@
 							"sInfoEmtpy": "没有数据",  
 							"sProcessing": "正在加载数据...",  
 							"oPaginate": {  
-							"sFirst": "首页",  
-							"sPrevious": "前一页",  
-							"sNext": "下一页",  
-							"sLast": "尾页"  
+								"sFirst": "首页",  
+								"sPrevious": "前一页",  
+								"sNext": "下一页",  
+								"sLast": "尾页"  
+							}
 						}
-					}
 					} );
 
 					function delete_confirm(id){

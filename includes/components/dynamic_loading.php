@@ -5,3 +5,4 @@
 	<input type="radio" name="dynamic_switch" id="dynamic_off" checked="checked"/><label for="dynamic_off">Off</label>
 </div>
 -->
+

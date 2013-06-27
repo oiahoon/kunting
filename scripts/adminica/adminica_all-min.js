@@ -299,7 +299,7 @@ function navCurrent() {
 function sideNavCurrent() {
     var e = $("#wrapper").data("adminica-side-top"),
     t = $("#wrapper").data("adminica-side-inner");
-    $("ul#nav_side > li").eq(e - 1).addClass("current").find("li").eq(t - 1).addClass("current");
+    $("ul#nav_side > li").eq(e - 1).addClass("current").addClass("open").children("ul").slideDown().find("li").eq(t - 1).addClass("current");
     $("ul#nav_side > li").addClass("icon_only").children("a").children("span:visible").parent().parent().removeClass("icon_only")
 }
 function stackNavCurrent(e, t) {
