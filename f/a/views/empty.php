@@ -63,7 +63,9 @@
 					<div class="columns">
 						<div class="col_30">
 							<fieldset>
-								<label>Create Short links </label>
+								<label>创建短链
+								<span>为所有的咨询，活动，团购，分享重新生成短链接</span>
+								</label>
 								<div>
 									<button class="dark div_icon has_text button_down" type="create" onclick="shortlinks();">
 										<div class="ui-icon ui-icon-check"></div>
@@ -74,7 +76,13 @@
 							<SCRIPT LANGUAGE="JavaScript">
 							<!--
 								function shortlinks () {
-									alert("x");
+								var r=confirm("即将为所有的\r\n咨询，活动，团购，分享\r\n分享重新生成短链接，\r\n后台可能需要一段时间才能完成，\r\n这段时间你可以任意切换页面。");
+								if (r==true){
+									$.ajax({ url: "<?php echo site_url('adonice/shorten_all_posts');?>", success: function(data){
+										alert(data);
+								        }});
+								}
+																	
 								}
 							//-->
 							</SCRIPT>
