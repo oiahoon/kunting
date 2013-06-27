@@ -13,7 +13,7 @@ class Members extends CI_Controller {
 	
 	//固件管理首页
 	function index(){
-	$this->load->helper('form');
+		$this->load->helper('form');
 		$this->load->view('addmember');
 	}
 

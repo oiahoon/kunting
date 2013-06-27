@@ -40,13 +40,19 @@
 				<li><a href="<?php echo site_url('pull');?>" class="pjax">推送</a></li>
 			</ul>
 		</li>
+		<li><a href="#"><img src="images/icons/small/grey/shuffle.png"/>用户反馈</a>
+			<ul class="drawer">
+				<li><a href="<?php echo site_url('feedback');?>" class="pjax">反馈列表</a></li>
+			</ul>
+		</li>
+		<!--
 		<li><a href="#"><img src="images/icons/small/grey/users.png"/>管理人员</a>
 			<ul class="drawer">
 				<li><a href="admin/adminAdd" class="pjax">添加人员</a></li>
 				<li><a href="admin/adminList" class="pjax">人员列表</a></li>
 			</ul>
 		</li>
-
+		-->
 		<li><a href="#"><img src="images/icons/small/grey/cog_2.png"/>后台配置</a>
 			<ul class="drawer">
 				<li><a href="<?php echo base_url('adonice/systemsetting');?>">系统配置</a></li>

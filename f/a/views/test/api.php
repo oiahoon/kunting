@@ -278,6 +278,72 @@
 					</td>
 				</tr>
 			<!-- ################################################### //-->
+			<!-- one line ############################################## //-->
+				<tr>
+					<td>用户反馈
+					<br>
+					url:feedback/feedback </td>
+					<td>
+						<form class="form-horizontal" method="post" action="<?php echo site_url('feedback/feedback');?>">
+							<fieldset>
+								<div class="control-group">
+									<label class="control-label" for="inputname">用户名:</label>
+									<div class="controls">
+										<input id="inputname" type="text" name="name" value="" placeholder="输入用户名">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputemail">Email:</label>
+									<div class="controls">
+										<input id="inputemail" type="text" name="email" value="kunting@test.com" placeholder="输入邮箱地址">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputphone">电话号码:</label>
+									<div class="controls">
+										<input id="inputphone" type="text" name="phone" value="13521214453" placeholder="输入电话号码">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputcontent">反馈信息</label>
+									<div class="controls">
+										<textarea rows="3" name="content" placeholder="输入反馈信息">测试-反馈信息。测试-反馈信息。测试-反馈信息。</textarea>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputversion">版本信息</label>
+									<div class="controls">
+										<input id="inputversion" type="text" name="version" value="android 1.0" placeholder="输入版本信息">
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputdatatype">数据类型：</label>
+									<div class="controls">
+									<select id="inputdatatype" name="format">
+										<option value="json" selected="">JSON</option>
+										<option value="array">PHP数组</option>
+									</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<div class="controls">
+										<a href="#resultBox" role="button" class="btn" data-toggle="modal">提交</a>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</td>
+					<td>
+						<ol>
+							<li class="require">name-&gt; 用户名</li>
+							<li class="require">email-&gt; 邮箱地址</li>
+							<li class="require">phone-&gt; 电话号码</li>
+							<li class="require">cate-&gt; 项目类型 <br/>(活动报名:actions; 参加团购:groupbuy)</li>
+							<li class="require">objectid-&gt; 项目id<br/>(也就是活动的id或者团购的id)</li>
+						</ol>
+					</td>
+				</tr>
+				<!-- ################################################### //-->
 			</tbody></table>
 		</div>
 
