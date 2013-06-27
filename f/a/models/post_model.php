@@ -7,7 +7,8 @@ class Post_model extends CI_Model {
 	var $titleField = "title";
 	var $content_idField = "content_id";
 	var $category_idField = 'category_id';
-	
+	var $short_linkField = 'short_link';
+
 	function __construct(){
 		parent::__construct();
 	}
@@ -22,7 +23,13 @@ class Post_model extends CI_Model {
 		//$query = $this->db->get_where($this->post_table, array($this->primaryKeyField => $id));
 		return($query->row_array());
 	}
-
+	//get all post only from post table 
+	function getAllPost(){
+		$this->db->select('id');
+		$this->db->from($this->post_table);
+		$query = $this->db->get();
+		return($query->result());
+	}
 	//新增一条资讯
 	function insertOneArticle($article){
 		$content = array('content' => $article['content']); //把文章里面的 单双引号都用html代码替换
@@ -61,6 +68,12 @@ class Post_model extends CI_Model {
 		return $this->db->update($this->post_table, $article); 
 	}
 	
+	/* update the short_link of one article */
+	function putShortLinkById($id,$short_link)
+	{
+		$this->db->where('id', $id);
+		return $this->db->update($this->post_table, array($this->short_linkField => $short_link)); 
+	}
 	/* 置顶 */
 	function topit($id,$category){
 		$this->db->where('category_id', $category);

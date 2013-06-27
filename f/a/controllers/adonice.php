@@ -60,6 +60,22 @@ class Adonice extends CI_Controller {
 		$viewdata['side_current_id'] = 6;
 		$this->load->view('systemsetting', $viewdata);
 	}
+
+	/*
+		bach create shorten url of posts
+	 */
+		function shorten_all_posts()
+		{
+			$this->load->Model('post_model');
+			$articles = $this->post_model->getAllPost();
+			//print_r($articles);die;
+			foreach ($articles as $row) {
+				$short_link = $this->url_to_short(base_url('v/'.$row->id));
+				$this->post_model->putShortLinkById($row->id,$short_link);
+				sleep(2);
+			}
+			
+		}
 	/**
 	 *  短链
 	 *
@@ -95,7 +111,13 @@ class Adonice extends CI_Controller {
 		$result['data'] = file_get_contents($api_full_url);
 		yaoprint($result,$this->input->get_post('format'));die;
 	 }
-
+	 /* shorten a url ,get the short one */
+	 function url_to_short($long_url)
+	 {
+	 	$api_ = 'http://jucelin.com/lab/short.php?type=1&url='.$long_url;
+	 	return file_get_contents($api_);
+	 }
+	 /* shorten by own api of weibo */
 	 function shorten(){
 		$this->load->library('Snoopy');
 	 	if($this->input->get_post('url')) {

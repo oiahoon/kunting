@@ -41,7 +41,7 @@
 $route['default_controller'] = "adonice";
 $route['404_override'] = '';
 
-$route['share/(:num)'] = "posts/sharepage/$1";
+$route['v/(:num)'] = "posts/viewpost/$1";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
