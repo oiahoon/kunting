@@ -45,7 +45,7 @@ class Emailsend_model extends CI_Model {
 		  return "Mailer Error: " . $this->phpmailer->ErrorInfo;
 		}
 		else{
-			return true;
+			return 'true';
 		}
 	}
 

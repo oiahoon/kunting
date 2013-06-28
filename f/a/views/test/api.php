@@ -338,8 +338,8 @@
 							<li class="require">name-&gt; 用户名</li>
 							<li class="require">email-&gt; 邮箱地址</li>
 							<li class="require">phone-&gt; 电话号码</li>
-							<li class="require">cate-&gt; 项目类型 <br/>(活动报名:actions; 参加团购:groupbuy)</li>
-							<li class="require">objectid-&gt; 项目id<br/>(也就是活动的id或者团购的id)</li>
+							<li class="require">content-&gt; 反馈的内容</li>
+							<li class="require">version-&gt; 用户的版本信息</li>
 						</ol>
 					</td>
 				</tr>
@@ -389,8 +389,11 @@
 					</td>
 					<td>
 						<ol>
-							<li class="require">url-&gt; 准备转换的url</li>
-							<li class="require">type-&gt; 转换的方式</li>
+							<li class="require">title-&gt; 邮件的标题</li>
+							<li class="require">content-&gt; 邮件的内容</li>
+							<li class="require">emailto-&gt; 收件人地址</li>
+
+							<br/>邮件的发送/接受邮箱地址密码，<br/>均在后台->后台设置里面配置
 						</ol>
 					</td>
 				</tr>

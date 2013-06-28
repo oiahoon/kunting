@@ -145,7 +145,7 @@ class Adonice extends CI_Controller {
 	 		$title = $this->input->post('title');
 	 		$body = $this->input->post('content');
 	 		$email_result = $this->emailsend->sendEmail($config, $to, '', $title,  $body);
-	 		if($email_result === true){
+	 		if($email_result == 'true'){
 	 			$result['status'] = 1;
 	 		}
 	 		else{

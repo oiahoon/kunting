@@ -24,7 +24,7 @@ class Feedback extends CI_Controller {
 		$result['status'] = 0;
 		$result['msg'] = "反馈失败";
 		//间隔大于300秒以上才可以
-		if(time() - $this->session->userdata('feedback_at') > 300){
+		if(time() - $this->session->userdata('feedback_at') > 3){
 			$one = array(
 				'username' => $this->input->post('name'),
 				'email' => $this->input->post('email'),

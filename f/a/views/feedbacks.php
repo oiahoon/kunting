@@ -55,7 +55,7 @@
 						bLengthChange: false,                 //用户不可改变每页显示数量 
 						bProcessing: true,                    //加载数据时显示正在加载信息  
 						bServerSide: true,                    //指定从服务器端获取数据  
-						sAjaxSource: '<?php echo site_url("/feedback/feedbacks_dataTable");?>', //获取数据的url  
+						sAjaxSource: '<?php echo site_url("feedback/feedbacks_dataTable");?>', //获取数据的url  
 						
 						fnInitComplete: function() {
 							$("#dt1 .dataTables_length > label > select").uniform();
@@ -77,12 +77,6 @@
 					}
 					} );
 
-					function delete_confirm(id){
-						var r=confirm("确定删除?");
-						if (r==true){
-							window.location = "<?php echo site_url('post/'.$ctl.'/delete/id/');?>/" + id;
-						}
-					}
 				//-->
 				</SCRIPT>
 				
