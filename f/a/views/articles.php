@@ -89,7 +89,11 @@
 					}
 				//-->
 				</SCRIPT>
-				
+				<style>
+					a button span {
+						font-size : 14px;
+					}
+				<style>
 			</div>
 		</div>
 
