@@ -91,7 +91,7 @@
 				</SCRIPT>
 				<style>
 					a button span {
-						font-size : 14px;
+						font-size : 12px;
 					}
 				<style>
 			</div>
