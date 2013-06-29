@@ -81,6 +81,12 @@
 							window.location = "<?php echo site_url('post/'.$ctl.'/delete/id/');?>/" + id;
 						}
 					}
+
+					function ajax_push(id){
+						$.ajax({ url: "<?php echo site_url('posts/push');?>"+'/'+id, success: function(data){
+							alert("推送成功.");
+					    }});
+					}
 				//-->
 				</SCRIPT>
 				

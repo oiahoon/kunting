@@ -23,7 +23,7 @@ class Adonice extends CI_Controller {
 		$this->load->Model('settings_model');
 	}
 	public function index()
-	{	
+	{	pushit("xxxxxxxxx");
 		$data['admin_group'] = $this->admin_model->get_admin_group();
 		$data['side_current_id'] = 1;
 		session_start();

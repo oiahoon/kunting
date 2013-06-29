@@ -49,4 +49,21 @@ class Posts extends CI_Controller {
 			);
 		$this->load->view('sharepage',$viewdata);
 	}
+
+	/* 推送 */
+	public function push()
+	{
+		$result['status'] = 0;
+		$data = array();
+		$id = $this->uri->segment(3);
+		if($id){
+			$data['content'] = $this->articles->getById($id, true);
+			if($data['content']){
+				$data['type'] = $this->articles->getTypeAlias($data['content']->category_id);
+				$result = pushit(json_encode($data));
+			}
+			else $result['status'] = 0 ;
+		}
+		echo $result['status'] ;
+	}
 }

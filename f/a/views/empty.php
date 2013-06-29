@@ -76,13 +76,12 @@
 							<SCRIPT LANGUAGE="JavaScript">
 							<!--
 								function shortlinks () {
-								var r=confirm("即将为所有的\r\n咨询，活动，团购，分享\r\n分享重新生成短链接，\r\n后台可能需要一段时间才能完成，\r\n这段时间你可以任意切换页面。");
-								if (r==true){
-									$.ajax({ url: "<?php echo site_url('adonice/shorten_all_posts');?>", success: function(data){
-										alert(data);
-								        }});
-								}
-																	
+									var r=confirm("即将为所有的\r\n咨询，活动，团购，分享\r\n重新生成短链接，\r\n后台可能需要一段时间才能完成，\r\n这段时间你可以任意切换页面。");
+									if (r==true){
+										$.ajax({ url: "<?php echo site_url('adonice/shorten_all_posts');?>", success: function(data){
+											alert("生成完毕.");
+									        }});
+									}									
 								}
 							//-->
 							</SCRIPT>

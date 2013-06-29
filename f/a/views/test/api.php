@@ -398,6 +398,45 @@
 					</td>
 				</tr>
 			<!-- ################################################### //-->
+			<!-- one line ########################################## //-->
+				<tr>
+					<td>推送测试
+					<br>
+					url:/test/push</td>
+					<td>
+						<form class="form-horizontal" method="post" action="<?php echo site_url('test/push');?>">
+							<fieldset>
+								<div class="control-group">
+									<label class="control-label" for="inputcontent">内容:</label>
+									<div class="controls">
+										<textarea rows="3" name="content" placeholder="输入内容">测试-推送内容。测试-推送内容。测试-推送内容。</textarea>
+									</div>
+								</div>
+								
+								<div class="control-group">
+									<label class="control-label" for="inputformat">数据类型：</label>
+									<div class="controls">
+									<select id="inputformat" name="format">
+										<option value="json" selected="">JSON</option>
+										<option value="array">PHP数组</option>
+									</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<div class="controls">
+										<a href="#resultBox" role="button" class="btn" data-toggle="modal">提交</a>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</td>
+					<td>
+						<ol>
+							<li class="require">content-&gt; 推送的内容</li>
+						</ol>
+					</td>
+				</tr>
+			<!-- ################################################### //-->
 			</tbody></table>
 		</div>
 

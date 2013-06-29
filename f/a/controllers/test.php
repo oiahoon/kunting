@@ -23,4 +23,15 @@ class Test extends CI_Controller {
 		
 	}
 
+	public function push()
+	{
+		$result ['status'] = 0;
+		$content = $this->input->post('content');
+		$data['data'] = array('content'=>$content);
+		print_r($data);
+		echo json_encode($data)."\r\n<br/>";
+		$result = pushit(json_encode($data));
+		yaoprint($result,$this->input->get_post('format'));
+	}
+
 }

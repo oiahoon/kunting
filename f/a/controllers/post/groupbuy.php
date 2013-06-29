@@ -124,7 +124,7 @@ class Groupbuy extends CI_Controller {
 		$category  = $this->groupbuy_model->getTypes();//print_r($category);
 		$result = $this->groupbuy_model->getArticles($where);
 		foreach($result['aaaData'] as $key => $value){
-			$result['aaData'][$key][] = "&lt;".$value['title']."&gt;"."<br />".$value['short_link'];
+			$result['aaData'][$key][] = '<a onclick="ajax_push('.$value['id'].')" title="推送"><button class="orange tiny has_text img_icon"><img src="images/icons/small/white/magic_mouse.png"><span>推送</span></button></a>&nbsp;' . "&lt;".$value['title']."&gt;"."<br /><a href='".$value['short_link']."' taget='_blank'>".$value['short_link']."</a>";
 			$result['aaData'][$key][] = $value['create_date'];
 			$result['aaData'][$key][] = $value['author'];
 

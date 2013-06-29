@@ -14,14 +14,15 @@ class Post_model extends CI_Model {
 	}
 	
 	//通过 id 查询一条资讯的信息 包括内容
-	function getById($id){
+	function getById($id, $obj = false){
 		$this->db->select($this->post_table.'.*,content.content');
 		$this->db->from($this->post_table);
 		$this->db->where("`".$this->post_table."`.".$this->primaryKey , $id);
 		$this->db->join('content', 'content.id = '.$this->post_table.'.content_id');
 		$query = $this->db->get();
 		//$query = $this->db->get_where($this->post_table, array($this->primaryKeyField => $id));
-		return($query->row_array());
+		if( $obj ) return($query->row());
+		else return($query->row_array());
 	}
 	//get all post only from post table 
 	function getAllPost(){
@@ -111,6 +112,15 @@ class Post_model extends CI_Model {
 		return $tmp;
 	}
 
+	/* 获取分类的别名 */
+	function getTypeAlias($id){
+		$this->db->select('alias');
+		$this->db->from('category');
+		$this->db->where('id', $id);
+		$result = $this->db->get()->row_array();
+		if($result) return $result['alias'];
+		else return false;
+	}
 	/**
 	 * 返回文章列表
 	 * 根据提交的category 来指定分类,不提供则默认所有
@@ -129,11 +139,6 @@ class Post_model extends CI_Model {
 		return $result;
 	}
 
-	function getArticlesById()
-	{
-		
-		
-	}
 	/**
 	 *	为 jquery dataTable 提供数据
 	 */

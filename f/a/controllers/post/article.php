@@ -128,6 +128,7 @@ class Article extends CI_Controller {
 		else $this->article_model->untopit($id,"1");
 		redirect("post/article", "refresh");
 	}
+	
 	//为资讯页面提供表格数据
 	function articleList_dataTable()
 	{
@@ -136,7 +137,7 @@ class Article extends CI_Controller {
 		$result = $this->article_model->getArticles($where,"orders");
 		foreach($result['aaaData'] as $key => $value){
 			//$result['aaData'][$key][] = $value['id'];
-			$result['aaData'][$key][] = "&lt;".$value['title']."&gt;"."<br />".$value['short_link'];
+			$result['aaData'][$key][] = '<a onclick="ajax_push('.$value['id'].')" title="推送"><button class="orange tiny has_text img_icon"><img src="images/icons/small/white/magic_mouse.png"><span>推送</span></button></a>&nbsp;' . "&lt;".$value['title']."&gt;"."<br /><a href='".$value['short_link']."' taget='_blank'>".$value['short_link']."</a>";
 			//$result['aaData'][$key][] = $value['title_2nd'];
 			//$result['aaData'][$key][] = $category[$value['category_id']];
 			$result['aaData'][$key][] = $value['create_date'];
