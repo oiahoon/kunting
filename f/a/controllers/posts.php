@@ -60,7 +60,7 @@ class Posts extends CI_Controller {
 			$data['content'] = $this->articles->getById($id, true);
 			if($data['content']){
 				$data['type'] = $this->articles->getTypeAlias($data['content']->category_id);
-				$result = pushit(json_encode($data));
+				$result = pushit(str_replace('\u','\\\u',json_encode($data)));
 			}
 			else $result['status'] = 0 ;
 		}

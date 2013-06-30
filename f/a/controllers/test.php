@@ -30,7 +30,7 @@ class Test extends CI_Controller {
 		$data['data'] = array('content'=>$content);
 		print_r($data);
 		echo json_encode($data)."\r\n<br/>";
-		$result = pushit(json_encode($data));
+		$result = pushit(str_replace('\u','\\\u',json_encode($data)));
 		yaoprint($result,$this->input->get_post('format'));
 	}
 
