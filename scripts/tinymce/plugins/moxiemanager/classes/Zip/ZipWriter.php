@@ -313,7 +313,8 @@ class MOXMAN_Zip_ZipWriter {
 
 			// Detect any characters outside the Win32 filename byte range
 			if (strpos($path, '?') !== false) {
-				throw new Exception("PHP doesn't support the specified characters on Windows.");
+				//throw new Exception("PHP doesn't support the specified characters on Windows.");
+				throw new Exception("文件名包含有不支持的字符,不能有中文.");
 			}
 		}
 
