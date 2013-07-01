@@ -435,7 +435,8 @@ class MOXMAN_Vfs_Local_File extends MOXMAN_Vfs_BaseFile {
 
 			// Detect any characters outside the Win32 filename byte range
 			if (strpos($path, '?') !== false) {
-				throw new MOXMAN_Exception("PHP doesn't support the specified characters on Windows.", MOXMAN_Exception::INVALID_FILE_NAME);
+				//throw new MOXMAN_Exception("PHP doesn't support the specified characters on Windows.", MOXMAN_Exception::INVALID_FILE_NAME);
+				throw new MOXMAN_Exception("文件名包含不支持的字符,不允许有中文.", MOXMAN_Exception::INVALID_FILE_NAME);
 			}
 		}
 
