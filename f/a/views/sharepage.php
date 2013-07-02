@@ -59,8 +59,13 @@
 <SCRIPT LANGUAGE="JavaScript">
 <!--
 	$(document).ready(function(){
-		$('img').addClass("imgc").wrap('<ul class="thumbnails"></ul>').wrap('<li class="span4"></li>').wrap('<a href="#" class="thumbnail"></div>');
-		//<ul class="thumbnails">  <li class="span4">    <a href="#" class="thumbnail">
+		$('img').each(function(){
+			var link = '#';
+			var img_lnk = $(this).parent('a').attr('href');
+			if(img_lnk){link = img_lnk;}
+			$(this).addClass("imgc").wrap('<ul class="thumbnails"></ul>').wrap('<li class="span4"></li>').wrap('<a href="'+ link +'" class="thumbnail"></div>');	
+		});
+		
 	});
 //-->
 </SCRIPT>
