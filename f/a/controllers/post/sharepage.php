@@ -129,7 +129,7 @@ class Sharepage extends CI_Controller {
 		$result = $this->article_model->getArticles($where,"orders");
 		foreach($result['aaaData'] as $key => $value){
 			//$result['aaData'][$key][] = $value['id'];
-			$result['aaData'][$key][] = '<a onclick="ajax_push('.$value['id'].')" title="推送"><button class="orange tiny has_text img_icon"><img src="images/icons/small/white/magic_mouse.png"><span>推送</span></button></a>&nbsp;' . "<a href='".base_url('v/'.$value['id'])."' target='_blank'>".$value['title']."</a>"."<br /><a href='".$value['short_link']."' taget='_blank'>".$value['short_link']."</a>";
+			$result['aaData'][$key][] = "<a href='".base_url('v/'.$value['id'])."' target='_blank'>".$value['title']."</a>"."<br /><a href='".$value['short_link']."' taget='_blank'>".$value['short_link']."</a>";
 			//$result['aaData'][$key][] = $value['title_2nd'];
 			//$result['aaData'][$key][] = $category[$value['category_id']];
 			$result['aaData'][$key][] = $value['create_date'];
