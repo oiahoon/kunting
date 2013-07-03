@@ -26,11 +26,12 @@ class Feedback extends CI_Controller {
 		//间隔大于300秒以上才可以
 		if(time() - $this->session->userdata('feedback_at') > 3){
 			$one = array(
-				'username' => $this->input->post('name'),
-				'email' => $this->input->post('email'),
-				'phone' => $this->input->post('phone'),
+				'username' => 'feedback',
+				'email' => '',
+				'phone' => '',
+				'contact' => $this->input->post('contact'),
 				'content' => $this->input->post('content'),
-				'version' => $this->input->post('version'),
+				'version' => '',
 				'created_at' => date("Y-m-d H:i:s"),
 			);
 			if($this->feedback->insert($one)){
@@ -61,12 +62,13 @@ class Feedback extends CI_Controller {
 		$result  = $this->feedback->getfeedbacks();
 		foreach($result['aaaData'] as $key => $value){
 			$result['aaData'][$key][0] = $value['id'];
-			$result['aaData'][$key][1] = $value['username'];
-			$result['aaData'][$key][2] = $value['email'];
-			$result['aaData'][$key][3] = $value['phone'];
-			$result['aaData'][$key][4] = $value['content'];
-			$result['aaData'][$key][5] = $value['version'];
-			$result['aaData'][$key][6] = $value['created_at'];
+			//$result['aaData'][$key][1] = $value['username'];
+			//$result['aaData'][$key][2] = $value['email'];
+			//$result['aaData'][$key][3] = $value['phone'];
+			$result['aaData'][$key][1] = $value['contact'];
+			$result['aaData'][$key][2] = $value['content'];
+			//$result['aaData'][$key][5] = $value['version'];
+			$result['aaData'][$key][3] = $value['created_at'];
 		}
 		unset($result["aaaData"]);
 		echo json_encode($result);

@@ -22,11 +22,14 @@
 							<thead>
 								<tr>
 									<th>ID</th>
+									<!--
 									<th>姓名</th>
 									<th>电话</th>
 									<th>邮箱</th>
+									-->
+									<th>联系方式</th>
 									<th>反馈内容</th>
-									<th>版本信息</th>
+									
 									<th>反馈时间</th>
 								</tr>
 							</thead>

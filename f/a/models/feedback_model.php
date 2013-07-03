@@ -32,7 +32,7 @@ class Feedback_model extends CI_Model {
 		/* Array of database columns which should be read and sent back to DataTables. Use a space where
 		 * you want to insert a non-database field (for example a counter or static image)
 		 */
-		$aColumns = array('id', 'username', 'email', 'phone', 'content', 'version', 'created_at' );
+		$aColumns = array('id','contact', 'content', 'created_at' );
 	
 		/* Indexed column (used for fast and accurate table cardinality) */
 		$sIndexColumn = "id";

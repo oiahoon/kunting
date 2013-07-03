@@ -286,22 +286,11 @@
 					<td>
 						<form class="form-horizontal" method="post" action="<?php echo site_url('feedback/newFeedback');?>">
 							<fieldset>
+								
 								<div class="control-group">
-									<label class="control-label" for="inputname">用户名:</label>
+									<label class="control-label" for="inputcontact">联系方式:</label>
 									<div class="controls">
-										<input id="inputname" type="text" name="name" value="" placeholder="输入用户名">
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="inputemail">Email:</label>
-									<div class="controls">
-										<input id="inputemail" type="text" name="email" value="kunting@test.com" placeholder="输入邮箱地址">
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="inputphone">电话号码:</label>
-									<div class="controls">
-										<input id="inputphone" type="text" name="phone" value="13521214453" placeholder="输入电话号码">
+										<input id="inputcontacte" type="text" name="contact" value="13521214453" placeholder="输入联系方式">
 									</div>
 								</div>
 								<div class="control-group">
@@ -310,12 +299,7 @@
 										<textarea rows="3" name="content" placeholder="输入反馈信息">测试-反馈信息。测试-反馈信息。测试-反馈信息。</textarea>
 									</div>
 								</div>
-								<div class="control-group">
-									<label class="control-label" for="inputversion">版本信息</label>
-									<div class="controls">
-										<input id="inputversion" type="text" name="version" value="android 1.0" placeholder="输入版本信息">
-									</div>
-								</div>
+								
 								<div class="control-group">
 									<label class="control-label" for="inputdatatype">数据类型：</label>
 									<div class="controls">
@@ -335,11 +319,8 @@
 					</td>
 					<td>
 						<ol>
-							<li class="require">name-&gt; 用户名</li>
-							<li class="require">email-&gt; 邮箱地址</li>
-							<li class="require">phone-&gt; 电话号码</li>
+							<li class="require">contact-&gt; 联系方式</li>
 							<li class="require">content-&gt; 反馈的内容</li>
-							<li class="require">version-&gt; 用户的版本信息</li>
 						</ol>
 					</td>
 				</tr>
