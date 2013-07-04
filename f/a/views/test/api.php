@@ -449,9 +449,8 @@
 		// bind to the form's submit event 
 		$("a[href='#resultBox']").bind("click", function(){	
 			//一个动画效果
-			//var progressbar = '<div class="progress progress-striped active"><div class="bar" style="width: 0%;"></div></div>';
-			//$('#resultBox .modal-body').html(progressbar);
-
+			var progressbar = '<div class="progress progress-striped active"><div class="bar" style="width: 0%;"></div></div>';
+			$('#resultBox .modal-body').html(progressbar);
 			$('.bar').attr("style",'width: 0%;').animate({width: "100%"},"slow");	
 			var this_form = $(this).parents("form");
 			this_form.ajaxSubmit(options); 
