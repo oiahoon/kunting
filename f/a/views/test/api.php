@@ -428,7 +428,7 @@
 			<h3 id="myModalLabel">测试结果</h3>
 		  </div>
 		  <div class="modal-body">
-			<pre></pre>
+		  <div class="progress progress-striped active"><div class="bar" style="width: 0%;"></div></div>
 		  </div>
 		  <div class="modal-footer">
 			<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
@@ -441,17 +441,25 @@
 	<SCRIPT LANGUAGE="JavaScript">
 	<!--
 	$(document).ready(function() { 
-		var options = { 
-			target: '#resultBox .modal-body pre',   // target element(s) to be updated with server response 
+		var options = { success: function(data) {
+				$('#resultBox .modal-body').html('<pre>'+data+"</pre>");
+			}
+			//target: '#resultBox .modal-body pre',   // target element(s) to be updated with server response 
 		}; 
-	 
 		// bind to the form's submit event 
-		$("a[href='#resultBox']").bind("click", function(){
+		$("a[href='#resultBox']").bind("click", function(){	
+			//一个动画效果
+			//var progressbar = '<div class="progress progress-striped active"><div class="bar" style="width: 0%;"></div></div>';
+			//$('#resultBox .modal-body').html(progressbar);
+
+			$('.bar').attr("style",'width: 0%;').animate({width: "100%"},"slow");	
 			var this_form = $(this).parents("form");
 			this_form.ajaxSubmit(options); 
 			//return false; 
 		}); 
+
 	}); 
+
 	//-->
 	</SCRIPT>
 </body></html>
