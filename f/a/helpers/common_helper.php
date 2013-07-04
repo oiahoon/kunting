@@ -21,8 +21,8 @@ function yaoprint($data, $format = 'json')
 }
 
 /* 推送 */
-function pushit($content){
-	include "/../libraries/Snoopy.php";
+function pushit($content, $msgType = 1, $clientPlatform = 'android,ios'){
+	include_once dirname(__FILE__)."/../libraries/Snoopy.php";
 	$snoopy = new Snoopy;
 	$snoopy->agent = $_SERVER['HTTP_USER_AGENT'];   
 	$snoopy->rawheaders["Pragma"] = "no-cache";
@@ -32,8 +32,8 @@ function pushit($content){
 	$pushVar["appKey"]			= '617729b1dd2ed59157696a5670a823ec';
 	$pushVar["receiveType"]		= 1;
 	$pushVar["receiveUsers"]	= 1;
-	$pushVar["msgType"]			= 1;
-	$pushVar["clientPlatform"]	= 'android,ios';
+	$pushVar["msgType"]			= $msgType;
+	$pushVar["clientPlatform"]	= $clientPlatform;
 	$pushVar["msgContent"]		= $content;
 	//print_r($pushVar);exit;
 	if($snoopy->submit($pushUrl,$pushVar)){

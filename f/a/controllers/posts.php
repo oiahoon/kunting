@@ -43,13 +43,35 @@ class Posts extends CI_Controller {
 		//if($data['category_id'] != $this->config->item('category')['sharepage']['id']) 
 		//	die(json_encode(array('status'=>'0')));
 		$viewdata = array( 
-			'title' => array('top' => '分享页面','small' => $data['title']),
+			'title' => array('top' => '','small' => $data['title']),
 			'ctl' => "sharepage",
 			'share' => $data,
 			);
 		$this->load->view('sharepage',$viewdata);
 	}
 
+	function post2json()
+	{
+		$data['status'] = 0;
+		$id_ext = $this->uri->segment(2);
+		list($id, $ext) = explode(".",$id_ext);
+		if($id){
+			$data['content'] = $this->articles->getById($id, true);
+			if($data['content']){
+				$data['status'] = 1;
+				$data['type'] = $this->articles->getTypeAlias($data['content']->category_id);
+			};
+		}
+		switch ($ext) {
+			case 'json':
+				echo json_encode($data);
+				break;
+			
+			default:
+				# code...
+				break;
+		}
+	}
 	/* 推送 */
 	public function push()
 	{
@@ -65,5 +87,40 @@ class Posts extends CI_Controller {
 			else $result['status'] = 0 ;
 		}
 		echo $result['status'] ;
+	}
+
+	/**
+		推送，ios推送字数限制，改成推url，然后从url取json 	
+	*/
+	public function push_new()
+	{
+		$id = $this->uri->segment(3);
+		if($id){
+			// ios
+			$result['ios'] = $this->push_ios($id);
+			//android
+			//$result['android'] = $this->push_android($id);
+		}
+		echo json_encode($result);
+	}
+
+	private function push_ios($id)
+	{
+		$path = 'v';
+		$ios['title'] = 'posts';
+		$ios['content'] = base_url($path.'/'.$id.".json");
+		$ios['pName'] = "com.nervenets.kuntingandroid";
+		$ios['cName'] = "com.nervenets.kuntingandroid.Main";
+		$result['ios'] = pushit(json_encode($ios), 2, 'ios');
+		$result['android'] = pushit(json_encode($ios), 1, 'android');
+		return $result;
+	}
+	private function push_android($id)
+	{
+		$android['content'] = $this->articles->getById($id, true);
+		if($android['content']){
+			$android['type'] = $this->articles->getTypeAlias($android['content']->category_id);
+			return pushit(str_replace('\u','\\\u',json_encode($android)), 1, 'android' );
+		}
 	}
 }
