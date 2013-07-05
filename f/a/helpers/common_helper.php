@@ -15,6 +15,8 @@ function yaoprint($data, $format = 'json')
 				break;
 			
 			default:
+				/* 如果不是从test接口来的  就作为json格式输出 */
+				if(!preg_match('/\/test/is', $_SERVER['HTTP_REFERER'])) header('Content-type:text/json');
 				echo json_encode($data);
 				break;
 		}
