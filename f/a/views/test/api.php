@@ -282,7 +282,7 @@
 				<tr>
 					<td>用户反馈
 					<br>
-					url:feedback/feedback </td>
+					url:feedback/newFeedback </td>
 					<td>
 						<form class="form-horizontal" method="post" action="<?php echo site_url('feedback/newFeedback');?>">
 							<fieldset>
