@@ -50,6 +50,20 @@ class Posts extends CI_Controller {
 		$this->load->view('sharepage',$viewdata);
 	}
 
+	/* 文章查看页面 */
+	function view(){
+		$viewdata['title'] = array('top' => "",'small' => "没有找到该文章");
+		$id = $this->uri->segment(2) ? $this->uri->segment(2) : $this->uri->segment(4);
+		if(is_numeric($id)){
+			$data = $this->articles->getById($id);
+			$viewdata = array( 
+				'title' => array('top' => '','small' => $data['title']),
+				'post' => $data,
+				);
+		}
+		$this->load->view('viewpost',$viewdata);
+	}
+
 	function post2json()
 	{
 		$data['status'] = 0;

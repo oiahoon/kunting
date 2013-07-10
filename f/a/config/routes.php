@@ -44,5 +44,7 @@ $route['404_override'] = '';
 $route['v/(:num)'] = "posts/viewpost/$1";
 $route['v/(:num)\.json'] = "posts/post2json/$1";
 
+$route['p/(:num)'] = "posts/view/$1";
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
