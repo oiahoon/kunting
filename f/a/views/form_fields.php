@@ -1,16 +1,16 @@
-<?php include 'includes/core/document_head.php'?>
+<?php include 'includes/core/document_head.php';?>
 	<div id="pjax">
 		<div id="wrapper" data-adminica-nav-top="4" data-adminica-nav-inner="1">
-			<?php include 'includes/components/topbar.php'?>
-			<?php include 'includes/components/sidebar.php'?>
-			<?php include 'includes/components/stackbar.php'?></div><!-- Closing Div for Stack Nav, you can boxes under the stack before this -->
+			<?php include 'includes/components/topbar.php';?>
+			<?php include 'includes/components/sidebar.php';?>
+			<?php include 'includes/components/stackbar.php';?></div><!-- Closing Div for Stack Nav, you can boxes under the stack before this -->
 
 			<div id="main_container" class="main_container container_16 clearfix">
-			<?php include 'includes/components/navigation.php'?>
+			<?php include 'includes/components/navigation.php';?>
 				<div class="flat_area grid_16">
 					<h2>Form elements and controls
 						<div class="holder">
-							<?php include 'includes/components/dynamic_loading.php'?>
+							<?php include 'includes/components/dynamic_loading.php';?>
 						</div>
 					</h2>
 					<p>Check out the Application like <a href="#">navigation</a>. Resize to see the liquid layout in action. Expand/Collapse and sort boxes. Try out the WYSIWYGs.</p>
@@ -76,7 +76,7 @@
 										<label>40% Width Column</label>
 										<div class="clearfix">
 											<select class="uniform full_width">
-												<?php include 'includes/content/select_colours.php'?>
+												<?php include 'includes/content/select_colours.php';?>
 											</select>
 										</div>
 									</fieldset>
@@ -216,7 +216,7 @@
 										<label>Uniform</label>
 										<div class="clearfix">
 											<select class="uniform full_width" multiple>
-												<?php include 'includes/content/select_countries.php'?>
+												<?php include 'includes/content/select_countries.php';?>
 											</select>
 										</div>
 									</fieldset>
@@ -226,7 +226,7 @@
 										<label><span class="alert badge alert_red">5</span>Browser</label>
 										<div>
 											<select class="full_width">
-												<?php include 'includes/content/select_countries.php'?>
+												<?php include 'includes/content/select_countries.php';?>
 											</select>
 										</div>
 									</fieldset>
@@ -236,7 +236,7 @@
 										<label>Filter & Search Draggable Multiselect</label>
 										<div>
 											<select class="multisorter indent" multiple="multiple" style="height:230px;">
-												<?php include 'includes/content/select_colours.php'?>
+												<?php include 'includes/content/select_colours.php';?>
 											</select>
 										</div>
 									</fieldset>
@@ -509,7 +509,7 @@
 				</div>
 			</div>
 		</div>
-		<?php include 'includes/dialogs/dialog_welcome.php'?>
-		<?php include 'includes/dialogs/dialog_logout.php'?>
-		<?php include 'includes/dialogs/dialog_form.php'?>
-<?php include 'includes/core/document_foot.php'?>
+		<?php include 'includes/dialogs/dialog_welcome.php';?>
+		<?php include 'includes/dialogs/dialog_logout.php';?>
+		<?php include 'includes/dialogs/dialog_form.php';?>
+<?php include 'includes/core/document_foot.php';?>

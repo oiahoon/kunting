@@ -5,6 +5,11 @@ class Test extends CI_Controller {
 		parent::__construct();
 	}
 	
+	public function view_test()
+	{
+		$viewdata = array();
+		$this->load->view("form_fields",$viewdata);
+	}
 	public function index()
 	{	$viewdata = array(
 			

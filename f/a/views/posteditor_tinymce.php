@@ -33,6 +33,15 @@
 								<input type="text" name="title[2nd]" value="<?php echo empty($post['title_2nd'])?'':$post['title_2nd'];?>">
 							</div>
 						</fieldset>
+						<fieldset class="label_side top">
+							<label>活动时间<span>活动的开始截至日期</span></label>
+							<div>
+								<label>开始时间</label>
+								<div class="clearfix">
+									<div class="datepicker"></div>
+								</div>
+							</div>
+						</fieldset>
 						<?php if($category != $this->config->item('category')['sharepage']['id']){?>
 						<fieldset class="label_side top">
 							<label>封面图片<span>(用于列表页显示)</span></label>
