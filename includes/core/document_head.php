@@ -11,8 +11,8 @@
 		<title><?php echo $this->config->item('appname')." | ".$title['top']?></title>
 
   		<meta name="description" content="kunting">
-  		<meta name="author" content="Oisin Lavery - Tricycle Labs">
-
+  		<meta name="author" content="JiuTianYouBang">
+  		<meta property="wb:webmaster" content="e0e45dac0e3d6fc9" />
 	<!-- iPhone, iPad and Android specific settings -->
 
 		<meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1;">
@@ -26,11 +26,11 @@
 		<link rel="stylesheet" href="styles/adminica/reset.css">
 		<style>
 			@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
-}
+			font-family: 'Open Sans';
+			font-style: normal;
+			font-weight: 400;
+			src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+			}
 		</style>
 
 
