@@ -33,15 +33,33 @@
 								<input type="text" name="title[2nd]" value="<?php echo empty($post['title_2nd'])?'':$post['title_2nd'];?>">
 							</div>
 						</fieldset>
-						<fieldset class="label_side top">
-							<label>活动时间<span>活动的开始截至日期</span></label>
-							<div>
-								<label>开始时间</label>
-								<div class="clearfix">
-									<div class="datepicker"></div>
-								</div>
+						<?php if ($category == $this->config->item('category')['actions']['id'] || $category == $this->config->item('category')['groupbuy']['id'] ) {?>
+						<div class="columns clearfix">
+							<div class="col_50">
+								<fieldset>
+									<label>活动的开始日期</label>
+									<div>
+										<input type="text" name="begin_date" class="datepicker" value="<?php echo empty($post['begin_date'])?'':$post['begin_date'];?>" placeholder="开始日期"/>
+									</div>
+								</fieldset>
 							</div>
-						</fieldset>
+							<div class="col_50">
+								<fieldset class="right">
+									<label>活动的截至日期</label>
+									<div class="clearfix">
+										<input type="text" name="end_date" class="datepicker" value="<?php echo empty($post['end_date'])?'':$post['end_date'];?>"  placeholder="截至日期"/>
+									</div>
+								</fieldset>
+							</div>
+							<script type="text/javascript">
+								 $.fn.datepicker && $(".datepicker").datepicker({
+							        dateFormat: "yy-m-d",
+							        showOn: "focus"
+							    });
+							</script>
+						</div>
+						<?php }?>
+						
 						<?php if($category != $this->config->item('category')['sharepage']['id']){?>
 						<fieldset class="label_side top">
 							<label>封面图片<span>(用于列表页显示)</span></label>
@@ -64,21 +82,21 @@
 						<?php }?>
 						<script src="scripts/tinymce/tinymce.min.js"></script>
 						<textarea id="content" class="tinyeditor" name="content"><?php echo empty($post['content'])?'':$post['content'];?></textarea>
-<SCRIPT LANGUAGE="JavaScript">
-	<!--
-		tinymce.PluginManager.load('moxiemanager', "<?php echo base_url('scripts/tinymce/plugins/moxiemanager/plugin.min.js');?>");
-		tinymce.init({
-			selector: "textarea",
-				height: 380,
-			plugins: [
-				"advlist autolink lists link image charmap print preview anchor",
-				"searchreplace visualblocks code fullscreen",
-				"insertdatetime media table contextmenu paste moxiemanager"
-			],
-			toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-		});
-	//-->
-</SCRIPT>			
+						<SCRIPT LANGUAGE="JavaScript">
+							<!--
+								tinymce.PluginManager.load('moxiemanager', "<?php echo base_url('scripts/tinymce/plugins/moxiemanager/plugin.min.js');?>");
+								tinymce.init({
+									selector: "textarea",
+										height: 380,
+									plugins: [
+										"advlist autolink lists link image charmap print preview anchor",
+										"searchreplace visualblocks code fullscreen",
+										"insertdatetime media table contextmenu paste moxiemanager"
+									],
+									toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+								});
+							//-->
+						</SCRIPT>			
 						<div class="button_bar clearfix">
 							<button type="submit" class="dark"  onclick='instance.post();'>
 								<img src="images/icons/small/white/bended_arrow_right.png">

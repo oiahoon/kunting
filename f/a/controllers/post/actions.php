@@ -93,6 +93,8 @@ class Actions extends CI_Controller {
 				$action['title'] = quotes_to_entities($_POST['title']['main']);
 				$action['title_2nd'] = quotes_to_entities($_POST['title']['2nd']);
 				$action['content'] = quotes_to_entities($_POST['content']);
+				$action['begin_date'] = $this->input->post('begin_date');
+				$action['end_date'] = $this->input->post('end_date');
 				foreach($action as $key => $row){ $viewdata[$key] = $row; }
 				if($this->actions_model->updateOneArticle($action,$_POST['id'])){
 					redirect("post/actions", "refresh");
