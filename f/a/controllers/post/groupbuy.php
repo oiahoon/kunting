@@ -96,6 +96,8 @@ class Groupbuy extends CI_Controller {
 				$groupbuy['title'] = quotes_to_entities($_POST['title']['main']);
 				$groupbuy['title_2nd'] = quotes_to_entities($_POST['title']['2nd']);
 				$groupbuy['content'] = quotes_to_entities($_POST['content']);
+				$groupbuy['begin_date'] = $this->input->post('begin_date');
+				$groupbuy['end_date'] = $this->input->post('end_date');
 				if($this->groupbuy_model->updateOneArticle($groupbuy,$_POST['id'])){
 					redirect("post/groupbuy", "refresh");
 				}

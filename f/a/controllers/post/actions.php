@@ -49,6 +49,8 @@ class Actions extends CI_Controller {
 				$action['title'] = quotes_to_entities($_POST['title']['main']);
 				$action['title_2nd'] = quotes_to_entities($_POST['title']['2nd']);
 				$action['content'] = quotes_to_entities($_POST['content']);
+				$action['begin_date'] = $this->input->post('begin_date');
+				$action['end_date'] = $this->input->post('end_date');
 				$action['create_date'] =  date("Y-m-d H:i:s");
 				$action['author'] = $this->session->userdata['manager'];
 				$action['category_id'] = '2';

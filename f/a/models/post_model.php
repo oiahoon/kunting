@@ -126,16 +126,32 @@ class Post_model extends CI_Model {
 	 * 根据提交的category 来指定分类,不提供则默认所有
 	 * perpage 每页条数 page 请求的页数 不提供默认第一页 20个
 	 */
-	function getArticlesList($category, $perpage , $page){
-		$result['total'] = $this->db->count_all_results($this->post_table);
+	function getArticlesList($category, $dead, $perpage , $page){
 		$this->db->select('*');
 		$this->db->from($this->post_table);
 		if ($category != '') {
 			$this->db->where($this->category_idField, $category );	
 		}
+		if($dead == 'expired') {
+			$this->db->where('end_date < ',date("Y-m-d"));
+		}
+		elseif($dead == 'ing') {
+			$this->db->where('end_date >= ',date("Y-m-d"));
+		}
 		$this->db->limit($perpage, ($page-1)*$perpage);
 		$result['lists'] = $this->db->get()->result_array();
-		$result['total'] = $this->db->from($this->post_table)->where($this->category_idField, $category)->count_all_results();
+		/* 查询总数 */
+		$this->db->from($this->post_table);
+		if ($category != '') {
+			$this->db->where($this->category_idField, $category );	
+		}
+		if($dead == 'expired') {
+			$this->db->where('end_date < ',date("Y-m-d"));
+		}
+		elseif($dead == 'ing') {
+			$this->db->where('end_date >= ',date("Y-m-d"));
+		}
+		$result['total'] = $this->db->count_all_results();
 		return $result;
 	}
 

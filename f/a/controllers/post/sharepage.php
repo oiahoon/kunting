@@ -136,7 +136,8 @@ class Sharepage extends CI_Controller {
 			$result['aaData'][$key][] = $value['author'];
 
 			if($this->session->userdata('group_name')){
-				$result['aaData'][$key][] =  '<a href="'.site_url('post/sharepage/edit/id/'.$value['id']).'"><button class="blue tiny"><div class="ui-icon ui-icon-pencil"></div><span>修改</span></button></a>&nbsp;/&nbsp;<a onclick="delete_confirm('.$value['id'].')"><button class="red tiny"><div class="ui-icon ui-icon-trash"></div><span>删除</span></button></a>';
+				//$result['aaData'][$key][] =  '<a href="'.site_url('post/sharepage/edit/id/'.$value['id']).'"><button class="blue tiny"><div class="ui-icon ui-icon-pencil"></div><span>修改</span></button></a>&nbsp;/&nbsp;<a onclick="delete_confirm('.$value['id'].')"><button class="red tiny"><div class="ui-icon ui-icon-trash"></div><span>删除</span></button></a>';
+				$result['aaData'][$key][] =  '<a href="'.site_url('post/sharepage/edit/id/'.$value['id']).'"><button class="blue tiny"><div class="ui-icon ui-icon-pencil"></div><span>修改</span></button></a>';
 			}else{
 				$result['aaData'][$key][] = '';
 			}

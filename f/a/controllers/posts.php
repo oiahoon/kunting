@@ -13,10 +13,11 @@ class Posts extends CI_Controller {
 	public function articlelists()
 	{
 		$result['status'] = 0;
-		$category = $this->input->post("type") ? $this->input->post("type") : ''; 
-		$perpage = $this->input->post('perpage') ? $this->input->post('perpage') : 20; 
-		$page = $this->input->post('page') ? $this->input->post('page') : 0;
-		$result['data'] = $this->articles->getArticlesList($category, $perpage , $page);
+		$category 		= $this->input->post("type") 	? $this->input->post("type") 	: ''; 
+		$perpage 		= $this->input->post('perpage') ? $this->input->post('perpage') : 20; 
+		$page 			= $this->input->post('page') 	? $this->input->post('page') 	: 0;
+		$dead 			= $this->input->post('dead') 	? $this->input->post('dead') 	: '';
+		$result['data'] = $this->articles->getArticlesList($category, $dead, $perpage, $page);
 		if($result['data']) $result['status'] = 1;
 		yaoprint($result, $this->input->post("format"));
 	}

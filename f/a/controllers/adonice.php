@@ -130,7 +130,7 @@ class Adonice extends CI_Controller {
 			$api_full_url = $api_.'?source=3366000357&url_long='.$url;
 			$this->snoopy->fetch($api_full_url);
 			$result['data'] = json_decode($this->snoopy->results,true);
-			$result['data']  = json_decode('{"urls":[{"result":true,"url_short":"http://t.cn/h5mwx","url_long":"http://www.baidu.com","type":25}]}',true);
+			//$result['data']  = json_decode('{"urls":[{"result":true,"url_short":"http://t.cn/h5mwx","url_long":"http://www.baidu.com","type":25}]}',true);
 	 	}
 	 	yaoprint($result,$this->input->get_post('format'));
 	 }

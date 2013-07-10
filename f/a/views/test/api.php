@@ -28,6 +28,7 @@
 			<a class="brand" href="#">项目测试</a>
 			<ul class="nav">
 				<li class="active"><a href="#">api接口测试</a></li>
+				<li><a href="#sina_shorten">sina短链接口</a></li>
 			</ul>
 		</div>
 	</div>
@@ -121,9 +122,19 @@
 									<label class="control-label" for="inputtype">分类:</label>
 									<div class="controls">
 										<select id="inputtype" name="type">
-											<option value="1" selected="">活动</option>
-											<option value="2">资讯</option>
+											<option value="1" selected="">资讯</option>
+											<option value="2">活动</option>
 											<option value="3">团购</option>
+										</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="inputdead">过期类型:</label>
+									<div class="controls">
+										<select id="inputdead" name="dead">
+											<option value="" selected="">不限</option>
+											<option value="expired">过期</option>
+											<option value="ing">未过期</option>
 										</select>
 									</div>
 								</div>
@@ -160,6 +171,7 @@
 					<td>
 						<ol>
 							<li class="require">type-&gt; 分类<br/>资讯:1;活动:2;团购:3;</li>
+							<li class="require">dead-&gt; 过期类型<br/>不限:空(不传);未过期:ing;过期:expired;</li>
 							<li class="require">perpage-&gt; 每页记录条数</li>
 							<li class="require">page-&gt; 页码</li>
 						</ol>
@@ -239,8 +251,8 @@
 				</tr>
 			<!-- ################################################### //-->
 			<!-- one line ########################################## //-->
-				<tr>
-					<td>短链接
+				<tr id="sina_shorten">
+					<td>新浪短链接口
 					<br>
 					url:/adonice/short_url</td>
 					<td>
@@ -249,7 +261,7 @@
 								<div class="control-group">
 									<label class="control-label" for="inputurl">Url:</label>
 									<div class="controls">
-										<input id="inputurl" type="text" name="url" value="http://www.qq.com" placeholder="输入 Url">
+										<input id="inputurl" type="text" name="url" value="http://www.sina.com" placeholder="输入 Url">
 									</div>
 								</div>
 								
