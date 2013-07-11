@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:wb=“http://open.weibo.com/wb”>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+	<script src=" http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=2855687947" type="text/javascript" charset="utf-8"></script>
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<style>
 		.content {
@@ -29,6 +31,9 @@
 			<ul class="nav">
 				<li class="active"><a href="#">api接口测试</a></li>
 				<li><a href="#sina_shorten">sina短链接口</a></li>
+				<li>
+					<a><wb:follow-button uid="1524346093" type="red_1" width="67" height="24" ></wb:follow-button>	</a>
+				</li>
 			</ul>
 		</div>
 	</div>
