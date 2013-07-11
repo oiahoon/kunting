@@ -83,8 +83,8 @@ class Adonice extends CI_Controller {
 	 */
 	 function short_url($long_url){
 	 	if(empty($long_url)) die;
- 		$api_ = "https://api.weibo.com/2/short_url/shorten.json";
-		$api_full_url = $api_.'?access_token=2.00_DAKfBBtKQHD3342156dbe0whsF_&url_long='.urlencode($long_url);
+ 		$api_ = "http://api.weibo.com/2/short_url/shorten.json";
+		$api_full_url = $api_.'?source=2855687947&url_long='.urlencode($long_url);
 		$result = json_decode($this->vpost($api_full_url),true);
 		return $result['urls'][0]['url_short'];
 	 }
@@ -98,7 +98,7 @@ class Adonice extends CI_Controller {
 	 function shorten(){
 	 	if($this->input->get_post('url')) {
 	 		$url = $this->input->get_post('url');
-	 		$api_ = "https://api.weibo.com/2/short_url/shorten.json";
+	 		$api_ = "http://api.weibo.com/2/short_url/shorten.json";
 			$api_full_url = $api_.'?source=2855687947&url_long='.urlencode($url);
 
 			$result = json_decode($this->vpost($api_full_url),true);
