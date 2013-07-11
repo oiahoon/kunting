@@ -70,71 +70,57 @@ class Adonice extends CI_Controller {
 			$articles = $this->post_model->getAllPost();
 			//print_r($articles);die;
 			foreach ($articles as $row) {
-				$short_link = $this->url_to_short(base_url('v/'.$row->id));
+				$short_link = $this->short_url(base_url('v/'.$row->id));
 				$this->post_model->putShortLinkById($row->id,$short_link);
-				sleep(2);
+				//sleep(2);
 			}
 			
 		}
 	/**
 	 *  短链
-	 *
+	 *  用户后台生成
 	 *
 	 */
-	 function short_url($long_url = ''){
-	 	$result['status'] = 1;
-		if($this->input->get_post("url")) $url = $this->input->get_post('url');
-		/*
-		$api_ = "http://open.t.qq.com/api/short_url/shorten";
-		$params = array(
-			"format" => "json",	//返回格式
-			"appid" => "801378227",	//appid
-			"openid" => "A697394BC7D6D84D3E92BF3BBF3DCBA0",	//
-			"openkey" => "4A98F802B453D6E06E6E08A68615BB8F",
-			//"clientip" => "125.69.143.247",
-			"reqtime" => time(),
-			"wbversion" => "1",
-			//"pf" => "php-sdk2.0beta",
-			"sig" => "mwOsYxY27uo3lIUE/5k0qHbZ/Nw="
-		);
-		*/
-		$api_ = "http://jucelin.com/lab/short.php";
-		$params['type'] = $this->input->get_post('type');
-		$result['origin_url'] = $params['url'] = $url;
-		$temp = array();
-		foreach($params as $key => $value){
-			$temp[] = $key."=".$value;
-		}
-		$query_string = '?'.implode("&",$temp);
-		$api_full_url = $api_.$query_string;
-
-		$result['data'] = file_get_contents($api_full_url);
-		yaoprint($result,$this->input->get_post('format'));die;
+	 function short_url($long_url){
+	 	if(empty($long_url)) die;
+ 		$api_ = "https://api.weibo.com/2/short_url/shorten.json";
+		$api_full_url = $api_.'?access_token=2.00_DAKfBBtKQHD3342156dbe0whsF_&url_long='.urlencode($long_url);
+		$result = json_decode($this->vpost($api_full_url),true);
+		return $result['urls'][0]['url_short'];
 	 }
-	 /* shorten a url ,get the short one */
+	 /* shorten a url ,get the short one 老版本 */
 	 function url_to_short($long_url)
 	 {
 	 	$api_ = 'http://jucelin.com/lab/short.php?type=1&url='.$long_url;
 	 	return file_get_contents($api_);
 	 }
-	 /* shorten by own api of weibo */
+	 /* shorten by own api of weibo 用于接口测试 */
 	 function shorten(){
-		$this->load->library('Snoopy');
 	 	if($this->input->get_post('url')) {
 	 		$url = $this->input->get_post('url');
-	 		$api_ = "http://api.weibo.com/2/short_url/shorten.json";
-			$params = array(
-				"source" => "3366000357",	//appid
-				'url_long' => $url
-			);
-			$api_full_url = $api_.'?source=3366000357&url_long='.$url;
-			$this->snoopy->fetch($api_full_url);
-			$result['data'] = json_decode($this->snoopy->results,true);
+	 		$api_ = "https://api.weibo.com/2/short_url/shorten.json";
+			$api_full_url = $api_.'?access_token=2.00_DAKfBBtKQHD3342156dbe0whsF_&url_long='.urlencode($url);
+
+			$result = json_decode($this->vpost($api_full_url),true);
 			//$result['data']  = json_decode('{"urls":[{"result":true,"url_short":"http://t.cn/h5mwx","url_long":"http://www.baidu.com","type":25}]}',true);
 	 	}
 	 	yaoprint($result,$this->input->get_post('format'));
 	 }
 	
+	//
+	function vpost($url){ // 模拟提交数据函数
+    	$curl = curl_init(); // 启动一个CURL会话
+	    curl_setopt($curl, CURLOPT_URL, $url); // 要访问的地址
+	    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true) ; // 获取数据返回  
+		curl_setopt($curl, CURLOPT_BINARYTRANSFER, true) ; // 在启用 CURLOPT_RETURNTRANSFER 时候将获取数据返回
+	    $tmpInfo = curl_exec($curl); // 执行操作
+	    if (curl_errno($curl)) {
+	       echo 'Errno'.curl_error($curl);//捕抓异常
+	    }
+	    curl_close($curl); // 关闭CURL会话
+	    return $tmpInfo; // 返回数据
+	}
+
 	 /* 发邮件测试 */
 	 function emailtest(){
 	 	$result['status'] = 0;
