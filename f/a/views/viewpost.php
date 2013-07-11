@@ -23,7 +23,7 @@
 	  font-weight: normal;
 	}
 	.container {
-			width: 90%;
+			width: 95%;
 			position: relative;
 			margin: 0 auto;
 			padding-top: 40px;

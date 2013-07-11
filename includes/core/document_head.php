@@ -4,9 +4,12 @@
 <!--[if IE 7]>    <html lang="en-us" class="no-js ie7"> <![endif]-->
 <!--[if IE 8]>    <html lang="en-us" class="no-js ie8"> <![endif]-->
 <!--[if IE 9]>    <html lang="en-us" class="no-js ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en-us" class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en-us" class="no-js" xmlns:wb=“http://open.weibo.com/wb”> <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
+		
+		<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+		<script src=" http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=2855687947" type="text/javascript" charset="utf-8"></script>
 
 		<title><?php echo $this->config->item('appname')." | ".$title['top']?></title>
 

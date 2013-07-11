@@ -31,6 +31,9 @@
 										<img src="images/icons/small/white/key_2.png">
 										<span>登录</span>
 									</button>
+									<a>
+										<a><wb:share-button size="middle" appkey="2855687947" language="zh_tw" relateuid="1524346093" ></wb:share-button></a>
+									</a>
 								</div>
 								</form>
 							</div>

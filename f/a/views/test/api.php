@@ -31,15 +31,20 @@
 			<ul class="nav">
 				<li class="active"><a href="#">api接口测试</a></li>
 				<li><a href="#sina_shorten">sina短链接口</a></li>
+			</ul>
+			<ul class="nav pull-right">
 				<li>
 					<a><wb:follow-button uid="1524346093" type="red_1" width="67" height="24" ></wb:follow-button>	</a>
+				</li>
+				<li class="pull-right">
+					<a><wb:share-button size="middle" appkey="2855687947" language="zh_tw" relateuid="1524346093" ></wb:share-button></a>
 				</li>
 			</ul>
 		</div>
 	</div>
 		<div class="content">
 			<table cellpadding="0" cellspacing="0" class="table table-bordered table-hover table-condensed">
-				<tbody><caption><blockquote><p><h1>Inertface Test</h4></p></blockquote></caption>
+				<tbody><caption><span class="badge badge-inverse"><p><h1>Inertface Test</h4></p></span></caption>
 				<thead>
 					<th width="30%">应用接口名称</th>
 					<th>测试应用接口</th>
