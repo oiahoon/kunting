@@ -23,21 +23,23 @@
 	  font-weight: normal;
 	}
 	.container {
-			width: 95%;
+			
 			position: relative;
-			margin: 0 auto;
+			margin: 0 5px;
 			padding-top: 40px;
 	}
 	h3 {
 		font-size: 24px;
 		color: #011f3c;
 		line-height: 24px;
+		font-weight:900;
 	}
 	h4 {
 		font-size: 14px;
 		color: #011f3c;
 		margin: 0;
 		line-height: 12px;
+		font-weight:900;
 	}
 	p.date {
 		font-size: 12px;
