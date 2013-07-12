@@ -21,7 +21,7 @@ class Posts extends CI_Controller {
 		if($result['data']) {
 			$result['status'] = 1;
 			foreach ($result['data']['lists'] as $key => $row) {
-				$result['data']['lists'][$key]['imagecover'] = $_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']."/uploads/".$row['imagecover'];
+				$result['data']['lists'][$key]['imagecover'] = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']."/uploads/".$row['imagecover'];
 			}
 		}
 		yaoprint($result, $this->input->post("format"));
