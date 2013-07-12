@@ -53,7 +53,7 @@ class Article extends CI_Controller {
 				$this->load->library('upload');
 				if ( $this->upload->do_upload()){
 					$uploaddata = $this->upload->data();
-					$article['imagecover'] = $uploaddata['file_name']; 
+					$article['imagecover'] = $this->config->item('upload_path').$uploaddata['file_name']; 
 				}
 				$article['title'] = quotes_to_entities($_POST['title']['main']);
 				$article['title_2nd'] = quotes_to_entities($_POST['title']['2nd']);
@@ -92,9 +92,12 @@ class Article extends CI_Controller {
 			}
 			else{
 				$this->load->library('upload');
-				if ( $this->upload->do_upload()){
+				if ( $this->upload->do_upload("userfile")){
 					$uploaddata = $this->upload->data();
 					$article['imagecover'] = $this->config->item('upload_path').$uploaddata['file_name']; 
+				}
+				else{
+				   print_r($this->upload->display_errors());die;
 				}
 				$article['title'] = quotes_to_entities($_POST['title']['main']);
 				$article['title_2nd'] = quotes_to_entities($_POST['title']['2nd']);

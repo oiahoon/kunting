@@ -39,11 +39,11 @@ class Groupbuy extends CI_Controller {
 				$this->load->library('upload');
 				if ( $this->upload->do_upload()){
 					$uploaddata = $this->upload->data();
-					$groupbuy['imagecover'] = $uploaddata['file_name']; 
+					$groupbuy['imagecover'] = $this->config->item('upload_path').$uploaddata['file_name']; 
 				}
 				if ( $this->upload->do_upload("imagetitle")){
 					$uploaddata = $this->upload->data();
-					$groupbuy['imagetitle'] = $uploaddata['file_name']; 
+					$groupbuy['imagetitle'] = $this->config->item('upload_path').$uploaddata['file_name']; 
 				}
 				$groupbuy['title'] = quotes_to_entities($_POST['title']['main']);
 				$groupbuy['title_2nd'] = quotes_to_entities($_POST['title']['2nd']);
@@ -87,11 +87,11 @@ class Groupbuy extends CI_Controller {
 				$this->load->library('upload');
 				if ( $this->upload->do_upload()){
 					$uploaddata = $this->upload->data();
-					$groupbuy['imagecover'] = $uploaddata['file_name']; 
+					$groupbuy['imagecover'] = $this->config->item('upload_path').$uploaddata['file_name']; 
 				}
 				if ( $this->upload->do_upload("imagetitle")){
 					$uploaddata = $this->upload->data();
-					$groupbuy['imagetitle'] = $uploaddata['file_name']; 
+					$groupbuy['imagetitle'] = $this->config->item('upload_path').$uploaddata['file_name']; 
 				}
 				$groupbuy['title'] = quotes_to_entities($_POST['title']['main']);
 				$groupbuy['title_2nd'] = quotes_to_entities($_POST['title']['2nd']);

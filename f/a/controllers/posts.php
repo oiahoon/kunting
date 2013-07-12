@@ -18,7 +18,12 @@ class Posts extends CI_Controller {
 		$page 			= $this->input->post('page') 	? $this->input->post('page') 	: 0;
 		$dead 			= $this->input->post('dead') 	? $this->input->post('dead') 	: '';
 		$result['data'] = $this->articles->getArticlesList($category, $dead, $perpage, $page);
-		if($result['data']) $result['status'] = 1;
+		if($result['data']) {
+			$result['status'] = 1;
+			foreach ($result['data']['lists'] as $key => $row) {
+				$result['data']['lists'][$key]['imagecover'] = $_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']."/uploads/".$row['imagecover'];
+			}
+		}
 		yaoprint($result, $this->input->post("format"));
 	}
 

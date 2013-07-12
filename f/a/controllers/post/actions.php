@@ -44,7 +44,7 @@ class Actions extends CI_Controller {
 				else{
 					$uploaddata = $this->upload->data();
 					$viewdata['status'] = 1;
-					$action['imagecover'] = $uploaddata['file_name']; 
+					$action['imagecover'] = $this->config->item('upload_path').$uploaddata['file_name'];  
 				}
 				$action['title'] = quotes_to_entities($_POST['title']['main']);
 				$action['title_2nd'] = quotes_to_entities($_POST['title']['2nd']);
@@ -90,7 +90,7 @@ class Actions extends CI_Controller {
 				else{
 					$uploaddata = $this->upload->data();
 					$viewdata['status'] = 1;
-					$action['imagecover'] = $uploaddata['file_name']; 
+					$action['imagecover'] = $this->config->item('upload_path').$uploaddata['file_name']; 
 				}
 				$action['title'] = quotes_to_entities($_POST['title']['main']);
 				$action['title_2nd'] = quotes_to_entities($_POST['title']['2nd']);
