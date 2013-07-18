@@ -44,3 +44,59 @@ function pushit($content, $msgType = 1, $clientPlatform = 'android,ios'){
 	return false;
 }
 
+/**
+ *  短链
+ *  新浪接口短链生成
+ *
+ */
+ function short_url($long_url){
+ 	if(empty($long_url)) die;
+		$api_ = "http://api.weibo.com/2/short_url/shorten.json";
+	$api_full_url = $api_.'?source=2855687947&url_long='.urlencode($long_url);
+	$result = json_decode(vpost($api_full_url),true);
+	return $result['urls'][0]['url_short'];
+ }
+ /* shorten a url ,get the short one 老版本 */
+ function url_to_short($long_url){
+ 	$api_ = 'http://jucelin.com/lab/short.php?type=1&url='.$long_url;
+ 	return file_get_contents($api_);
+ }
+
+
+// curl获取url的内容
+function vpost($url){ // 模拟提交数据函数
+	$curl = curl_init(); // 启动一个CURL会话
+    curl_setopt($curl, CURLOPT_URL, $url); // 要访问的地址
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true) ; // 获取数据返回  
+	curl_setopt($curl, CURLOPT_BINARYTRANSFER, true) ; // 在启用 CURLOPT_RETURNTRANSFER 时候将获取数据返回
+    $tmpInfo = curl_exec($curl); // 执行操作
+    if (curl_errno($curl)) {
+       echo 'Errno'.curl_error($curl);//捕抓异常
+    }
+    curl_close($curl); // 关闭CURL会话
+    return $tmpInfo; // 返回数据
+}
+
+ /* 发邮件测试 */
+ function emailtest(){
+ 	$result['status'] = 0;
+ 	$this->load->Model('emailsend_model','emailsend');
+ 	$config = $this->emailsend->getEmailConfig();
+ 	if(count($config) == 4){
+ 		$to = $this->input->post('emailto');
+ 		$title = $this->input->post('title');
+ 		$body = $this->input->post('content');
+ 		$email_result = $this->emailsend->sendEmail($config, $to, '', $title,  $body);
+ 		if($email_result == 'true'){
+ 			$result['status'] = 1;
+ 		}
+ 		else{
+ 			$result['msg'] = $email_result;
+ 			}
+ 	}
+ 	else{
+ 		$result['msg'] = '参数配置不够,请查看后台配置';
+ 	}
+ 	yaoprint($result,$this->input->post('format'));
+ }
+
