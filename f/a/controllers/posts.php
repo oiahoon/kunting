@@ -22,6 +22,13 @@ class Posts extends CI_Controller {
 			$result['status'] = 1;
 			foreach ($result['data']['lists'] as $key => $row) {
 				$result['data']['lists'][$key]['imagecover'] = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']."/uploads/".$row['imagecover'];
+				if(trim($row['short_link']) == '' || // 没有短链
+					!preg_match("/http\:\/\//is", $row['short_link'])) //或者短链不正常
+				{ 
+					$short_link = $result['data']['lists'][$key]['short_link'] = short_url(base_url('v/'.$row['id']));
+					$this->articles->putShortLinkById($row['id'],$short_link);
+
+				}
 			}
 		}
 		yaoprint($result, $this->input->post("format"));

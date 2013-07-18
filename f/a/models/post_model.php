@@ -40,7 +40,12 @@ class Post_model extends CI_Model {
 			if(!$this->db->insert($this->post_table, $article)){
 				$this->db->delete('content', array('id' => $article['content_id']));
 			}
-			else return true;
+			else {
+				$article_id = $this->db->insert_id();
+				$short_link = short_url(base_url('v/'.$article_id));
+				$this->putShortLinkById($article_id,$short_link);
+				return true;
+			}
 		}
 		return false;
 	}
