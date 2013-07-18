@@ -57,7 +57,7 @@ class Adonice extends CI_Controller {
 			}
 			redirect("adonice/systemsetting", "refresh");
 		}
-		$viewdata['side_current_id'] = 6;
+		$viewdata['side_current_id'] = 7;
 		$this->load->view('systemsetting', $viewdata);
 	}
 

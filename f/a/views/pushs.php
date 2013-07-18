@@ -1,6 +1,6 @@
 <?php include 'includes/core/document_head.php';?>
 	<div id="pjax">
-		<div id="wrapper" data-adminica-side-top="<?php echo $side_current_id;?>" data-adminica-nav-inner="1">
+		<div id="wrapper" data-adminica-side-top="<?php echo $side_current_id ;?>">
 			<?php include 'includes/components/topbar.php';?>
 			<?php include 'includes/components/sidebar.php';?>
 			<?php include 'includes/components/stackbar.php';?></div><!-- Closing Div for Stack Nav, you can boxes under the stack before this -->
@@ -22,10 +22,10 @@
 							<thead>
 								<tr>
 									<th>ID</th>
-									<th>姓名</th>
-									<th>邮箱</th>
-									<th>电话</th>
-									<th>项目</th>
+									<th>标题</th>
+									<th>已推次数</th>
+									<th>内容</th>
+									<th>上次/首次时间</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -53,7 +53,7 @@
 						bLengthChange: false,                 //用户不可改变每页显示数量 
 						bProcessing: true,                    //加载数据时显示正在加载信息  
 						bServerSide: true,                    //指定从服务器端获取数据  
-						sAjaxSource: '<?php echo site_url("/post/".$ctl."/members_dataTable");?>', //获取数据的url  
+						sAjaxSource: '<?php echo site_url($ctl."/pushList_dataTable");?>', //获取数据的url  
 						
 						fnInitComplete: function() {
 							$("#dt1 .dataTables_length > label > select").uniform();
@@ -67,23 +67,26 @@
 							"sInfoEmtpy": "没有数据",  
 							"sProcessing": "正在加载数据...",  
 							"oPaginate": {  
-							"sFirst": "首页",  
-							"sPrevious": "前一页",  
-							"sNext": "下一页",  
-							"sLast": "尾页"  
+								"sFirst": "首页",  
+								"sPrevious": "前一页",  
+								"sNext": "下一页",  
+								"sLast": "尾页"  
+							}
 						}
-					}
 					} );
 
-					function delete_confirm(id){
-						var r=confirm("确定删除?");
-						if (r==true){
-							window.location = "<?php echo site_url('post/'.$ctl.'/delete/id/');?>/" + id;
-						}
+					function ajax_push(id){
+						$.ajax({ url: "<?php echo site_url('simple/push_it');?>"+'/'+id, success: function(data){
+							alert("推送成功.\r\n{" + data + "}");
+					    }});
 					}
 				//-->
 				</SCRIPT>
-				
+				<style>
+					a button span {
+						font-size : 12px;
+					}
+				<style>
 			</div>
 		</div>
 
