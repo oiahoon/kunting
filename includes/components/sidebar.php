@@ -37,7 +37,6 @@
 			<ul class="drawer">
 				<li><a href="<?php echo site_url('post/sharepage');?>" class="pjax">分享列表</a></li>
 				<li><a href="<?php echo site_url('post/sharepage/add');?>" class="pjax">添加分享</a></li>
-				<li><a href="<?php echo site_url('pull');?>" class="pjax">推送</a></li>
 			</ul>
 		</li>
 		<li><a href="#"><img src="images/icons/small/grey/shuffle.png"/>用户反馈</a>
