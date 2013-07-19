@@ -76,8 +76,9 @@
 					} );
 
 					function ajax_push(id){
-						$.ajax({ url: "<?php echo site_url('simple/push_it');?>"+'/'+id, success: function(data){
-							alert("推送成功.\r\n{" + data + "}");
+						$.ajax({ url: "<?php echo site_url('simplepush/push_it');?>"+'/'+id, success: function(data){
+							alert("推送成功.");
+							 location.reload();
 					    }});
 					}
 				//-->

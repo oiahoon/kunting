@@ -47,7 +47,7 @@
 		</li>
 		<li><a href="#"><img src="images/icons/small/grey/tumbler.png"/>推送管理</a>
 			<ul class="drawer">
-				<li><a href="<?php echo site_url('simplepush/new');?>" class="pjax">新建推送</a></li>
+				<li><a href="<?php echo site_url('simplepush/new_push');?>" class="pjax">新建推送</a></li>
 				<li><a href="<?php echo site_url('simplepush');?>" class="pjax">历史推送</a></li>
 			</ul>
 		</li>

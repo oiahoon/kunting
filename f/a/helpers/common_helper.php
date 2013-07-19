@@ -29,7 +29,9 @@ function pushit($content, $msgType = 1, $clientPlatform = 'android,ios'){
 	$snoopy->agent = $_SERVER['HTTP_USER_AGENT'];   
 	$snoopy->rawheaders["Pragma"] = "no-cache";
 
-	$pushUrl					= "http://dev.zypush.com/push/api/sendmsg_ver01";
+	#$pushUrl					= "http://dev.zypush.com/push/api/sendmsg_ver01";
+	$pushUrl					= "http://dev.zypush.com/push/api/v2/sendmsg_ver02";
+	$pushVar['offLine_time']	= 99;
 	$pushVar["userName"]		= "joesupper";
 	$pushVar["appKey"]			= '617729b1dd2ed59157696a5670a823ec';
 	$pushVar["receiveType"]		= 1;

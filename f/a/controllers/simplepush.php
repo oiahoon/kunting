@@ -23,10 +23,45 @@ class Simplepush extends CI_Controller {
 	
 	/* 新增push */
 	function new_push() {
-		#...
+		$viewdata = array( 
+			'title' => array('top' => '新建推送','small' => ''),
+			'ctl' =>  strtolower( __CLASS__),
+			);
+		if($_POST){
+			//至少要填写标题
+			if($this->input->post('title')){
+				if($this->push->insert()){
+					$push_id = $this->db->insert_id();
+					$push_data = $this->create_push_data($push_id);
+					if(pushit(str_replace('\u','\\\u',json_encode($push_data)))){
+						$this->push->pushcount($push_id);
+						redirect ('simplepush','location');
+					}
+				}
+			}
+		}
+		$viewdata['side_current_id'] = $this->side_current_id;
+		$this->load->view('pusheditor',$viewdata);
 	}
-	
-
+	/* 按钮推送 */
+	function push_it(){
+		$id = $this->uri->segment(3);
+		if($id){
+			$push_data = $this->create_push_data($id);
+			if(pushit(str_replace('\u','\\\u',json_encode($push_data)))){
+				$result = $this->push->pushcount($id);
+			}
+		}
+		echo json_encode($result);		
+	}
+	/* 通过id获得并处理push的内容 */
+	function create_push_data($id) {
+		$data = $this->push->getbyid($id);
+		$push_data['title'] = $data->title;
+		if(trim($data->content) != '') $push_data['content'] = $data->content;
+		if(trim($data->command) != '') $push_data['command'] = $data->command;
+		return $push_data;
+	}
 	/* 删除一条 */
 	function delete(){
 
@@ -42,7 +77,7 @@ class Simplepush extends CI_Controller {
 			//$result['aaData'][$key][] = $value['title_2nd'];
 			$result['aaData'][$key][] = '推了<em>'.$value['count'].'</em>次';
 			$result['aaData'][$key][] = $value['content'];
-			$result['aaData'][$key][] = "<font color='red'">$value['last_push_at']."</font></br>".$value['created_at'];
+			$result['aaData'][$key][] = "<font color='red'>".$value['last_push_at']."</font>&nbsp;/&nbsp;".$value['created_at'];
 		}
 		
 		unset($result["aaaData"]);

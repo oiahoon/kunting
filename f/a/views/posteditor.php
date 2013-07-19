@@ -1,15 +1,15 @@
-<?php include 'includes/core/document_head.php'?>
+<?php include 'includes/core/document_head.php';?>
 	<div id="pjax">
 		<div id="wrapper" data-adminica-side-top="<?php echo $side_current_id;?>" data-adminica-nav-inner="5">
-			<?php include 'includes/components/topbar.php'?>
-			<?php include 'includes/components/sidebar.php'?>
-			<?php include 'includes/components/stackbar.php'?></div><!-- Closing Div for Stack Nav, you can boxes under the stack before this -->
+			<?php include 'includes/components/topbar.php';?>
+			<?php include 'includes/components/sidebar.php';?>
+			<?php include 'includes/components/stackbar.php';?></div><!-- Closing Div for Stack Nav, you can boxes under the stack before this -->
 			<div id="main_container" class="main_container container_16 clearfix">
-				<?php include 'includes/components/navigation.php'?>
+				<?php include 'includes/components/navigation.php';?>
 				<div class="flat_area grid_16">
 					<h2><?php echo $title['top'];?> <small><?php echo $title['small'];?></small>
 						<div class="holder">
-							<?php include 'includes/components/dynamic_loading.php'?>
+							<?php include 'includes/components/dynamic_loading.php';?>
 						</div>
 					</h2>
 					<p><strong>资讯</strong> 是 <strong>图文结合的</strong>,图片需要先上传再 <strong>插入</strong> 到文章里面.</p>
@@ -112,6 +112,6 @@
 				
 
 		</div>
-		<?php include 'includes/dialogs/dialog_welcome.php'?>
-		<?php include 'includes/dialogs/dialog_logout.php'?>
-<?php include 'includes/core/document_foot.php'?>
+		<?php include 'includes/dialogs/dialog_welcome.php';?>
+		<?php include 'includes/dialogs/dialog_logout.php';?>
+<?php include 'includes/core/document_foot.php';?>

@@ -15,17 +15,35 @@ class Push_model extends CI_Model {
 		parent::__construct();
 	}
 
-
-	function insert($one)
+	function getbyid($id)
 	{
-		return $this->db->insert($this->this_table, $one); 
+		$query = $this->db->get_where($this->this_table, array('id' => $id), 1);
+		$result = $query->result();
+		return $result[0];
 	}
 
-	function index()
+	function insert()
 	{
-
+		$data = array(
+			$this->titleField => $this->input->post('title'),
+			$this->contentField => $this->input->post('content'),
+			$this->commandField => $this->input->post('command'),
+			$this->last_push_atField => date('Y-m-d h:i:s',0),
+			$this->created_atField => date('Y-m-d h:i:s',time()),
+			$this->countField => 0,
+			);
+		return $this->db->insert($this->this_table, $data); 
 	}
 
+	function update($id,$data)
+	{
+		$this->db->where('id', $id);
+		return $this->db->update($this->this_table, $data); 
+	}
+
+	function pushcount($id){
+		 $this->db->query("UPDATE {$this->this_table} SET {$this->countField} = {$this->countField} +1 WHERE {$this->primaryKey}={$id} LIMIT 1");
+	}
 	/**
 		为 jquery dataTable 提供数据
 	 */
@@ -33,7 +51,7 @@ class Push_model extends CI_Model {
 		/* Array of database columns which should be read and sent back to DataTables. Use a space where
 		 * you want to insert a non-database field (for example a counter or static image)
 		 */
-		$aColumns = array($this->primaryKey, $this->titleField, $this->contentField, $this->last_push_atField, $this->created_atField );
+		$aColumns = array($this->primaryKey, $this->titleField, $this->contentField, $this->last_push_atField, $this->created_atField, $this->countField );
 	
 		/* Indexed column (used for fast and accurate table cardinality) */
 		$sIndexColumn = $this->primaryKey;
