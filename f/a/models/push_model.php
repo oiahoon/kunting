@@ -42,7 +42,8 @@ class Push_model extends CI_Model {
 	}
 
 	function pushcount($id){
-		 $this->db->query("UPDATE {$this->this_table} SET {$this->countField} = {$this->countField} +1 WHERE {$this->primaryKey}={$id} LIMIT 1");
+		$date = date('Y-m-d h:i:s');
+		$this->db->query("UPDATE {$this->this_table} SET {$this->countField} = {$this->countField} +1, {$this->last_push_atField} = '{$date}' WHERE {$this->primaryKey}={$id} LIMIT 1");
 	}
 	/**
 		为 jquery dataTable 提供数据
