@@ -21,9 +21,9 @@
 						<table class=" article_datatable">
 							<thead>
 								<tr>
-									<th>ID</th>
+									<th width="4%">ID</th>
 									<th>标题</th>
-									<th>已推次数</th>
+									<th width="6%">已推次数</th>
 									<th>内容</th>
 									<th>上次/首次时间</th>
 								</tr>

@@ -76,7 +76,7 @@ class Simplepush extends CI_Controller {
 			$result['aaData'][$key][] = '<a onclick="ajax_push('.$value['id'].')" title="推送"><button class="orange tiny has_text img_icon"><img src="images/icons/small/white/magic_mouse.png"><span>推送</span></button></a>&nbsp;' . "&lt;".$value['title']."&gt;";
 			//$result['aaData'][$key][] = $value['title_2nd'];
 			$result['aaData'][$key][] = '推了<em>'.$value['count'].'</em>次';
-			$result['aaData'][$key][] = $value['content'];
+			$result['aaData'][$key][] = "<a style='display:block;' title='cmd:".$value['command']."'>".$value['content']."</a>";
 			$result['aaData'][$key][] = "<font color='red'>".$value['last_push_at']."</font>&nbsp;/&nbsp;".$value['created_at'];
 		}
 		

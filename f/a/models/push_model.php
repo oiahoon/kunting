@@ -52,7 +52,7 @@ class Push_model extends CI_Model {
 		/* Array of database columns which should be read and sent back to DataTables. Use a space where
 		 * you want to insert a non-database field (for example a counter or static image)
 		 */
-		$aColumns = array($this->primaryKey, $this->titleField, $this->contentField, $this->last_push_atField, $this->created_atField, $this->countField );
+		$aColumns = array($this->primaryKey, $this->titleField, $this->contentField, $this->commandField, $this->last_push_atField, $this->created_atField, $this->countField );
 	
 		/* Indexed column (used for fast and accurate table cardinality) */
 		$sIndexColumn = $this->primaryKey;
