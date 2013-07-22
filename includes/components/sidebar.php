@@ -30,7 +30,7 @@
 				<li><a href="<?php echo site_url('post/groupbuy');?>" class="pjax">团购列表</a></li>
 				<li><a href="<?php echo site_url('post/groupbuy/add');?>" class="pjax">添加团购</a></li>
 				<li><a href="<?php echo site_url('post/groupbuy/members');?>" class="pjax">参团人员</a></li>
-				<li><a href="<?php echo site_url('post/groupbuy/setting');?>" class="pjax">团购配置</a></li>
+				<!-- <li><a href="<?php echo site_url('post/groupbuy/setting');?>" class="pjax">团购配置</a></li> -->
 			</ul>
 		</li>
 		<li><a href="#"><img src="images/icons/small/grey/shuffle.png"/>分享网页</a>
