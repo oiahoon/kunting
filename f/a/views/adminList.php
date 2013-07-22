@@ -49,7 +49,7 @@
 									 	<td>
 									 		<?php if ($value['id'] <> 1){?>
 									 		<a href="<?php echo site_url('admin/adminEdit/id/'.$value['id']);?>"><button class="blue tiny"><div class="ui-icon ui-icon-pencil"></div><span>修改</span></button></a>
-									 		&nbsp;/&nbsp;<a onclick="delete_confirm('.$value['id'].')"><button class="red tiny"><div class="ui-icon ui-icon-trash"></div><span>删除</span></button></a>
+									 		&nbsp;/&nbsp;<a onclick="delete_confirm(<?php echo $value['id'];?>)"><button class="red tiny"><div class="ui-icon ui-icon-trash"></div><span>删除</span></button></a>
 									 		<?php }?>
 									 	</td>
 									 </tr>
@@ -91,14 +91,20 @@
 							"sInfoEmtpy": "没有数据",  
 							"sProcessing": "正在加载数据...",  
 							"oPaginate": {  
-							"sFirst": "首页",  
-							"sPrevious": "前一页",  
-							"sNext": "下一页",  
-							"sLast": "尾页"  
+								"sFirst": "首页",  
+								"sPrevious": "前一页",  
+								"sNext": "下一页",  
+								"sLast": "尾页"  
+							}
 						}
-					}
 					} );
 
+					function delete_confirm(id){
+						var r=confirm("确定删除?");
+						if (r==true){
+							window.location = "<?php echo site_url('admin/adminDel/id');?>/" + id;
+						}
+					}
 				//-->
 				</SCRIPT>
 				

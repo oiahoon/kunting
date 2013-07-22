@@ -32,6 +32,7 @@ class Login extends CI_Controller {
 			$query=$this->db->get_where($table,$where);
 			$result = $query->row_array();
 			if(count($result)>0 && $result['password'] == $password){
+				$this->admin_model->admin_last_login($result['id']);
 				$group = $this->admin_model->get_group_by_id($result['group_id']);
 				$admin = array(
 					'manager' => $result['username'],

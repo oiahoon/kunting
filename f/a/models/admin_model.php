@@ -119,6 +119,18 @@ class Admin_model extends CI_Model {
 		} 
 		else{return false;}
 	}
+
+	/**
+		用户登录时间
+	 */
+	function admin_last_login($id){
+		
+		$user['last_login'] = date("Y-m-d h:i:s");
+		$this->db->where('id', $id);
+		$this->db->update($this->admin_user_table, $user);
+		
+	}
+
 	/**
 		根据id删除一个用户
 	 */
