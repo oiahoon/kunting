@@ -4,7 +4,7 @@
 	<body>
 		<div id="wrapper">
 			<div id="topbar" class="clearfix">
-				<a href="index.html" class="logo"><span>后台测试</span></a>
+				<a href="index.html" class="logo"><span>后台</span></a>
 				<div class="user_box round_all">
 					<img src="images/profile.jpg" width="55" alt="Profile Pic" />
 					<h2>Administrator</h2>
@@ -27,6 +27,7 @@
 				<h2><?php echo $title?></h2>
 				
 			</div>
+			
 			<div class="box grid_16 round_all">
 				<table class="display table"> 
 					<thead> 
@@ -89,7 +90,9 @@
 					</script>
 				</table>
 			</div>
+
 			
+
 			</div>
 
 

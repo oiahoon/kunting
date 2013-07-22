@@ -8,53 +8,14 @@ class Admin extends CI_Controller {
 	 */
 	function __construct(){
 		parent::__construct();
+		if(!$this->session->userdata("login")){
+			redirect(site_url());
+		}
 		$this->load->Model('admin_model');
 	}
 
 	function index(){
 		
-	}
-
-	function check_login(){
-
-		if($_POST){
-			$table="admin_users";
-			//加密方式
-			$p_s = trim($this->config->item('pass_security'));
-			$where['username']=$this->input->post('username_field');
-			$where['group_id'] = 1;
-			if($p_s!=''){
-				$password = $p_s($this->input->post('password_field'));
-			}
-			else{
-				$password=$this->input->post('password_field');	
-			}
-			$query=$this->db->get_where($table,$where);
-			$result = $query->row_array();
-			if(count($result)>0 && $result['password'] == $password){
-				$group = $this->admin_model->get_group_by_id($result['group_id']);
-				$admin = array(
-					'manager' => $result['username'],
-					'login' => true,
-					'last_login' => $result['last_login'],
-					'group_name' => $group['group_name'],
-					);
-				$this->session->set_flashdata('msg', "登录成功");
-				$this->session->set_userdata($admin);
-				redirect(site_url());
-			}
-			else{	
-				$this->session->set_flashdata('msg', "用户名密码错误");
-				//$this->load->view('admin/login',$temp);
-				redirect(site_url());
-			}
-		}
-		if($this->session->userdata("login") == true){
-			redirect(current_url());
-		}
-		else{
-			redirect(site_url());
-		}
 	}
 	
 	function logout(){
@@ -67,10 +28,11 @@ class Admin extends CI_Controller {
 	 */
 	public function adminList($start_row = 0){
 		$data['admin_group'] = $this->admin_model->get_admin_group();
-		$users = $this->admin_model->admin_list_all();
+		$users = $this->admin_model->admin_list('admin/adminList','',0,'','id');
 		$data['title']['top'] = "后台用户列表";
 		$data['user'] = $users;
-		$this->load->view('contact',$data);
+		$data['side_current_id'] = 7;
+		$this->load->view('adminList',$data);
 	}
 
 	/**
@@ -78,9 +40,11 @@ class Admin extends CI_Controller {
 	 */
 	public function adminAdd(){
 		$data['user_group'] = $this->admin_model->get_admin_group();
-		$users = $this->admin_model->admin_list_all();
-		$data['user'] = $users;
-		$data['title']['top'] = '添加人员';
+		$data['title']['small'] = '';
+		$data['title']['top'] = '添加管理员';
+		$data['ctl'] = 'admin';
+		$data['action'] = 'adminAdd';
+		$data['message_color'] = 'red';
 		$this->load->helper(array('form', 'url'));
 		if(!isset($_REQUEST['username'])){
 			$data['message'] = '';
@@ -88,7 +52,7 @@ class Admin extends CI_Controller {
 		else{
 			$this->load->library('form_validation');
 			$this->form_validation->set_error_delimiters("<font color='red'><b> ", "</b></font>");
-			$this->form_validation->set_rules('pass', 'Password', 'trim|required|min_length[6]|max_length[16]');
+			$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|max_length[16]');
 			$this->form_validation->set_rules('username', 'Username', 'min_length[3]|max_length[16]|is_unique[admin_users.username]');
 			if ($this->form_validation->run() == FALSE){
 				$data['message'] = '添加失败,请修改用户信息后再次提交';
@@ -96,14 +60,16 @@ class Admin extends CI_Controller {
 			else{
 				$result = $this->admin_model->admin_add();
 				if($result['status']=='1'){
-					$data['message'] = '添加<b>'.$_REQUEST['username'].'</b>成功';
+					$data['message_color'] = 'green';
+					$data['message'] = '添加<strong>'.$_REQUEST['username'].'</strong>成功';
 				}
 				else{
-					$data['message'] = '添加<b>'.$_REQUEST['username'].'</b>失败。'.$result['message'];
+					$data['message'] = '添加<strong>'.$_REQUEST['username'].'</strong>失败。'.$result['message'];
 				}
 			}
 		}
-		$this->load->view('contacts',$data);
+		$data['side_current_id'] = 7;
+		$this->load->view('admineditor',$data);
 	}
 
 	/**
@@ -111,44 +77,56 @@ class Admin extends CI_Controller {
 	 */
 	public function adminEdit(){
 		$data['user_group'] = $this->admin_model->get_admin_group();
-		$data['title'] = '编辑用户';
+		$data['title']['top'] = '编辑用户';
+		$data['title']['small'] = '';
 		$data['message'] = '';
+		$data['message_color'] = 'red';
+		$data['ctl'] = 'admin';
+		$data['action'] = 'adminEdit';
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
-		$params = $this->uri->uri_to_assoc(4);
-		$data['admin_info'] = $this->admin_model->get_user_by_id($params['id']);
-		
+		$id = $this->uri->segment(4);
+		$data['admin_info'] = $this->admin_model->get_user_by_id($id);
+		//print_r($data);die;
 		if(isset($_POST['username'])){
 			$this->form_validation->set_error_delimiters("<font color='red'><b> ", "</b></font>");
 			
-			if('' != trim($_REQUEST['pass'])){
-				$this->form_validation->set_rules('pass', 'Password', 'trim|required|min_length[6]|max_length[16]');
+			if('' != trim($_REQUEST['password']) && '<不修改请留空>' != trim($_REQUEST['password'])){
+				$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|max_length[36]');
 			}
 			if($data['admin_info']['username'] != trim($_REQUEST['username'])){
 				$this->form_validation->set_rules('username', 'Username', 'min_length[1]|max_length[16]|is_unique[admin_users.username]');
 			}
-			$this->form_validation->set_rules('admin_group', 'Group', 'trim|required');
+			
 			if ($this->form_validation->run() == FALSE){
-				$data['message'] = '更新<b>'.$_REQUEST['email'].'</b>失败,请修改用户信息后再次提交';
+				$data['message'] = '更新<strong>'.$_REQUEST['username'].'</strong>失败,请修改用户信息后再次提交';
+				if($data['admin_info']['username'] == trim($_REQUEST['username'])){
+					if('' == trim($_REQUEST['password']) || '<不修改请留空>' == trim($_REQUEST['password'])){
+						$data['message'] = '<strong>'.$_REQUEST['username'].'</strong>信息没有变化';
+					}
+				}
 			}
 			else{
 				if($this->admin_model->admin_update()){
-					redirect('/admin/admin/adminlist');
+					$data['message_color'] = 'green';
+					$data['admin_info']['username'] = trim($_REQUEST['username']);
+					$data['message'] = '修改<strong>'.$_REQUEST['username'].'</strong>成功';
 				}
 				else{
-					$data['message'] = '更新<b>'.$_REQUEST['email'].'</b>失败。';
+					$data['message'] = '更新<strong>'.$_REQUEST['username'].'</strong>失败。';
 				}
 			}
 		}
-		$this->load->view('/admin/admin_edit',$data);
+		$data['side_current_id'] = 7;
+		$this->load->view('admineditor',$data);
 	}
 	/**
 		删除用户
 	 */
 	public function adminDel(){
-		$params = $this->uri->uri_to_assoc(4);
-		$result = $this->admin_model->admin_del($params['id']);
-		redirect('/admin/admin/adminlist',"refresh");
+		$id = $this->uri->segment(4);
+		$result = $this->admin_model->admin_del($id);
+		redirect('/admin/adminList',"refresh");
 	}
 	
 	//*****************用户组************************//

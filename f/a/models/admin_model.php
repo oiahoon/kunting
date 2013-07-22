@@ -58,9 +58,9 @@ class Admin_model extends CI_Model {
 	function admin_add(){
 		$p_s = trim($this->config->item('pass_security'));
 		$user['username'] = trim($_REQUEST['username']);
-		$user['group_id'] = $_REQUEST['admin_group'];
-		if($p_s!=''){$user['password']=$p_s(trim($_REQUEST['pass']));}
-			else{$user['password']=trim($_REQUEST['pass']);	}
+		$user['group_id'] = $_REQUEST['group_id'];
+		if($p_s!=''){$user['password']=$p_s(trim($_REQUEST['password']));}
+			else{$user['password']=trim($_REQUEST['password']);	}
 		
 		$res = $this->db->insert($this->admin_user_table,$user);
 		//成功
@@ -71,34 +71,13 @@ class Admin_model extends CI_Model {
 		else{return array('status'=>'0','message'=>'注册失败');}
 	}
 	//用户列表
-	function admin_list($url,$uri,$start_row,$where,$order){
-		if($where!=""){
-			$this->db->get_where($where);
-		}
-		if(!is_numeric($start_row)){
-			$start_row=0;
-		}
+	function admin_list($url,$uri){
+		
 		$query = $this->db->get($this->admin_user_table);
 		$num = $query->num_rows();
 
-		$conf['per_page']=20;//每页显示数
-		$conf['total_rows']=$num;//总共多少行
-		$conf['base_url']=$url;
-		$conf['uri_segment']=$uri;	
-		$conf['prev_link']="上一页";
-		$conf['next_link']="下一页";
-		$conf['first_link']="首页";
-		$conf['last_link']="尾页";
-		$conf['num_links']=5;
-		$this->load->library('pagination',$conf);
-		$links=$this->pagination->create_links();
-		$perpage=20;//
-		//$start=$start_row;
-		$sqla="select * from ".$this->admin_user_table."  order by ".$order."  desc limit ".$start_row.",".$perpage;
-		//$sqla="select * from $table  order by $order ";
-		$resa = $this->db->query($sqla);
-		$res=$resa->result_array();		
-		return array('res'=>$res,'total_rows'=>$conf['total_rows'],'links'=>$links,'per_page'=>$conf['per_page']);
+		$res=$query->result_array();		
+		return array('res'=>$res,'total_rows'=>$num);
 	}
 	
 	//列出所有用户
@@ -128,9 +107,9 @@ class Admin_model extends CI_Model {
 	function admin_update(){
 		$p_s = trim($this->config->item('pass_security'));
 		$user['username'] = trim($_REQUEST['username']);
-		$pass = trim($_REQUEST['pass']);
-		$user['group_id'] = $_REQUEST['admin_group'];
-		if('' != $pass){
+		$pass = trim($_REQUEST['password']);
+		$user['group_id'] = $_REQUEST['group_id'];
+		if('' != $pass && '<不修改请留空>' != $pass){
 			if($p_s!=''){$user['password']=$p_s($pass);}
 			else{$user['password']=$pass;}
 		}

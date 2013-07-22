@@ -4,6 +4,14 @@
 		<div id="wrapper">
 			<div class="isolate">
 				<div class="center narrow">
+				<?php if($this->session->flashdata('msg')){?>
+				<div class="section">
+					<div class="alert dismissible alert_red">
+						<img width="24" height="24" src="images/icons/small/white/alert_2.png">
+						<?php echo $this->session->flashdata('msg');?>
+					</div>
+				</div>	
+				<?php }?>
 					<div class="main_container full_size container_16 clearfix">
 						<div class="box">
 							<div class="block">
@@ -13,7 +21,7 @@
 										<strong>欢迎登录后台.</strong> 请输入帐号密码登录.
 									</div>
 								</div>
-								<form action="<?php echo site_url();?>/admin/check_login" method="post" class="validate_form">
+								<form action="<?php echo site_url();?>/login/check_login" method="post" class="validate_form">
 								<fieldset class="label_side top">
 									<label for="username_field">用户名<span></span></label>
 									<div>

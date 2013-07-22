@@ -8,7 +8,7 @@ class Test extends CI_Controller {
 	public function view_test()
 	{
 		$viewdata = array();
-		$this->load->view("form_fields",$viewdata);
+		$this->load->view("form_grid",$viewdata);
 	}
 	public function index()
 	{	$viewdata = array(
