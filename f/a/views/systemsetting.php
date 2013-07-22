@@ -1,11 +1,11 @@
-<?php include 'includes/core/document_head.php'?>
+<?php include 'includes/core/document_head.php';?>
 	<div id="pjax">
 		<div id="wrapper" data-adminica-side-top="<?php echo $side_current_id;?>" data-adminica-nav-inner="4">
-			<?php include 'includes/components/topbar.php'?>
-			<?php include 'includes/components/sidebar.php'?>
-			<?php include 'includes/components/stackbar.php'?></div><!-- Closing Div for Stack Nav, you can boxes under the stack before this -->
+			<?php include 'includes/components/topbar.php';?>
+			<?php include 'includes/components/sidebar.php';?>
+			<?php include 'includes/components/stackbar.php';?></div><!-- Closing Div for Stack Nav, you can boxes under the stack before this -->
 			<div id="main_container" class="main_container container_16 clearfix">
-				<?php include 'includes/components/navigation.php'?>
+				<?php include 'includes/components/navigation.php';?>
 				<form class="validate_form" action="<?php echo base_url('adonice/systemsetting');?>" method="post">
 				
 			<div class="box grid_16">
@@ -83,30 +83,7 @@
 								</fieldset>
 							</div>
 						</div>
-						<div class="columns clearfix">
-							<div class="col_50">
-								<fieldset class="label_side label_small top">
-									<label for="text_field_inline">登陆帐号(暂未生效)
-										<span>用户登陆后台的帐号</span>
-									</label>
-									<div>
-										<input type="text" name="systemuser" id="systemuser" value="<?php echo @$systemsetting['systemuser']?>" class="required">
-										<div class="required_tag"></div>
-									</div>
-								</fieldset>
-							</div>
-							<div class="col_50">
-								<fieldset class="label_side label_small top right">
-									<label for="text_field_inline">登陆密码(暂未生效)
-									<span>用于登陆后台的密码</span>
-									</label>
-									<div>
-										<input type="text" name="systempassword" id="systempassword" value="<?php echo @$systemsetting['systempassword']?>" class="required">
-										<div class="required_tag"></div>
-									</div>
-								</fieldset>
-							</div>
-						</div>
+
 					</div>
 				</div>
 			</div>
@@ -126,6 +103,6 @@
 
 			</div>
 		</div>
-		<?php include 'includes/dialogs/dialog_welcome.php'?>
-		<?php include 'includes/dialogs/dialog_logout.php'?>
-<?php include 'includes/core/document_foot.php'?>
+		<?php include 'includes/dialogs/dialog_welcome.php';?>
+		<?php include 'includes/dialogs/dialog_logout.php';?>
+<?php include 'includes/core/document_foot.php';?>
