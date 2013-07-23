@@ -48,9 +48,12 @@ class Simplepush extends CI_Controller {
 		$id = $this->uri->segment(3);
 		if($id){
 			$push_data = $this->create_push_data($id);
-			if(pushit(str_replace('\u','\\\u',json_encode($push_data)))){
-				$result = $this->push->pushcount($id);
-			}
+			
+			$push_data['pName'] = "com.nervenets.kuntingandroid";
+			$push_data['cName'] = "com.nervenets.kuntingandroid.Main";
+			$result['ios'] = pushit(json_encode($push_data), 2, 'ios');
+			$result['android'] = pushit(json_encode($push_data), 1, 'android');
+			return $result;
 		}
 		echo json_encode($result);		
 	}
