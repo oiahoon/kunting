@@ -60,8 +60,8 @@ class Simplepush extends CI_Controller {
 	/* 通过id获得并处理push的内容 */
 	function create_push_data($id) {
 		$data = $this->push->getbyid($id);
-		$push_data['title'] = $data->title;
-		if(trim($data->content) != '') $push_data['content'] = $data->content;
+		$push_data['title'] = str_replace('\u','\\\u',$data->title);
+		if(trim($data->content) != '') $push_data['content'] = str_replace('\u','\\\u',$data->content);
 		if(trim($data->command) != '') $push_data['command'] = $data->command;
 		return $push_data;
 	}
