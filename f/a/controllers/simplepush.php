@@ -51,8 +51,8 @@ class Simplepush extends CI_Controller {
 			
 			$push_data['pName'] = "com.nervenets.kuntingandroid";
 			$push_data['cName'] = "com.nervenets.kuntingandroid.Main";
-			$result['ios'] = pushit(json_encode($push_data), 2, 'ios');
-			$result['android'] = pushit(json_encode($push_data), 1, 'android');
+			$result['ios'] = pushit(str_replace('\u','\\\u',json_encode($push_data)), 2, 'ios');
+			$result['android'] = pushit(str_replace('\u','\\\u',json_encode($push_data)), 1, 'android');
 			return $result;
 		}
 		echo json_encode($result);		
@@ -60,8 +60,8 @@ class Simplepush extends CI_Controller {
 	/* 通过id获得并处理push的内容 */
 	function create_push_data($id) {
 		$data = $this->push->getbyid($id);
-		$push_data['title'] = str_replace('\u','\\\u',$data->title);
-		if(trim($data->content) != '') $push_data['content'] = str_replace('\u','\\\u',$data->content);
+		$push_data['title'] = $data->title;
+		if(trim($data->content) != '') $push_data['content'] = $data->content;
 		if(trim($data->command) != '') $push_data['command'] = $data->command;
 		return $push_data;
 	}
