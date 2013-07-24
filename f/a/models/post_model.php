@@ -33,6 +33,7 @@ class Post_model extends CI_Model {
 	}
 	//新增一条资讯
 	function insertOneArticle($article){
+		$article['title'] =  str_replace('-', '_', $article['title']);
 		$content = array('content' => $article['content']); //把文章里面的 单双引号都用html代码替换
 		if($this->db->insert('content', $content)){
 			$article['content_id'] = $this->db->insert_id();
@@ -69,7 +70,7 @@ class Post_model extends CI_Model {
 		$this->db->update('content', array('content' => $article['content'])); 
 		
 		unset($article['content']);
-		
+		if(isset($article['title'])) $article['title'] =  str_replace('-', '_', $article['title']);
 		$this->db->where('id', $id);
 		return $this->db->update($this->post_table, $article); 
 	}

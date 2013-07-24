@@ -99,7 +99,7 @@ class Posts extends CI_Controller {
 				break;
 		}
 	}
-	/* 推送 */
+	/* 推送 废弃 *//*
 	public function push()
 	{
 		$result['status'] = 0;
@@ -115,7 +115,7 @@ class Posts extends CI_Controller {
 		}
 		echo $result['status'] ;
 	}
-
+	*/
 	/**
 		推送，ios推送字数限制，改成推url，然后从url取json 	
 	*/
@@ -133,13 +133,15 @@ class Posts extends CI_Controller {
 
 	private function push_ios($id)
 	{
+		$article = $this->articles->getById($id, true);
+
 		$path = 'v';
-		$ios['title'] = 'posts';
-		$ios['content'] = base_url($path.'/'.$id.".json");
-		$ios['pName'] = "com.nervenets.kuntingandroid";
-		$ios['cName'] = "com.nervenets.kuntingandroid.Main";
-		$result['ios'] = pushit(json_encode($ios), 2, 'ios');
-		$result['android'] = pushit(json_encode($ios), 1, 'android');
+		$push_data['title'] = $article->title;
+		$push_data['content'] = $push_data['title'] . "-" .base_url($path.'/'.$id.".json");
+		$push_data['pName'] = "com.nervenets.kuntingandroid";
+		$push_data['cName'] = "com.nervenets.kuntingandroid.Main";
+		$result['ios'] = pushit(str_replace('\u','\\\u',json_encode($push_data)), 2, 'ios');
+		$result['android'] = pushit(str_replace('\u','\\\u',json_encode($push_data)), 1, 'android');
 		return $result;
 	}
 	private function push_android($id)
