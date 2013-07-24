@@ -66,7 +66,7 @@ class Simplepush extends CI_Controller {
 	function create_push_data($id) {
 		$data = $this->push->getbyid($id);
 		$push_data['title'] = $data->title;
-		if(trim($data->content) != '') $push_data['content'] = $data->content;
+		$push_data['content'] = $data->content;
 		if(trim($data->command) != '') $push_data['command'] = $data->command;
 		return $push_data;
 	}
