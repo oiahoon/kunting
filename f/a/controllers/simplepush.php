@@ -33,11 +33,12 @@ class Simplepush extends CI_Controller {
 				if($this->push->insert()){
 					$push_id = $this->db->insert_id();
 					$push_data = $this->create_push_data($push_id);
-
 					$push_data['pName'] = "com.nervenets.kuntingandroid";
 					$push_data['cName'] = "com.nervenets.kuntingandroid.Main";
-					$result['ios'] = pushit(str_replace('\u','\\\u',json_encode($push_data)), 2, 'ios');
-					$result['android'] = pushit(str_replace('\u','\\\u',json_encode($push_data)), 1, 'android');
+
+					$push_data = str_replace('\u','\\\u',json_encode($push_data));
+					$result['ios'] = pushit($push_data, 2, 'ios');
+					$result['android'] = pushit($push_data, 1, 'android');
 
 					$this->push->pushcount($push_id);
 					redirect ('simplepush','location');
@@ -55,8 +56,10 @@ class Simplepush extends CI_Controller {
 			$push_data = $this->create_push_data($id);
 			$push_data['pName'] = "com.nervenets.kuntingandroid";
 			$push_data['cName'] = "com.nervenets.kuntingandroid.Main";
-			$result['ios'] = pushit(str_replace('\u','\\\u',json_encode($push_data)), 2, 'ios');
-			$result['android'] = pushit(str_replace('\u','\\\u',json_encode($push_data)), 1, 'android');
+			
+			$push_data = str_replace('\u','\\\u',json_encode($push_data));
+			$result['ios'] = pushit($push_data, 2, 'ios');
+			$result['android'] = pushit($push_data, 1, 'android');
 
 			$result['count'] = $this->push->pushcount($id);
 		}
@@ -66,7 +69,7 @@ class Simplepush extends CI_Controller {
 	function create_push_data($id) {
 		$data = $this->push->getbyid($id);
 		$push_data['title'] = $data->title;
-		$push_data['content'] = (trim($data->content) != '') ? $data->title."\n".$data->content : $data->title;
+		$push_data['content'] = (trim($data->content) != '') ? $data->title."-".$data->content : $data->title;
 		if(trim($data->command) != '') $push_data['command'] = $data->command;
 		return $push_data;
 	}

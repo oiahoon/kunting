@@ -77,7 +77,7 @@
 
 					function ajax_push(id){
 						$.ajax({ url: "<?php echo site_url('simplepush/push_it');?>"+'/'+id, success: function(data){
-							alert("推送成功.");
+							alert("推送成功."+data);
 							 location.reload();
 					    }});
 					}
