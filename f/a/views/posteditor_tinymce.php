@@ -1,15 +1,15 @@
-<?php include 'includes/core/document_head.php'?>
+<?php include 'includes/core/document_head.php';?>
 	<div id="pjax">
 		<div id="wrapper" data-adminica-side-top="<?php echo $side_current_id;?>" data-adminica-nav-inner="5">
-			<?php include 'includes/components/topbar.php'?>
-			<?php include 'includes/components/sidebar.php'?>
-			<?php include 'includes/components/stackbar.php'?></div><!-- Closing Div for Stack Nav, you can boxes under the stack before this -->
+			<?php include 'includes/components/topbar.php';?>
+			<?php include 'includes/components/sidebar.php';?>
+			<?php include 'includes/components/stackbar.php';?></div><!-- Closing Div for Stack Nav, you can boxes under the stack before this -->
 			<div id="main_container" class="main_container container_16 clearfix">
-				<?php include 'includes/components/navigation.php'?>
+				<?php include 'includes/components/navigation.php';?>
 				<div class="flat_area grid_16">
 					<h2><?php echo $title['top'];?> <small><?php echo $title['small'];?></small>
 						<div class="holder">
-							<?php include 'includes/components/dynamic_loading.php'?>
+							<?php include 'includes/components/dynamic_loading.php';?>
 						</div>
 					</h2>
 					<p><strong>资讯</strong> 是 <strong>图文结合的</strong>,图片需要先上传再 <strong>插入</strong> 到文章里面.</p>
@@ -37,7 +37,7 @@
 						<div class="columns clearfix">
 							<div class="col_50">
 								<fieldset>
-									<label>活动的开始日期</label>
+									<label>活动报名开始日期</label>
 									<div>
 										<input type="text" name="begin_date" class="datepicker" value="<?php echo empty($post['begin_date'])?'':$post['begin_date'];?>" placeholder="开始日期"/>
 									</div>
@@ -45,21 +45,28 @@
 							</div>
 							<div class="col_50">
 								<fieldset class="right">
-									<label>活动的截至日期</label>
+									<label>活动报名截至日期</label>
 									<div class="clearfix">
 										<input type="text" name="end_date" class="datepicker" value="<?php echo empty($post['end_date'])?'':$post['end_date'];?>"  placeholder="截至日期"/>
 									</div>
 								</fieldset>
 							</div>
-							<script type="text/javascript">
-								 $.fn.datepicker && $(".datepicker").datepicker({
-							        dateFormat: "yy-m-d",
-							        showOn: "focus"
-							    });
-							</script>
 						</div>
 						<?php }?>
-						
+
+						<?php if ($category == $this->config->item('category')['actionnews']['id'] ) {?>
+						<div class="columns clearfix">
+							<div class="col_100">
+								<fieldset>
+									<label>活动举行日期</label>
+									<div>
+										<input type="text" name="holding" class="datepicker" value="<?php echo empty($post['holding_date'])?'':$post['holding_date'];?>" placeholder="开始日期"/>
+									</div>
+								</fieldset>
+							</div>
+						</div>
+						<?php }?>
+
 						<?php if($category != $this->config->item('category')['sharepage']['id']){?>
 						<fieldset class="label_side top">
 							<label>封面图片<span>(用于列表页显示)</span></label>
@@ -106,9 +113,13 @@
 					</div>
 						</form>
 				</div>
-				
-
 		</div>
-		<?php include 'includes/dialogs/dialog_welcome.php'?>
-		<?php include 'includes/dialogs/dialog_logout.php'?>
-<?php include 'includes/core/document_foot.php'?>
+		<script type="text/javascript">
+			 $.fn.datepicker && $(".datepicker").datepicker({
+		        dateFormat: "yy-m-d",
+		        showOn: "focus"
+		    });
+		</script>
+		<?php include 'includes/dialogs/dialog_welcome.php';?>
+		<?php include 'includes/dialogs/dialog_logout.php';?>
+<?php include 'includes/core/document_foot.php';?>
