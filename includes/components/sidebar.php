@@ -22,6 +22,8 @@
 				<li><a href="<?php echo site_url('post/article/add');?>" class="pjax">添加资讯</a></li>
 				<li><a href="<?php echo site_url('post/actions');?>" class="pjax">活动列表</a></li>
 				<li><a href="<?php echo site_url('post/actions/add');?>" class="pjax">添加活动</a></li>
+				<li><a href="<?php echo site_url('post/actionnews');?>" class="pjax">活动快报</a></li>
+				<li><a href="<?php echo site_url('post/actionnews/add');?>" class="pjax">添加活动快报</a></li>
 				<li><a href="<?php echo site_url('post/actions/members');?>" class="pjax">报名人员</a></li>
 			</ul>
 		</li>

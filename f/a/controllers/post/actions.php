@@ -128,6 +128,8 @@ class Actions extends CI_Controller {
 			$result['aaData'][$key][] = '<a onclick="ajax_push('.$value['id'].')" title="推送"><button class="orange tiny has_text img_icon"><img src="images/icons/small/white/magic_mouse.png"><span>推送</span></button></a>&nbsp;' . "&lt;".$value['title']."&gt;"."<br /><a href='".$value['short_link']."' taget='_blank'>".$value['short_link']."</a>";
 			//$result['aaData'][$key][] = $value['title_2nd'];
 			//$result['aaData'][$key][] = $category[$value['category_id']];
+			$result['aaData'][$key][] = $value['begin_date'];
+			$result['aaData'][$key][] = $value['end_date'];
 			$result['aaData'][$key][] = $value['create_date'];
 			$result['aaData'][$key][] = $value['author'];
 

@@ -23,6 +23,13 @@
 								<tr>
 									<th>标题</th>
 									<!-- <th>分类</th> -->
+									<?php if ($ctl == 'actionnews' ){?>
+									<th>活动举行日期</th>
+									<?php }?>
+									<?php if ($ctl == 'actions' ){?>
+									<th>报名开始日期</th>
+									<th>报名截至日期</th>
+									<?php }?>
 									<th>发布日期</th>
 									<th>作者</th>
 									<th>操作</th>
