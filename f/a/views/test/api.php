@@ -186,7 +186,10 @@
 							<li><span class="label label-info">过期类型</span> <code>dead</code><p class="muted">不限:空(不传);未过期:ing;过期:expired;</p></li>
 							<li><span class="label label-important">每页记录条数</span> <code>perpage</code></li>
 							<li><span class="label label-important">页码</span> <code>page</code></li>
-							<p><em>orders</em> 字段为<strong>1</strong>表示置顶</p>
+							
+							<br/><p class="info"><code>orders</code> 是排序,为<strong>1</strong>表示置顶<br/>
+							<code>begin_date/end_date</code> 为报名开始/截至日期(报名)</br>
+							<code>holding_date</code> 为活动开展日期(快报)</p>
 						</ol>
 					</td>
 				</tr>
