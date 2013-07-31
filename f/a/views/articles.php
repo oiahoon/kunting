@@ -13,7 +13,7 @@
 							<?php include 'includes/components/dynamic_loading.php';?>
 						</div>
 					</h2>
-					
+					<p>标题红色表示置顶</p>
 				</div>
 				<div class="box grid_16 single_datatable">
 					<div id="dt1" class="no_margin">
@@ -21,8 +21,8 @@
 						<table class=" article_datatable">
 							<thead>
 								<tr>
-									<th>标题</th>
-									<!-- <th>分类</th> -->
+									<th width="22%">标题</th>
+									<th width="6%">排序</th>
 									<?php if ($ctl == 'actionnews' ){?>
 									<th>活动举行日期</th>
 									<?php }?>

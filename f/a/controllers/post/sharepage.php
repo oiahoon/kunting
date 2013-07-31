@@ -128,10 +128,12 @@ class Sharepage extends CI_Controller {
 		$category  = $this->article_model->getTypes();//print_r($category);
 		$result = $this->article_model->getArticles($where,"orders");
 		foreach($result['aaaData'] as $key => $value){
+			$title_color = $value['orders']==1? 'red' : 'blue';
 			//$result['aaData'][$key][] = $value['id'];
-			$result['aaData'][$key][] = "<a href='".base_url('v/'.$value['id'])."' target='_blank'>".$value['title']."</a>"."<br /><a href='".$value['short_link']."' taget='_blank'>".$value['short_link']."</a>";
+			$result['aaData'][$key][] = "<a href='".base_url('v/'.$value['id'])."' target='_blank'><font color=".$title_color.">".$value['title']."</font></a>"."<br /><a href='".$value['short_link']."' taget='_blank'>".$value['short_link']."</a>";
 			//$result['aaData'][$key][] = $value['title_2nd'];
 			//$result['aaData'][$key][] = $category[$value['category_id']];
+			$result['aaData'][$key][] = $value['orders'];
 			$result['aaData'][$key][] = $value['create_date'];
 			$result['aaData'][$key][] = $value['author'];
 

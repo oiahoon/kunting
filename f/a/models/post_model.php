@@ -63,6 +63,8 @@ class Post_model extends CI_Model {
 	function updateOneArticle($article,$id){
 		if(isset($article['id'])) unset ($article['id']);
 		
+		$article['orders'] = $this->input->post('orders');
+		$article['orders'] = $article['orders'] ? $article['orders'] : 2;
 		$query = $this->db->get_where($this->post_table, array($this->primaryKey => $id));
 		$result = $query->row_array();
 		
@@ -151,6 +153,7 @@ class Post_model extends CI_Model {
 			$this->db->where($date_colum.' >= ',date("Y-m-d"));
 		}
 		$this->db->limit($perpage, ($page-1)*$perpage);
+		$this->db->order_by("`orders`", "asc"); 
 		$result['lists'] = $this->db->get()->result_array();
 		/* 查询总数 */
 		$this->db->from($this->post_table);
@@ -158,10 +161,10 @@ class Post_model extends CI_Model {
 			$this->db->where($this->category_idField, $category );	
 		}
 		if($dead == 'expired') {
-			$this->db->where('end_date < ',date("Y-m-d"));
+			$this->db->where($date_colum.' < ',date("Y-m-d"));
 		}
 		elseif($dead == 'ing') {
-			$this->db->where('end_date >= ',date("Y-m-d"));
+			$this->db->where($date_colum.' >= ',date("Y-m-d"));
 		}
 		$result['total'] = $this->db->count_all_results();
 		return $result;
@@ -170,7 +173,7 @@ class Post_model extends CI_Model {
 	/**
 	 *	为 jquery dataTable 提供数据
 	 */
-	 function getArticles($where,$order = ''){
+	 function getArticles($where,$order = 'orders'){
 		/* Array of database columns which should be read and sent back to DataTables. Use a space where
 		 * you want to insert a non-database field (for example a counter or static image)
 		 */
@@ -214,8 +217,8 @@ class Post_model extends CI_Model {
 				$sOrder = "";
 			}
 		}
-		//if($sOrder != '' && $order !='') $sOrder .= strireplace("ORDER BY  ", "ORDER BY  ".$order.", ", $sOrder);
-		//elseif($sOrder == '' && $order !='') $sOrder = 'ORDER BY   '.$order;
+		// if($sOrder != '' && $order !='') $sOrder .= strireplace("ORDER BY  ", "ORDER BY  ".$order.", ", $sOrder);
+		// elseif($sOrder == '' && $order !='') $sOrder = 'ORDER BY   '.$order;
 		
 		/* 
 		 * Filtering

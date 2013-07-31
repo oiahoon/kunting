@@ -139,18 +139,20 @@ class Article extends CI_Controller {
 		$category  = $this->article_model->getTypes();//print_r($category);
 		$result = $this->article_model->getArticles($where,"orders");
 		foreach($result['aaaData'] as $key => $value){
+			$title_color = $value['orders']==1? 'red' : 'blue';
 			//$result['aaData'][$key][] = $value['id'];
-			$result['aaData'][$key][] = '<a onclick="ajax_push('.$value['id'].')" title="推送"><button class="orange tiny has_text img_icon"><img src="images/icons/small/white/magic_mouse.png"><span>推送</span></button></a>&nbsp;' . "&lt;".$value['title']."&gt;"."<br /><a href='".$value['short_link']."' taget='_blank'>".$value['short_link']."</a>";
+			$result['aaData'][$key][] = '<a onclick="ajax_push('.$value['id'].')" title="推送"><button class="orange tiny has_text img_icon"><img src="images/icons/small/white/magic_mouse.png"><span>推送</span></button></a>&nbsp;' . "&lt;<font color=".$title_color.">".$value['title']."</font>&gt;"."<br /><a href='".$value['short_link']."' taget='_blank'>".$value['short_link']."</a>";
 			//$result['aaData'][$key][] = $value['title_2nd'];
 			//$result['aaData'][$key][] = $category[$value['category_id']];
+			$result['aaData'][$key][] = $value['orders'];
 			$result['aaData'][$key][] = $value['create_date'];
 			$result['aaData'][$key][] = $value['author'];
 
 			if($this->session->userdata('group_name')){
-				$button_color = $value['orders']==1 ? "orange" : "green";
-				$button_icon = $value['orders']==1 ? "minusthick" : "arrowthickstop-1-n";
-				$button_text = $value['orders']==1 ? "取消置顶" : "置顶";
-				$result['aaData'][$key][] =  '<a href="'.site_url('post/article/topit/'.$value['id'].'/'.$value['orders']).'"><button class="'.$button_color.' tiny"><div class="ui-icon ui-icon-'.$button_icon.'"></div><span>'.$button_text.'</span></button></a>&nbsp;/&nbsp;<a href="'.site_url('post/article/edit/id/'.$value['id']).'"><button class="blue tiny"><div class="ui-icon ui-icon-pencil"></div><span>修改</span></button></a>&nbsp;/&nbsp;<a onclick="delete_confirm('.$value['id'].')"><button class="red tiny"><div class="ui-icon ui-icon-trash"></div><span>删除</span></button></a>';
+				// $button_color = $value['orders']==1 ? "orange" : "green";
+				// $button_icon = $value['orders']==1 ? "minusthick" : "arrowthickstop-1-n";
+				// $button_text = $value['orders']==1 ? "取消置顶" : "置顶";
+				$result['aaData'][$key][] =  '<a href="'.site_url('post/article/edit/id/'.$value['id']).'"><button class="blue tiny"><div class="ui-icon ui-icon-pencil"></div><span>修改</span></button></a>&nbsp;/&nbsp;<a onclick="delete_confirm('.$value['id'].')"><button class="red tiny"><div class="ui-icon ui-icon-trash"></div><span>删除</span></button></a>';
 			}else{
 				$result['aaData'][$key][] = '';
 			}

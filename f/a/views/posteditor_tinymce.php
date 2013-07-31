@@ -33,6 +33,12 @@
 								<input type="text" name="title[2nd]" value="<?php echo empty($post['title_2nd'])?'':$post['title_2nd'];?>">
 							</div>
 						</fieldset>
+						<fieldset class="label_side top">
+							<label>排序<span>为1则为置顶</span></label>
+							<div>
+								<input type="text" name="orders" value="<?php echo empty($post['orders'])?'':$post['orders'];?>">
+							</div>
+						</fieldset>
 						<?php if ($category == $this->config->item('category')['actions']['id'] || $category == $this->config->item('category')['groupbuy']['id'] ) {?>
 						<div class="columns clearfix">
 							<div class="col_50">
