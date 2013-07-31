@@ -135,14 +135,20 @@ class Post_model extends CI_Model {
 	function getArticlesList($category, $dead, $perpage , $page){
 		$this->db->select('*');
 		$this->db->from($this->post_table);
+		$date_colum = 'end_date';
 		if ($category != '') {
 			$this->db->where($this->category_idField, $category );	
 		}
+
+		//快报的过期日期字段是holding_date
+		if($category == 5){
+			$date_colum = 'holding_date';
+		}
 		if($dead == 'expired') {
-			$this->db->where('end_date < ',date("Y-m-d"));
+			$this->db->where($date_colum.' < ',date("Y-m-d"));
 		}
 		elseif($dead == 'ing') {
-			$this->db->where('end_date >= ',date("Y-m-d"));
+			$this->db->where($date_colum.' >= ',date("Y-m-d"));
 		}
 		$this->db->limit($perpage, ($page-1)*$perpage);
 		$result['lists'] = $this->db->get()->result_array();

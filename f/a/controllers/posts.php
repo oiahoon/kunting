@@ -21,9 +21,10 @@ class Posts extends CI_Controller {
 		if($result['data']) {
 			$result['status'] = 1;
 			foreach ($result['data']['lists'] as $key => $row) {
-				if($row['imagecover']){
-					$result['data']['lists'][$key]['imagecover'] = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']."/uploads/".$row['imagecover'];				
-				}
+				if ($row['imagecover'])
+					$result['data']['lists'][$key]['imagecover'] = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']."/uploads/".$row['imagecover'];
+				else
+					$result['data']['lists'][$key]['imagecover'] = '';
 				if(trim($row['short_link']) == '' || // 没有短链
 					!preg_match("/http\:\/\//is", $row['short_link'])) //或者短链不正常
 				{ 

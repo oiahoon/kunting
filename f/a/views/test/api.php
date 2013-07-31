@@ -54,7 +54,7 @@
 				<tr>
 					<td>用户报名/参团
 					<br>
-					url:/members/members/memberAdd </td>
+					url: <code>/members/members/memberAdd</code> </td>
 					<td>
 						<form class="form-horizontal" method="post" action="<?php echo site_url('members/members/memberAdd');?>">
 							<fieldset>
@@ -110,11 +110,12 @@
 					</td>
 					<td>
 						<ol>
-							<li class="require">name-&gt; 用户名</li>
-							<li class="require">email-&gt; 邮箱地址</li>
-							<li class="require">phone-&gt; 电话号码</li>
-							<li class="require">cate-&gt; 项目类型 <br/>(活动报名:actions; 参加团购:groupbuy)</li>
-							<li class="require">objectid-&gt; 项目id<br/>(也就是活动的id或者团购的id)</li>
+							<li><span class="label label-important">用户名</span> <code>name</code></li>
+							<li><span class="label label-important">邮箱地址</span> <code>email</code></li>
+							<li><span class="label label-important">电话号码</span> <code>phone</code></li>
+							<li><span class="label label-important">项目类型</span> <code>cate</code><p class="muted">(活动报名:actions; 参加团购:groupbuy)</p></li>
+							<li><span class="label label-important">项目id</span> <code>objectid</code><p class="muted">(也就是活动的id或者团购的id)</p></li>
+							
 						</ol>
 					</td>
 				</tr>
@@ -124,7 +125,7 @@
 				<tr>
 					<td>获取文章列表
 					<br>
-					url:/posts/articlelists</td>
+					url: <code>/posts/articlelists</code></td>
 					<td>
 						<form class="form-horizontal" method="post" action="<?php echo site_url('posts/articlelists');?>">
 							<fieldset>
@@ -135,6 +136,7 @@
 											<option value="1" selected="">资讯</option>
 											<option value="2">活动</option>
 											<option value="3">团购</option>
+											<option value="5">快报</option>
 										</select>
 									</div>
 								</div>
@@ -180,10 +182,10 @@
 					</td>
 					<td>
 						<ol>
-							<li class="require">type-&gt; 分类<br/>资讯:1;活动:2;团购:3;</li>
-							<li class="require">dead-&gt; 过期类型<br/>不限:空(不传);未过期:ing;过期:expired;</li>
-							<li class="require">perpage-&gt; 每页记录条数</li>
-							<li class="require">page-&gt; 页码</li>
+							<li><span class="label label-important">分类</span> <code>type</code><p class="muted">资讯:1;活动:2;团购:3;快报:5;</p></li>
+							<li><span class="label label-info">过期类型</span> <code>dead</code><p class="muted">不限:空(不传);未过期:ing;过期:expired;</p></li>
+							<li><span class="label label-important">每页记录条数</span> <code>perpage</code></li>
+							<li><span class="label label-important">页码</span> <code>page</code></li>
 						</ol>
 					</td>
 				</tr>
@@ -192,7 +194,7 @@
 				<tr>
 					<td>获取文章内容
 					<br>
-					url:/posts/articledetail</td>
+					url: <code>/posts/articledetail</code></td>
 					<td>
 						<form class="form-horizontal" method="post" action="<?php echo site_url('posts/articledetail');?>">
 							<fieldset>
@@ -222,7 +224,7 @@
 					</td>
 					<td>
 						<ol>
-							<li class="require">id-&gt; 文章的id</li>
+							<li><span class="label label-important">文章的id</span> <code>id</code></li>
 						</ol>
 					</td>
 				</tr>
@@ -231,7 +233,7 @@
 				<tr>
 					<td>获取团购开关
 					<br>
-					url:/settings/groupbuy_s</td>
+					url: <code>/settings/groupbuy_s</code></td>
 					<td>
 						<form class="form-horizontal" method="post" action="<?php echo site_url('settings/groupbuy_s');?>">
 							<fieldset>
@@ -255,7 +257,7 @@
 					</td>
 					<td>
 						<ol>
-							<li >Need none params.</li>
+							<li><p class="info">不需要参数</p></li>
 						</ol>
 					</td>
 				</tr>
@@ -264,7 +266,7 @@
 				<tr id="sina_shorten">
 					<td>新浪短链接口
 					<br>
-					url:/adonice/short_url</td>
+					url: <code>/adonice/short_url</code></td>
 					<td>
 						<form class="form-horizontal" method="get" action="<?php echo site_url('adonice/shorten');?>">
 							<fieldset>
@@ -294,8 +296,7 @@
 					</td>
 					<td>
 						<ol>
-							<li class="require">url-&gt; 准备转换的url</li>
-							<li class="require">type-&gt; 转换的方式</li>
+							<li><span class="label label-important">准备转换的url</span> <code>url</code></li>
 						</ol>
 					</td>
 				</tr>
@@ -304,7 +305,7 @@
 				<tr>
 					<td>用户反馈
 					<br>
-					url:feedback/newFeedback </td>
+					url: <code>feedback/newFeedback</code> </td>
 					<td>
 						<form class="form-horizontal" method="post" action="<?php echo site_url('feedback/newFeedback');?>">
 							<fieldset>
@@ -341,8 +342,8 @@
 					</td>
 					<td>
 						<ol>
-							<li class="require">contact-&gt; 联系方式</li>
-							<li class="require">content-&gt; 反馈的内容</li>
+							<li><span class="label label-important">联系方式</span> <code>contact</code></li>
+							<li><span class="label label-important">反馈的内容</span> <code>content</code></li>
 						</ol>
 					</td>
 				</tr>
@@ -351,7 +352,7 @@
 				<tr>
 					<td>发邮件测试
 					<br>
-					url:adonice/emailtest</td>
+					url: <code>adonice/emailtest</code></td>
 					<td>
 						<form class="form-horizontal" method="post" action="<?php echo site_url('adonice/emailtest');?>">
 							<fieldset>
@@ -392,11 +393,12 @@
 					</td>
 					<td>
 						<ol>
-							<li class="require">title-&gt; 邮件的标题</li>
-							<li class="require">content-&gt; 邮件的内容</li>
-							<li class="require">emailto-&gt; 收件人地址</li>
+							<li><span class="label label-important">邮件的标题</span> <code>title</code></li>
+							<li><span class="label label-important">邮件的内容</span> <code>content</code></li>
+							<li><span class="label label-important">收件人地址</span> <code>emailto</code></li>
+							<p class="info">邮件的发送/接受邮箱地址、密码，</p><p class="info">均在<strong>后台</strong>-><strong>后台设置</strong>里面配置</p>
 
-							<br/>邮件的发送/接受邮箱地址密码，<br/>均在后台->后台设置里面配置
+							<br/>
 						</ol>
 					</td>
 				</tr>
@@ -405,7 +407,7 @@
 				<tr>
 					<td>推送测试
 					<br>
-					url:/test/push</td>
+					url: <code>/test/push</code></td>
 					<td>
 						<form class="form-horizontal" method="post" action="<?php echo site_url('test/push');?>">
 							<fieldset>
@@ -435,7 +437,7 @@
 					</td>
 					<td>
 						<ol>
-							<li class="require">content-&gt; 推送的内容</li>
+							<li><span class="label label-important">推送的内容</span> <code>content</code></li>
 						</ol>
 					</td>
 				</tr>
