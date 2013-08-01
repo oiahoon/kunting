@@ -20,11 +20,50 @@
 		.require {
 			color: #f00;
 		}
+		.sidebar {
+			
+		}
+		.bs-docs-sidenav {
+			top: 100px;
+			left: 30px;
+			width: 128px;
+			margin: 30px 0 0;
+			background-color: hsl(0, 100%, 100%);
+			-webkit-border-radius: 6px;
+			-moz-border-radius: 6px;
+			border-radius: 6px;
+			-webkit-box-shadow: 0 1px 4px hsla(0, 0%, 0%, 0.065);
+			-moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+			box-shadow: 0 1px 4px hsla(0, 0%, 0%, 0.39);
+		}
+		.bs-docs-sidenav .icon-chevron-right {
+			float: right;
+			margin-top: 2px;
+			margin-right: -6px;
+			opacity: .25;
+		}
+		.bs-docs-sidenav > li > a {
+			display: block;
+			padding: 8px 14px;
+			border-bottom: 1px solid hsl(0, 0%, 90%);
+		}
 		
 	</style>
 		<title>接口测试 <?php echo @$title2nd;?> </title>
 	</head>
 	<body>
+		<div class="span3 sidebar">
+			<ul data-spy="affix" class="affix nav nav-list bs-docs-sidenav">
+				<li><a href="#memberAdd">用户报名/参团 <i class="icon-chevron-right"></i></a></li>
+				<li><a href="#articlelists">获取文章列表 <i class="icon-chevron-right"></i></a></li>
+				<li><a href="#articledetail">获取文章内容 <i class="icon-chevron-right"></i></a></li>
+				<li><a href="#groupbuy_s">获取团购开关 <i class="icon-chevron-right"></i></a></li>
+				<li><a href="#sina_shorten">新浪短链接口 <i class="icon-chevron-right"></i></a></li>
+				<li><a href="#newFeedback">用户反馈 <i class="icon-chevron-right"></i></a></li>
+				<li><a href="#emailtest">发邮件测试 <i class="icon-chevron-right"></i></a></li>
+				<li><a href="#push">推送测试 <i class="icon-chevron-right"></i></a></li>
+				</ul>
+		</div>
 	<div class="navbar">
 		<div class="navbar-inner">
 			<a class="brand" href="#">项目测试</a>
@@ -51,7 +90,7 @@
 					<th width="30%">参数&amp;说明</th>
 				</thead>
 				<!-- one line ############################################## //-->
-				<tr>
+				<tr id="memberAdd">
 					<td>用户报名/参团
 					<br>
 					url: <code>/members/members/memberAdd</code> </td>
@@ -122,7 +161,7 @@
 				<!-- ################################################### //-->
 			
 				<!-- one line ########################################## //-->
-				<tr>
+				<tr id="articlelists">
 					<td>获取文章列表
 					<br>
 					url: <code>/posts/articlelists</code></td>
@@ -196,7 +235,7 @@
 				</tr>
 			<!-- ################################################### //-->
 			<!-- one line ########################################## //-->
-				<tr>
+				<tr id="articledetail">
 					<td>获取文章内容
 					<br>
 					url: <code>/posts/articledetail</code></td>
@@ -235,7 +274,7 @@
 				</tr>
 			<!-- ################################################### //-->
 			<!-- one line ########################################## //-->
-				<tr>
+				<tr id="groupbuy_s">
 					<td>获取团购开关
 					<br>
 					url: <code>/settings/groupbuy_s</code></td>
@@ -307,7 +346,7 @@
 				</tr>
 			<!-- ################################################### //-->
 			<!-- one line ############################################## //-->
-				<tr>
+				<tr id="newFeedback">
 					<td>用户反馈
 					<br>
 					url: <code>feedback/newFeedback</code> </td>
@@ -354,7 +393,7 @@
 				</tr>
 				<!-- ################################################### //-->
 				<!-- one line ########################################## //-->
-				<tr>
+				<tr id="emailtest">
 					<td>发邮件测试
 					<br>
 					url: <code>adonice/emailtest</code></td>
@@ -409,7 +448,7 @@
 				</tr>
 			<!-- ################################################### //-->
 			<!-- one line ########################################## //-->
-				<tr>
+				<tr id="push">
 					<td>推送测试
 					<br>
 					url: <code>/test/push</code></td>
