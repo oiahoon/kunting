@@ -1,6 +1,6 @@
 <?php
 /**
-	file 'user_group.php'
+	file 'kunting_setting.php'
 	
  */
 $config['user_group'] = array(
@@ -15,7 +15,7 @@ $congfig['groupbuy_s'] = array(
 );
 $config['category'] = array(
 	'article' 	=> array('id'=>'1','name' => "资讯"),
-	'actions' 	=> array('id'=>'2','name' => "活动"),
+	'actions' 	=> array('id'=>'2','name' => "活动报名"),
 	'groupbuy' 	=> array('id'=>'3','name' => "团购"),
 	'sharepage' => array('id'=>'4','name' => "分享"),
 	'actionnews' 	=> array('id'=>'5','name' => "活动快报"),

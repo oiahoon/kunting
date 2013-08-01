@@ -32,6 +32,16 @@ class Posts extends CI_Controller {
 					$this->articles->putShortLinkById($row['id'],$short_link);
 
 				}
+				//活动报名增加返回过期状态
+				if ($row['category_id']==2) {
+					$current_time = date("Y-m-d");
+					if($current_time < $row['begin_date'])
+						$result['data']['lists'][$key]['isdead'] = '<';//'notstart';
+					if($current_time > $row['begin_date'])
+						$result['data']['lists'][$key]['isdead'] = '=';//'ing';
+					if($current_time > $row['end_date'])
+						$result['data']['lists'][$key]['isdead'] = '>';//'expired';
+				}		
 			}
 		}
 		yaoprint($result, $this->input->post("format"));
