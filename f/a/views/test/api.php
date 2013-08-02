@@ -24,9 +24,10 @@
 			
 		}
 		.bs-docs-sidenav {
+			z-index: 999;
 			top: 100px;
 			left: 30px;
-			width: 128px;
+			width: 108px;
 			margin: 30px 0 0;
 			background-color: hsl(0, 100%, 100%);
 			-webkit-border-radius: 6px;
@@ -35,6 +36,9 @@
 			-webkit-box-shadow: 0 1px 4px hsla(0, 0%, 0%, 0.065);
 			-moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
 			box-shadow: 0 1px 4px hsla(0, 0%, 0%, 0.39);
+		}
+		.bs-docs-sidenav > li {
+			z-index: 999;
 		}
 		.bs-docs-sidenav .icon-chevron-right {
 			float: right;
