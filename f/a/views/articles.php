@@ -91,7 +91,7 @@
 
 					function ajax_push(id){
 						$.ajax({ url: "<?php echo site_url('posts/push_new');?>"+'/'+id, success: function(data){
-							alert("推送成功。");
+							alert("推送完成。\r\n"+data);
 					    }});
 					}
 				//-->

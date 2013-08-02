@@ -147,22 +147,27 @@ class Posts extends CI_Controller {
 	private function push_ios($id)
 	{
 		$article = $this->articles->getById($id, true);
-
+		$message = '';
 		$path = 'v';
 		$push_data['title'] = $article->title;
 		$push_data['content'] = $push_data['title'] . "-" .base_url($path.'/'.$id.".json");
 		$push_data['pName'] = "com.nervenets.kuntingandroid";
 		$push_data['cName'] = "com.nervenets.kuntingandroid.Main";
-		$result['ios'] = pushit(str_replace('\u','\\\u',json_encode($push_data)), 2, 'ios');
+		$result['ios'] = pushit(str_replace('\u','\\\u',json_encode($push_data)), 2, 'ios11');
+		$result['ios'] = json_decode($result['ios'],true);
 		$result['android'] = pushit(str_replace('\u','\\\u',json_encode($push_data)), 1, 'android');
-		return $result;
-	}
-	private function push_android($id)
-	{
-		$android['content'] = $this->articles->getById($id, true);
-		if($android['content']){
-			$android['type'] = $this->articles->getTypeAlias($android['content']->category_id);
-			return pushit(str_replace('\u','\\\u',json_encode($android)), 1, 'android' );
+		$result['android'] = json_decode($result['android'],true);
+		if($result['ios']['result'] == 1){
+			$message .= 'ios 成功推送至'.$result['ios']['receiver_count'].'个用户'."\r\n";
+		}else{
+			$message .= 'ios 推送失败，失败代码：'.$result['ios']['result']."\r\n";
 		}
+		if($result['android']['result'] == 1){
+			$message .= 'android 成功推送至'.$result['android']['receiver_count'].'个用户';
+		}else{
+			$message .= 'android 推送失败，失败代码：'.$result['android']['result'];
+		}
+		echo $message;
 	}
+	
 }
