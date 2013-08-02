@@ -153,7 +153,7 @@ class Posts extends CI_Controller {
 		$push_data['content'] = $push_data['title'] . "-" .base_url($path.'/'.$id.".json");
 		$push_data['pName'] = "com.nervenets.kuntingandroid";
 		$push_data['cName'] = "com.nervenets.kuntingandroid.Main";
-		$result['ios'] = pushit(str_replace('\u','\\\u',json_encode($push_data)), 2, 'ios11');
+		$result['ios'] = pushit(str_replace('\u','\\\u',json_encode($push_data)), 2, 'ios');
 		$result['ios'] = json_decode($result['ios'],true);
 		$result['android'] = pushit(str_replace('\u','\\\u',json_encode($push_data)), 1, 'android');
 		$result['android'] = json_decode($result['android'],true);
