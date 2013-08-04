@@ -151,12 +151,12 @@ class Posts extends CI_Controller {
 			// ios
 			$result['ios'] = $this->push_ios($id);
 			//android
-			//$result['android'] = $this->push_android($id);
+			$result['android'] = $this->push_android($id);
 		}
-		echo json_encode($result);
+		echo $result['ios'].$result['android'];
 	}
 
-	private function push_ios($id)
+	private function push_android($id)
 	{
 		$article = $this->articles->getById($id, true);
 		$message = '';
@@ -165,21 +165,37 @@ class Posts extends CI_Controller {
 		$push_data['content'] = $push_data['title'] . "-" .base_url($path.'/'.$id.".json");
 		$push_data['pName'] = "com.nervenets.kuntingandroid";
 		$push_data['cName'] = "com.nervenets.kuntingandroid.Main";
-		$result['ios'] = pushit(str_replace('\u','\\\u',json_encode($push_data)), 2, 'ios');
-		$result['ios'] = json_decode($result['ios'],true);
+		
 		$result['android'] = pushit(str_replace('\u','\\\u',json_encode($push_data)), 1, 'android');
 		$result['android'] = json_decode($result['android'],true);
-		if($result['ios']['result'] == 1){
-			$message .= 'ios 成功推送至'.$result['ios']['receiver_count'].'个用户'."\r\n";
-		}else{
-			$message .= 'ios 推送失败，失败代码：'.$result['ios']['result']."\r\n";
-		}
+		
 		if($result['android']['result'] == 1){
 			$message .= 'android 成功推送至'.$result['android']['receiver_count'].'个用户';
 		}else{
 			$message .= 'android 推送失败，失败代码：'.$result['android']['result'];
 		}
-		echo $message;
+		return $message;
+	}
+
+	private function push_ios($id)
+	{
+		$article = $this->articles->getById($id, true);
+		$message = '';
+		$path = 'v';
+		$push_data['title'] = $article->title;
+		$push_data['content'] = $push_data['title'];
+		$custom = json_encode( array( 'url'=>base_url($path.'/'.$id.".json") ) ) ;
+		$push_data['pName'] = "com.nervenets.kuntingandroid";
+		$push_data['cName'] = "com.nervenets.kuntingandroid.Main";
+		$result['ios'] = pushit(str_replace('\u','\\\u',json_encode($push_data)), 2, 'ios', $custom);
+		$result['ios'] = json_decode($result['ios'],true);
+		
+		if($result['ios']['result'] == 1){
+			$message .= 'ios 成功推送至'.$result['ios']['receiver_count'].'个用户'."\r\n";
+		}else{
+			$message .= 'ios 推送失败，失败代码：'.$result['ios']['result']."\r\n";
+		}
+		return $message;
 	}
 	
 }

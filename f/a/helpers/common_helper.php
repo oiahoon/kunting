@@ -23,7 +23,7 @@ function yaoprint($data, $format = 'json')
 }
 
 /* 推送 */
-function pushit($content, $msgType = 1, $clientPlatform = 'android,ios'){
+function pushit($content, $msgType = 1, $clientPlatform = 'android,ios', $custom = NULL){
 	include_once dirname(__FILE__)."/../libraries/Snoopy.php";
 	$snoopy = new Snoopy;
 	$snoopy->agent = $_SERVER['HTTP_USER_AGENT'];   
@@ -39,7 +39,8 @@ function pushit($content, $msgType = 1, $clientPlatform = 'android,ios'){
 	$pushVar["msgType"]			= $msgType;
 	$pushVar["clientPlatform"]	= $clientPlatform;
 	$pushVar["msgContent"]		= $content;
-	//print_r($pushVar);exit;
+	if(!empty($custom)) $pushVar["custom_content"] = $custom;//'{"id":333,"name":"nimei","pwd":"nimeimei"}';
+	print_r($pushVar);
 	if($snoopy->submit($pushUrl,$pushVar)){
 		return $snoopy->results;
 	}
