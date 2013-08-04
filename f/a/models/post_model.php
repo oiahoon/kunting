@@ -86,25 +86,25 @@ class Post_model extends CI_Model {
 	/* 置顶 */
 	function topit($id,$category){
 		$this->db->where('category_id', $category);
-		$this->db->update($this->post_table, array("orders"=>"9")); 
+		//$this->db->update($this->post_table, array("top"=>"0")); 
 		$this->db->where('id', $id);
-		return $this->db->update($this->post_table, array("orders"=>"1")); 
+		return $this->db->update($this->post_table, array("top"=>"1")); 
 	}
 	/* 取消置顶 */
 	function untopit($id,$category){
 		$this->db->where('category_id', $category);
 		$this->db->where('id', $id);
-		return $this->db->update($this->post_table, array("orders"=>"9")); 
+		return $this->db->update($this->post_table, array("top"=>"0")); 
 	}
 	/* 获取置顶的文章 */
 	function gettopbytype($type){
-		$this->db->select("id,title");
+		$this->db->select("*");
 		$this->db->from($this->post_table);
 		$this->db->where($this->category_idField,  $type);
-		$this->db->where("orders", "1"); 
-		$this->db->limit(1);
+		$this->db->where("top", "1"); 
+		//$this->db->limit(1);
 		$query = $this->db->get();
-		return($query->row_array());
+		return($query->result_array());
 	}
 	// 获取所有的类型
 	function getTypes($id = ''){
@@ -177,7 +177,7 @@ class Post_model extends CI_Model {
 		/* Array of database columns which should be read and sent back to DataTables. Use a space where
 		 * you want to insert a non-database field (for example a counter or static image)
 		 */
-		$aColumns = array('id', 'title', 'title_2nd', 'category_id','holding_date', 'begin_date', 'end_date', 'create_date', 'author', 'orders', 'short_link');
+		$aColumns = array('id', 'title', 'title_2nd', 'category_id','holding_date', 'begin_date', 'end_date', 'create_date', 'author', 'orders', 'short_link', 'top');
 	
 		/* Indexed column (used for fast and accurate table cardinality) */
 		$sIndexColumn = "id";

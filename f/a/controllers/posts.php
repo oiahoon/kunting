@@ -15,9 +15,21 @@ class Posts extends CI_Controller {
 		$result['status'] = 0;
 		$category 		= $this->input->post("type") 	? $this->input->post("type") 	: ''; 
 		$perpage 		= $this->input->post('perpage') ? $this->input->post('perpage') : 20; 
-		$page 			= $this->input->post('page') 	? $this->input->post('page') 	: 0;
+		$page 			= $this->input->post('page') 	? $this->input->post('page') 	: 1;
 		$dead 			= $this->input->post('dead') 	? $this->input->post('dead') 	: '';
 		$result['data'] = $this->articles->getArticlesList($category, $dead, $perpage, $page);
+		if($page == '1') {
+			$tops = $this->articles->gettopbytype($category);
+			if (!empty($tops)) {
+				foreach ($tops as $tk => $tv) {
+					foreach ($result['data']['lists'] as $key => $value) {
+						if ($tv['id'] == $value['id']) unset($result['data']['lists'][$key]);
+					}
+					array_unshift($result['data']['lists'], $tv);
+				}
+			}
+		}
+
 		if($result['data']) {
 			$result['status'] = 1;
 			foreach ($result['data']['lists'] as $key => $row) {

@@ -126,8 +126,8 @@ class Article extends CI_Controller {
 	/* 资讯置顶 只有一个置顶，其余的都恢复 */
 	function topit(){
 		$id = $this->uri->segment(4);
-		$orders = $this->uri->segment(5);
-		if($orders > 1) $this->article_model->topit($id,"1");
+		$top = $this->uri->segment(5);
+		if($top == 0) $this->article_model->topit($id,"1");
 		else $this->article_model->untopit($id,"1");
 		redirect("post/article", "refresh");
 	}
@@ -149,10 +149,10 @@ class Article extends CI_Controller {
 			$result['aaData'][$key][] = $value['author'];
 
 			if($this->session->userdata('group_name')){
-				// $button_color = $value['orders']==1 ? "orange" : "green";
-				// $button_icon = $value['orders']==1 ? "minusthick" : "arrowthickstop-1-n";
-				// $button_text = $value['orders']==1 ? "取消置顶" : "置顶";
-				$result['aaData'][$key][] =  '<a href="'.site_url('post/article/edit/id/'.$value['id']).'"><button class="blue tiny"><div class="ui-icon ui-icon-pencil"></div><span>修改</span></button></a>&nbsp;/&nbsp;<a onclick="delete_confirm('.$value['id'].')"><button class="red tiny"><div class="ui-icon ui-icon-trash"></div><span>删除</span></button></a>';
+				$top_button_color = $value['top']==1 ? "orange" : "green";
+				$top_button_icon = $value['top']==1 ? "minusthick" : "arrowthickstop-1-n";
+				$top_button_text = $value['top']==1 ? "取消置顶" : "置顶";
+				$result['aaData'][$key][] =  '<a href="'.site_url('post/article/topit/'.$value['id'].'/'.$value['top']).'"><button class="'.$top_button_color.' tiny"><div class="ui-icon ui-icon-'.$top_button_icon.'"></div><span>'.$top_button_text.'</span></button></a>&nbsp;/&nbsp;<a href="'.site_url('post/article/edit/id/'.$value['id']).'"><button class="blue tiny"><div class="ui-icon ui-icon-pencil"></div><span>修改</span></button></a>&nbsp;/&nbsp;<a onclick="delete_confirm('.$value['id'].')"><button class="red tiny"><div class="ui-icon ui-icon-trash"></div><span>删除</span></button></a>';
 			}else{
 				$result['aaData'][$key][] = '';
 			}

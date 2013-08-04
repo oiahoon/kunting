@@ -233,7 +233,8 @@
 							<br/><p class="info"><code>orders</code> 是排序,为<strong>1</strong>表示置顶<br/>
 							<code>begin_date/end_date</code> 为报名开始/截至日期(报名)</br>
 							<code>holding_date</code> 为活动开展日期(快报)</br>
-							<code>isdead</code> 报名状态，未开始：<code><</code>;正在进行：<code>=</code>;已结束：<code>></code>;</p>
+							<code>isdead</code> 报名状态，未开始：<code><</code>;正在进行：<code>=</code>;已结束：<code>></code>;<br/>
+							<code>top</code> 为置顶标识(1:是,0:非)</br></p>
 						</ol>
 					</td>
 				</tr>

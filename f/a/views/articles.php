@@ -13,7 +13,7 @@
 							<?php include 'includes/components/dynamic_loading.php';?>
 						</div>
 					</h2>
-					<p>标题红色表示置顶</p>
+					<p>标题红色表示排序第一,不是置顶.</p>
 				</div>
 				<div class="box grid_16 single_datatable">
 					<div id="dt1" class="no_margin">
@@ -32,7 +32,7 @@
 									<?php }?>
 									<th>发布日期</th>
 									<th>作者</th>
-									<th>操作</th>
+									<th width="20%">操作</th>
 								</tr>
 							</thead>
 							<tbody>
