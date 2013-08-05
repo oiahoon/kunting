@@ -1,17 +1,17 @@
-<?php include 'includes/core/document_head.php'?>
+<?php include 'includes/core/document_head.php';?>
 	<div id="pjax">
 		<div id="wrapper" data-adminica-side-top="<?php echo $side_current_id;?>">
-			<?php include 'includes/components/topbar.php'?>
-			<?php include 'includes/components/sidebar.php'?>
-			<?php include 'includes/components/stackbar.php'?></div><!-- Closing Div for Stack Nav, you can boxes under the stack before this -->
+			<?php include 'includes/components/topbar.php';?>
+			<?php include 'includes/components/sidebar.php';?>
+			<?php include 'includes/components/stackbar.php';?></div><!-- Closing Div for Stack Nav, you can boxes under the stack before this -->
 
 			<div id="main_container" class="main_container container_16 clearfix">
-				<?php include 'includes/components/navigation.php'?>
+				<?php include 'includes/components/navigation.php';?>
 				<div class="flat_area grid_16">
 					<h2><?php echo $title['top'];?>
 						<small><?php echo $title['small'];?></small>
 						<div class="holder">
-							<?php include 'includes/components/dynamic_loading.php'?>
+							<?php include 'includes/components/dynamic_loading.php';?>
 						</div>
 					</h2>
 					<p></p>
@@ -24,7 +24,7 @@
 					</div>
 
 					<div class="columns">
-						<div class="col_30">
+						<div class="col_50">
 							<fieldset>
 								<label>团购开关</label>
 								<div>
@@ -48,29 +48,17 @@
 							</SCRIPT>
 						</div>
 						<!-- ////////////////////-->
-						<div class="col_70">
-							<fieldset class="right">
-								<label>当前置顶资讯</label>
-								<div class="clearfix">
-									<label><h2>
-									<?php if($top_article){?>
-									<a href="<?php echo site_url('post/article/edit/id/'.$top_article['id']);?>"  style="color:blue;"><?php echo $top_article['title'];?></a>
-									<?php }else{?>当前没有置顶的资讯<?php }?></h2></label>
-								</div>
-							</fieldset>
-						</div>
-					</div>
-					<div class="columns">
-						<div class="col_30">
+						<div class="col_50">
 							<fieldset>
 								<label>创建短链
 								<span>为所有的咨询，活动，团购，分享重新生成短链接</span>
 								</label>
-								<div>
+								<div class=" stacked_buttons">
+									<div>
 									<button class="dark div_icon has_text button_down" type="create" onclick="shortlinks();">
 										<div class="ui-icon ui-icon-check"></div>
 										<span>Create</span>
-									</button>
+									</button></div>
 								</div>
 							</fieldset>
 							<SCRIPT LANGUAGE="JavaScript">
@@ -86,6 +74,20 @@
 							//-->
 							</SCRIPT>
 						</div>
+					</div>
+					<div class="columns">
+						<div class="col_30">
+							<fieldset class="right">
+								<label>当前置顶资讯</label>
+								<div class="clearfix">
+									<label><h2>
+									<?php if($top_article){ 
+										foreach ($top_article as $key => $row) {?>
+									<p><a href="<?php echo site_url('post/article/edit/id/'.$row['id']);?>"  style="color:blue;"><?php echo $row['title'];?></a></p>
+									<?php }}else{?>当前没有置顶的资讯<?php }?></h2></label>
+								</div>
+							</fieldset>
+						</div>
 
 					</div>
 				</div>
@@ -93,4 +95,4 @@
 						<!-- ////////////////////-->
 			</div>
 		</div>
-<?php include 'includes/core/document_foot.php'?>
+<?php include 'includes/core/document_foot.php';?>
