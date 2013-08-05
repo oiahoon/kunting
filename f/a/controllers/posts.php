@@ -185,7 +185,7 @@ class Posts extends CI_Controller {
 		// $push_data['title'] = $article->title;
 		// $push_data['content'] = $push_data['title'];
 		$push_data = $article->title;
-		$custom = json_encode( array( 'url'=>base_url($path.'/'.$id.".json") ) ) ;
+		$custom = base_url($path.'/'.$id.".json");
 		// $push_data['pName'] = "com.nervenets.kuntingandroid";
 		// $push_data['cName'] = "com.nervenets.kuntingandroid.Main";
 		//$result['ios'] = pushit(str_replace('\u','\\\u',json_encode($push_data)), 2, 'ios', $custom);
