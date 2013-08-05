@@ -28,9 +28,9 @@ function pushit($content, $msgType = 1, $clientPlatform = 'android,ios', $custom
 	$snoopy = new Snoopy;
 	$snoopy->agent = $_SERVER['HTTP_USER_AGENT'];   
 	$snoopy->rawheaders["Pragma"] = "no-cache";
-
-	#$pushUrl					= "http://dev.zypush.com/push/api/sendmsg_ver01";
+	
 	$pushUrl					= "http://dev.zypush.com/push/api/v2/sendmsg_ver02";
+	if ($clientPlatform == 'ios') $pushUrl = "http://dev.zypush.com/push/api/sendmsg_ios";
 	$pushVar['offLine_time']	= 99*60*60;
 	$pushVar["userName"]		= "joesupper";
 	$pushVar["appKey"]			= '617729b1dd2ed59157696a5670a823ec';
@@ -40,7 +40,7 @@ function pushit($content, $msgType = 1, $clientPlatform = 'android,ios', $custom
 	$pushVar["clientPlatform"]	= $clientPlatform;
 	$pushVar["msgContent"]		= $content;
 	if(!empty($custom)) $pushVar["custom_content"] = $custom;//'{"id":333,"name":"nimei","pwd":"nimeimei"}';
-	print_r($pushVar);
+	//print_r($pushVar);
 	if($snoopy->submit($pushUrl,$pushVar)){
 		return $snoopy->results;
 	}
