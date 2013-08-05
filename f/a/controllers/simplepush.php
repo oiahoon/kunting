@@ -34,7 +34,7 @@ class Simplepush extends CI_Controller {
 					$push_id = $this->db->insert_id();
 					$push_data = $this->create_push_data($push_id);
 
-					$result['ios'] = pushit($push_data['title']."-".$push_data['content'], 2, 'ios');
+					$result['ios'] = pushit($push_data['content'], 2, 'ios');
 
 					$push_data['pName'] = "com.nervenets.kuntingandroid";
 					$push_data['cName'] = "com.nervenets.kuntingandroid.Main";
