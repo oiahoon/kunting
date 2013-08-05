@@ -40,7 +40,7 @@ function pushit($content, $msgType = 1, $clientPlatform = 'android,ios', $custom
 	$pushVar["clientPlatform"]	= $clientPlatform;
 	$pushVar["msgContent"]		= $content;
 	if(!empty($custom)) $pushVar["custom_content"] = $custom;//'{"id":333,"name":"nimei","pwd":"nimeimei"}';
-	//print_r($pushVar);
+	print_r($pushVar);
 	if($snoopy->submit($pushUrl,$pushVar)){
 		return $snoopy->results;
 	}

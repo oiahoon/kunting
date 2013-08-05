@@ -182,12 +182,14 @@ class Posts extends CI_Controller {
 		$article = $this->articles->getById($id, true);
 		$message = '';
 		$path = 'v';
-		$push_data['title'] = $article->title;
-		$push_data['content'] = $push_data['title'];
+		// $push_data['title'] = $article->title;
+		// $push_data['content'] = $push_data['title'];
+		$push_data = $article->title;
 		$custom = json_encode( array( 'url'=>base_url($path.'/'.$id.".json") ) ) ;
-		$push_data['pName'] = "com.nervenets.kuntingandroid";
-		$push_data['cName'] = "com.nervenets.kuntingandroid.Main";
-		$result['ios'] = pushit(str_replace('\u','\\\u',json_encode($push_data)), 2, 'ios', $custom);
+		// $push_data['pName'] = "com.nervenets.kuntingandroid";
+		// $push_data['cName'] = "com.nervenets.kuntingandroid.Main";
+		//$result['ios'] = pushit(str_replace('\u','\\\u',json_encode($push_data)), 2, 'ios', $custom);
+		$result['ios'] = pushit($push_data, 2, 'ios', $custom);
 		$result['ios'] = json_decode($result['ios'],true);
 		
 		if($result['ios']['result'] == 1){
