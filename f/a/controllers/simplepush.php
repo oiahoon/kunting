@@ -58,7 +58,7 @@ class Simplepush extends CI_Controller {
 		if($id){
 			$push_data = $this->create_push_data($id);
 
-			$result['ios'] = pushit($push_data['title']."-".$push_data['content'], 2, 'ios');
+			$result['ios'] = pushit($push_data['content'], 2, 'ios');
 
 			//android推送还需要的参数
 			$push_data['pName'] = "com.nervenets.kuntingandroid";
