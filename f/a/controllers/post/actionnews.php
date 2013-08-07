@@ -46,13 +46,13 @@ class Actionnews extends CI_Controller {
 					$viewdata['status'] = 1;
 					$action['imagecover'] = $this->config->item('upload_path').$uploaddata['file_name'];  
 				}
-				$action['title'] = quotes_to_entities($_POST['title']['main']);
-				$action['title_2nd'] = quotes_to_entities($_POST['title']['2nd']);
-				$action['content'] = quotes_to_entities($_POST['content']);
+				$action['title']        = quotes_to_entities($_POST['title']['main']);
+				$action['title_2nd']    = quotes_to_entities($_POST['title']['2nd']);
+				$action['content']      = quotes_to_entities($_POST['content']);
 				$action['holding_date'] = $this->input->post('holding');
-				$action['create_date'] =  date("Y-m-d H:i:s");
-				$action['author'] = $this->session->userdata['manager'];
-				$action['category_id'] = '5';
+				$action['create_date']  =  date("Y-m-d H:i:s");
+				$action['author']       = $this->session->userdata['manager'];
+				$action['category_id']  = '5';
 				foreach($action as $key => $row){ $viewdata[$key] = $row; }
 				if($this->actions_model->insertOneArticle($action)){
 					redirect("post/actionnews", "refresh");
@@ -91,9 +91,9 @@ class Actionnews extends CI_Controller {
 					$viewdata['status'] = 1;
 					$action['imagecover'] = $this->config->item('upload_path').$uploaddata['file_name']; 
 				}
-				$action['title'] = quotes_to_entities($_POST['title']['main']);
-				$action['title_2nd'] = quotes_to_entities($_POST['title']['2nd']);
-				$action['content'] = quotes_to_entities($_POST['content']);
+				$action['title']        = quotes_to_entities($_POST['title']['main']);
+				$action['title_2nd']    = quotes_to_entities($_POST['title']['2nd']);
+				$action['content']      = quotes_to_entities($_POST['content']);
 				$action['holding_date'] = $this->input->post('holding');
 				foreach($action as $key => $row){ $viewdata[$key] = $row; }
 				if($this->actions_model->updateOneArticle($action,$_POST['id'])){
@@ -122,15 +122,15 @@ class Actionnews extends CI_Controller {
 		$category  = $this->actions_model->getTypes();//print_r($category);
 		$result = $this->actions_model->getArticles($where);
 		foreach($result['aaaData'] as $key => $value){
-			$title_color = $value['orders']==1? 'red' : 'blue';
+			$title_color                = $value['orders']==1? 'red' : 'blue';
 			//$result['aaData'][$key][] = $value['id'];
-			$result['aaData'][$key][] = '<a onclick="ajax_push('.$value['id'].')" title="推送"><button class="orange tiny has_text img_icon"><img src="images/icons/small/white/magic_mouse.png"><span>推送</span></button></a>&nbsp;' . "&lt;<font color=".$title_color.">".$value['title']."</font>&gt;"."<br /><a href='".$value['short_link']."' taget='_blank'>".$value['short_link']."</a>";
+			$result['aaData'][$key][]   = '<a onclick="ajax_push('.$value['id'].')" title="推送"><button class="orange tiny has_text img_icon"><img src="images/icons/small/white/magic_mouse.png"><span>推送</span></button></a>&nbsp;' . "&lt;<font color=".$title_color.">".$value['title']."</font>&gt;"."<br /><a href='".$value['short_link']."' taget='_blank'>".$value['short_link']."</a>";
 			//$result['aaData'][$key][] = $value['title_2nd'];
 			//$result['aaData'][$key][] = $category[$value['category_id']];
-			$result['aaData'][$key][] = $value['orders'];
-			$result['aaData'][$key][] = $value['holding_date'];
-			$result['aaData'][$key][] = $value['create_date'];
-			$result['aaData'][$key][] = $value['author'];
+			$result['aaData'][$key][]   = $value['orders'];
+			$result['aaData'][$key][]   = $value['holding_date'];
+			$result['aaData'][$key][]   = $value['create_date'];
+			$result['aaData'][$key][]   = $value['author'];
 
 			if($this->session->userdata('group_name')){
 				$result['aaData'][$key][] =  '<a href="'.site_url('post/actionnews/edit/id/'.$value['id']).'"><button class="blue tiny"><div class="ui-icon ui-icon-pencil"></div><span>修改</span></button></a>&nbsp;/&nbsp;<a onclick="delete_confirm('.$value['id'].')"><button class="red tiny"><div class="ui-icon ui-icon-trash"></div><span>删除</span></button></a>';

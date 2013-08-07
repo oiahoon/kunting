@@ -82,7 +82,7 @@ class Posts extends CI_Controller {
 		//	die(json_encode(array('status'=>'0')));
 		$viewdata = array( 
 			'title' => array('top' => '','small' => $data['title']),
-			'ctl' => "sharepage",
+			'ctl'   => "sharepage",
 			'share' => $data,
 			);
 		$this->load->view('sharepage',$viewdata);
@@ -158,16 +158,16 @@ class Posts extends CI_Controller {
 
 	private function push_android($id)
 	{
-		$article = $this->articles->getById($id, true);
-		$message = '';
-		$path = 'v';
-		$push_data['title'] = $article->title;
+		$article              = $this->articles->getById($id, true);
+		$message              = '';
+		$path                 = 'v';
+		$push_data['title']   = $article->title;
 		$push_data['content'] = $push_data['title'] . "-" .base_url($path.'/'.$id.".json");
-		$push_data['pName'] = "com.nervenets.kuntingandroid";
-		$push_data['cName'] = "com.nervenets.kuntingandroid.Main";
+		$push_data['pName']   = "com.nervenets.kuntingandroid";
+		$push_data['cName']   = "com.nervenets.kuntingandroid.Main";
 		
-		$result['android'] = pushit(str_replace('\u','\\\u',json_encode($push_data)), 1, 'android');
-		$result['android'] = json_decode($result['android'],true);
+		$result['android']    = pushit(str_replace('\u','\\\u',json_encode($push_data)), 1, 'android');
+		$result['android']    = json_decode($result['android'],true);
 		
 		if($result['android']['result'] == 1){
 			$message .= 'android 成功推送至'.$result['android']['receiver_count'].'个用户';
@@ -179,18 +179,18 @@ class Posts extends CI_Controller {
 
 	private function push_ios($id)
 	{
-		$article = $this->articles->getById($id, true);
-		$message = '';
-		$path = 'v';
-		// $push_data['title'] = $article->title;
+		$article                 = $this->articles->getById($id, true);
+		$message                 = '';
+		$path                    = 'v';
+		// $push_data['title']   = $article->title;
 		// $push_data['content'] = $push_data['title'];
-		$push_data = $article->title;
-		$custom = base_url($path.'/'.$id.".json");
-		// $push_data['pName'] = "com.nervenets.kuntingandroid";
-		// $push_data['cName'] = "com.nervenets.kuntingandroid.Main";
-		//$result['ios'] = pushit(str_replace('\u','\\\u',json_encode($push_data)), 2, 'ios', $custom);
-		$result['ios'] = pushit($push_data, 2, 'ios', $custom);
-		$result['ios'] = json_decode($result['ios'],true);
+		$push_data               = $article->title;
+		$custom                  = base_url($path.'/'.$id.".json");
+		// $push_data['pName']   = "com.nervenets.kuntingandroid";
+		// $push_data['cName']   = "com.nervenets.kuntingandroid.Main";
+		//$result['ios']         = pushit(str_replace('\u','\\\u',json_encode($push_data)), 2, 'ios', $custom);
+		$result['ios']           = pushit($push_data, 2, 'ios', $custom);
+		$result['ios']           = json_decode($result['ios'],true);
 		
 		if($result['ios']['result'] == 1){
 			$message .= 'ios 成功推送至'.$result['ios']['receiver_count'].'个用户'."\r\n";

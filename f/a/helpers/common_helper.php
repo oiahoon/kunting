@@ -10,15 +10,15 @@
 function yaoprint($data, $format = 'json')
 {
 	switch (strtolower($format)) {
-			case 'array':
-				print_r($data);
-				break;
-			
-			default:
-				/* 如果不是从test接口来的  就作为json格式输出 */
-				if(!isset($_SERVER['HTTP_REFERER']) || !preg_match('/\/test/is', $_SERVER['HTTP_REFERER'])) header('Content-type:application/json; charset=utf-8');
-				echo json_encode($data);
-				break;
+		case 'array':
+			print_r($data);
+			break;
+		
+		default:
+			/* 如果不是从test接口来的  就作为json格式输出 */
+			if(!isset($_SERVER['HTTP_REFERER']) || !preg_match('/\/test/is', $_SERVER['HTTP_REFERER'])) header('Content-type:application/json; charset=utf-8');
+			echo json_encode($data);
+			break;
 		}
 }
 
@@ -54,9 +54,9 @@ function pushit($content, $msgType = 1, $clientPlatform = 'android,ios', $custom
  */
  function short_url($long_url){
  	if(empty($long_url)) die;
-		$api_ = "http://api.weibo.com/2/short_url/shorten.json";
+	$api_         = "http://api.weibo.com/2/short_url/shorten.json";
 	$api_full_url = $api_.'?source=2855687947&url_long='.urlencode($long_url);
-	$result = json_decode(vpost($api_full_url),true);
+	$result       = json_decode(vpost($api_full_url),true);
 	return $result['urls'][0]['url_short'];
  }
  /* shorten a url ,get the short one 老版本 */
@@ -86,10 +86,10 @@ function vpost($url){ // 模拟提交数据函数
  	$this->load->Model('emailsend_model','emailsend');
  	$config = $this->emailsend->getEmailConfig();
  	if(count($config) == 4){
- 		$to = $this->input->post('emailto');
- 		$title = $this->input->post('title');
- 		$body = $this->input->post('content');
- 		$email_result = $this->emailsend->sendEmail($config, $to, '', $title,  $body);
+		$to           = $this->input->post('emailto');
+		$title        = $this->input->post('title');
+		$body         = $this->input->post('content');
+		$email_result = $this->emailsend->sendEmail($config, $to, '', $title,  $body);
  		if($email_result == 'true'){
  			$result['status'] = 1;
  		}

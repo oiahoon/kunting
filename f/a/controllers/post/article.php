@@ -23,11 +23,11 @@ class Article extends CI_Controller {
 		$this->load->library('upload');
 		if ( ! $this->upload->do_upload("file")){
 			$result['status'] = 0;
-			$result['error'] = $this->upload->display_errors();
+			$result['error']  = $this->upload->display_errors();
 		} 
 		else{
-			$uploaddata = $this->upload->data();
-			$result['status'] = 1;
+			$uploaddata         = $this->upload->data();
+			$result['status']   = 1;
 			$result['filepath'] = $uploaddata['file_name']; 
 		}
 		echo json_encode($result);
@@ -55,11 +55,11 @@ class Article extends CI_Controller {
 					$uploaddata = $this->upload->data();
 					$article['imagecover'] = $this->config->item('upload_path').$uploaddata['file_name']; 
 				}
-				$article['title'] = quotes_to_entities($_POST['title']['main']);
-				$article['title_2nd'] = quotes_to_entities($_POST['title']['2nd']);
-				$article['content'] = quotes_to_entities($_POST['content']);
+				$article['title']       = quotes_to_entities($_POST['title']['main']);
+				$article['title_2nd']   = quotes_to_entities($_POST['title']['2nd']);
+				$article['content']     = quotes_to_entities($_POST['content']);
 				$article['create_date'] =  date("Y-m-d H:i:s");
-				$article['author'] = $this->session->userdata['manager'];
+				$article['author']      = $this->session->userdata['manager'];
 				$article['category_id'] = '1';
 				foreach($article as $key => $row){ $viewdata[$key] = $row; }
 				if($this->article_model->insertOneArticle($article)){
@@ -99,9 +99,9 @@ class Article extends CI_Controller {
 				else{
 					$result['error'] = $this->upload->display_errors();
 				}
-				$article['title'] = quotes_to_entities($_POST['title']['main']);
+				$article['title']     = quotes_to_entities($_POST['title']['main']);
 				$article['title_2nd'] = quotes_to_entities($_POST['title']['2nd']);
-				$article['content'] = quotes_to_entities($_POST['content']);
+				$article['content']   = quotes_to_entities($_POST['content']);
 				foreach($article as $key => $row){ $viewdata[$key] = $row; }
 				if($this->article_model->updateOneArticle($article,$_POST['id'])){
 					redirect("post/article", "refresh");
@@ -125,7 +125,7 @@ class Article extends CI_Controller {
 	
 	/* 资讯置顶 只有一个置顶，其余的都恢复 */
 	function topit(){
-		$id = $this->uri->segment(4);
+		$id  = $this->uri->segment(4);
 		$top = $this->uri->segment(5);
 		if($top == 0) $this->article_model->topit($id,"1");
 		else $this->article_model->untopit($id,"1");
@@ -139,19 +139,19 @@ class Article extends CI_Controller {
 		$category  = $this->article_model->getTypes();//print_r($category);
 		$result = $this->article_model->getArticles($where,"orders");
 		foreach($result['aaaData'] as $key => $value){
-			$title_color = $value['orders']==1? 'red' : 'blue';
+			$title_color                = $value['orders']==1? 'red' : 'blue';
 			//$result['aaData'][$key][] = $value['id'];
-			$result['aaData'][$key][] = '<a onclick="ajax_push('.$value['id'].')" title="推送"><button class="orange tiny has_text img_icon"><img src="images/icons/small/white/magic_mouse.png"><span>推送</span></button></a>&nbsp;' . "&lt;<font color=".$title_color.">".$value['title']."</font>&gt;"."<br /><a href='".$value['short_link']."' taget='_blank'>".$value['short_link']."</a>";
+			$result['aaData'][$key][]   = '<a onclick="ajax_push('.$value['id'].')" title="推送"><button class="orange tiny has_text img_icon"><img src="images/icons/small/white/magic_mouse.png"><span>推送</span></button></a>&nbsp;' . "&lt;<font color=".$title_color.">".$value['title']."</font>&gt;"."<br /><a href='".$value['short_link']."' taget='_blank'>".$value['short_link']."</a>";
 			//$result['aaData'][$key][] = $value['title_2nd'];
 			//$result['aaData'][$key][] = $category[$value['category_id']];
-			$result['aaData'][$key][] = $value['orders'];
-			$result['aaData'][$key][] = $value['create_date'];
-			$result['aaData'][$key][] = $value['author'];
+			$result['aaData'][$key][]   = $value['orders'];
+			$result['aaData'][$key][]   = $value['create_date'];
+			$result['aaData'][$key][]   = $value['author'];
 
 			if($this->session->userdata('group_name')){
-				$top_button_color = $value['top']==1 ? "orange" : "green";
-				$top_button_icon = $value['top']==1 ? "minusthick" : "arrowthickstop-1-n";
-				$top_button_text = $value['top']==1 ? "取消置顶" : "置顶";
+				$top_button_color         = $value['top']==1 ? "orange" : "green";
+				$top_button_icon          = $value['top']==1 ? "minusthick" : "arrowthickstop-1-n";
+				$top_button_text          = $value['top']==1 ? "取消置顶" : "置顶";
 				$result['aaData'][$key][] =  '<a href="'.site_url('post/article/topit/'.$value['id'].'/'.$value['top']).'"><button class="'.$top_button_color.' tiny"><div class="ui-icon ui-icon-'.$top_button_icon.'"></div><span>'.$top_button_text.'</span></button></a>&nbsp;/&nbsp;<a href="'.site_url('post/article/edit/id/'.$value['id']).'"><button class="blue tiny"><div class="ui-icon ui-icon-pencil"></div><span>修改</span></button></a>&nbsp;/&nbsp;<a onclick="delete_confirm('.$value['id'].')"><button class="red tiny"><div class="ui-icon ui-icon-trash"></div><span>删除</span></button></a>';
 			}else{
 				$result['aaData'][$key][] = '';
