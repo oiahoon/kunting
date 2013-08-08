@@ -1,4 +1,4 @@
-kunting
+Kunting
 =======
 
 1		上传全部代码带服务器web目录，
