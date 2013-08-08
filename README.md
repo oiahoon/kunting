@@ -30,4 +30,3 @@ kunting
 		$config['mail_passwd']	='';	//邮箱密码
 		$config['mail_address']	='';	//邮箱地址
 		$config['mail_smtp']	=''; 		//邮箱服务器，如：smtp.qq.com
-
