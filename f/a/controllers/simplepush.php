@@ -39,7 +39,8 @@ class Simplepush extends CI_Controller {
 					$push_data['pName'] = "com.nervenets.kuntingandroid";
 					$push_data['cName'] = "com.nervenets.kuntingandroid.Main";
 
-					$push_data = str_replace('\u','\\\u',json_encode($push_data));
+					//$push_data = str_replace('\u','\\\u',json_encode($push_data));
+					$push_data = json_encode($push_data);
 					
 					$result['android'] = pushit($push_data, 1, 'android');
 
@@ -64,7 +65,8 @@ class Simplepush extends CI_Controller {
 			$push_data['pName'] = "com.nervenets.kuntingandroid";
 			$push_data['cName'] = "com.nervenets.kuntingandroid.Main";
 			
-			$push_data = str_replace('\u','\\\u',json_encode($push_data));
+			// $push_data = str_replace('\u','\\\u',json_encode($push_data));
+			$push_data = json_encode($push_data);
 			$result['android'] = pushit($push_data, 1, 'android');
 
 			$result['count'] = $this->push->pushcount($id);
