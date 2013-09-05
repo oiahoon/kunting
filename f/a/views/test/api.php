@@ -463,10 +463,16 @@
 								<div class="control-group">
 									<label class="control-label" for="inputcontent">内容:</label>
 									<div class="controls">
-										<textarea rows="3" name="content" placeholder="输入内容">测试-推送内容。测试-推送内容。测试-推送内容。</textarea>
+										<textarea rows="3" name="content" id="simplepush" placeholder="输入内容">测试-推送内容。测试-推送内容。测试-推送内容。</textarea>
 									</div>
+									<div class="controls"><span id="textcount"></span></div>
 								</div>
-								
+								<script LANGUAGE="javascript">
+									String.prototype.getBytes = function() {   
+								      var cArr = this.match(/[^\x00-\xff]/ig);   
+								      return this.length + (cArr == null ? 0 : cArr.length*2);   
+								  }  
+								</script>
 								<div class="control-group">
 									<label class="control-label" for="inputformat">数据类型：</label>
 									<div class="controls">
@@ -530,6 +536,29 @@
 			//return false; 
 		}); 
 
+		$("#simplepush").bind("keyup", function(event) {
+			var lengthlimit = 250;
+			var length = $(this).val().getBytes();
+			count = '<span class="label label-info">'+length+"</span>"
+			if (length>=lengthlimit) {
+				$("#textcount").html(count+"超过字数限制，推送可能失败！" );
+				return ;
+			}
+			else{
+				$("#textcount").html(count);
+			};
+		})
+		.bind("focus", function(event) {
+			var length = $(this).val().getBytes();
+			count = '<span class="label label-info">'+length+"</span>"
+			if (length>=lengthlimit) {
+				$("#textcount").html(count+"超过字数限制，推送可能失败！" );
+				return ;
+			}
+			else{
+				$("#textcount").html(count);
+			};
+		});
 	}); 
 
 	//-->
