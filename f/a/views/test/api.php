@@ -527,8 +527,8 @@
 			//return false; 
 		}); 
 
+		var lengthlimit = 250;
 		$("#simplepush").bind("keyup", function(event) {
-			var lengthlimit = 250;
 			var length = $(this).val().getBytes();
 			count = '<span class="label label-info">'+length+"</span>"
 			if (length>=lengthlimit) {
