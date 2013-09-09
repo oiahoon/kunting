@@ -6,7 +6,7 @@ class Simplepush extends CI_Controller {
 
   function __construct(){
     parent::__construct();
-    if(!$this->session->userdata("login")){
+    if(!$this->session->userdata("login") && ){
       redirect(site_url());
     }
     $this->load->Model('push_model','push');  
@@ -66,7 +66,7 @@ class Simplepush extends CI_Controller {
       if (strlen($push_data['content']) > 200) {
         $custom['type'] = 'titlecontent';
         $custom['url'] = base_url('p/'.$id.".json");
-        $push_data['content'] = strcut($push_data['content'],200);
+        $push_data['content'] = strcut($push_data['content'],200)."..";
       }
       $result['ios'] = pushit($push_data['content'], 2, 'ios', $custom);
 
@@ -112,24 +112,4 @@ class Simplepush extends CI_Controller {
     echo json_encode($result);
   }
 
-  function push2json()
-  {
-    $data['status'] = 0;
-    $id_ext = $this->uri->segment(2);
-    list($id, $ext) = explode(".",$id_ext);
-    if($id){
-      $data['content'] = $this->push->getById($id);
-      if($data['content']) $data['status'] = 1;
-    }
-    switch ($ext) {
-      case 'json':
-        header('Content-type:application/json; charset=utf-8');
-        echo json_encode($data);
-        break;
-      
-      default:
-        # code...
-        break;
-    }
-  }
 }

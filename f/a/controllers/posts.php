@@ -6,7 +6,8 @@ class Posts extends CI_Controller {
   
   function __construct(){
     parent::__construct();
-    $this->load->Model('post_model','articles');  
+    $this->load->Model('post_model','articles');
+    $this->load->Model('push_model','push');
   }
 
   /* 文章列表 */
@@ -113,6 +114,27 @@ class Posts extends CI_Controller {
         $data['status'] = 1;
         $data['type'] = $this->articles->getTypeAlias($data['content']->category_id);
       }
+    }
+    switch ($ext) {
+      case 'json':
+        header('Content-type:application/json; charset=utf-8');
+        echo json_encode($data);
+        break;
+      
+      default:
+        # code...
+        break;
+    }
+  }
+
+  function push2json()
+  {
+    $data['status'] = 0;
+    $id_ext = $this->uri->segment(2);
+    list($id, $ext) = explode(".",$id_ext);
+    if($id){
+      $data['content'] = $this->push->getById($id);
+      if($data['content']) $data['status'] = 1;
     }
     switch ($ext) {
       case 'json':

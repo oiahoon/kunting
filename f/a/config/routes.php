@@ -43,7 +43,7 @@ $route['404_override'] = '';
 
 $route['v/(:num)'] = "posts/viewpost/$1";        //文章查看的页面 不带顶部navbar
 $route['v/(:num)\.json'] = "posts/post2json/$1"; //json格式的文章
-$route['p/(:num)\.json'] = "simplepush/push2json/$1"; //json格式的文章
+$route['p/(:num)\.json'] = "posts/push2json/$1"; //json格式的文章
 
 $route['p/(:num)'] = "posts/view/$1";
 
