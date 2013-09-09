@@ -42,6 +42,9 @@ function pushit($content, $msgType = 1, $clientPlatform = 'android,ios', $custom
   $pushVar["msgType"]        = $msgType;
   $pushVar["clientPlatform"] = $clientPlatform;
   $pushVar["msgContent"]     = $content;
+
+  //推送的类型 titlecontent 标题加内容 titleonly 只有标题 article 文章
+
   if(!empty($custom)) $pushVar["custom_content"] = $custom;//'{"id":333,"name":"nimei","pwd":"nimeimei"}';
   //print_r($pushVar);die;
   if($snoopy->submit($pushUrl,$pushVar)){
@@ -105,4 +108,26 @@ function vpost($url){ // 模拟提交数据函数
    }
    yaoprint($result,$this->input->post('format'));
  }
+
+// 中文字符串截取
+function strcut($str,$len, $start=0){  
+  if($start < 0)  
+    $start = strlen($str)+$start;  
+
+  $retstart = $start+getOfFirstIndex($str,$start);  
+  echo $retstart;  
+  $retend = $start + $len -1 + getOfFirstIndex($str,$start + $len);  
+  echo $retend;  
+  return substr($str,$retstart,$retend-$retstart+1);  
+}  
+//判断字符开始的位置  
+function getOfFirstIndex($str,$start){  
+  $char_aci = ord(substr($str,$start-1,1));  
+  if(223<$char_aci && $char_aci<240)  
+    return -1;  
+  $char_aci = ord(substr($str,$start-2,1));  
+  if(223<$char_aci && $char_aci<240)  
+    return -2;  
+  return 0;  
+}  
 

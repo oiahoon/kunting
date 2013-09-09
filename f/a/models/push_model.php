@@ -19,7 +19,7 @@ class Push_model extends CI_Model {
 	{
 		$query = $this->db->get_where($this->this_table, array('id' => $id), 1);
 		$result = $query->result();
-		return $result[0];
+		return (isset($result[0])) ? $result[0] : false;
 	}
 
 	function insert()
