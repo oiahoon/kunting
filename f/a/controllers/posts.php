@@ -134,7 +134,10 @@ class Posts extends CI_Controller {
     list($id, $ext) = explode(".",$id_ext);
     if($id){
       $data['content'] = $this->push->getById($id);
-      if($data['content']) $data['status'] = 1;
+      if($data['content']){
+        $data['status'] = 1;
+        $data['type'] = 'simplepush';
+      }
     }
     switch ($ext) {
       case 'json':
