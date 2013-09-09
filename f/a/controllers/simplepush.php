@@ -6,7 +6,7 @@ class Simplepush extends CI_Controller {
 
   function __construct(){
     parent::__construct();
-    if(!$this->session->userdata("login") && ){
+    if(!$this->session->userdata("login")){
       redirect(site_url());
     }
     $this->load->Model('push_model','push');  
