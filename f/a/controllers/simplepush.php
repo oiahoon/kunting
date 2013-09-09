@@ -66,9 +66,9 @@ class Simplepush extends CI_Controller {
       if (strlen($push_data['content']) > 200) {
         $custom['type'] = 'titlecontent';
         $custom['url'] = base_url('p/'.$id.".json");
-        $push_data['content'] = strcut($push_data['content'],200)."..";
+        $push_data['conten_ios'] = strcut($push_data['content'],200)."..";
       }
-      $result['ios'] = pushit($push_data['content'], 2, 'ios', $custom);
+      $result['ios'] = pushit($push_data['conten_ios'], 2, 'ios', $custom);
 
       //android推送还需要的参数
       $push_data['pName'] = "com.nervenets.kuntingandroid";
