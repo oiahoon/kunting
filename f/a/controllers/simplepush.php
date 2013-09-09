@@ -107,8 +107,8 @@ class Simplepush extends CI_Controller {
       $result['aaData'][$key][] = "<a style='display:block;' title='cmd:".$value['command']."'>".$value['content']."</a>";
       $result['aaData'][$key][] = "<font color='red'>".$value['last_push_at']."</font>&nbsp;/&nbsp;".$value['created_at'];
     }
-    
     unset($result["aaaData"]);
+    header('Content-type:application/json; charset=utf-8');
     echo json_encode($result);
   }
 

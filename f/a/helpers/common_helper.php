@@ -46,7 +46,7 @@ function pushit($content, $msgType = 1, $clientPlatform = 'android,ios', $custom
   //推送的类型 titlecontent 标题加内容 titleonly 只有标题 article 文章
 
   if(!empty($custom)) $pushVar["custom_content"] = $custom;//'{"id":333,"name":"nimei","pwd":"nimeimei"}';
-  //print_r($pushVar);die;
+  print_r($pushVar);//die;
   if($snoopy->submit($pushUrl,$pushVar)){
     return $snoopy->results;
   }
