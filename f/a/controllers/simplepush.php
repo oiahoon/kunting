@@ -33,13 +33,13 @@ class Simplepush extends CI_Controller {
         if($this->push->insert()){
           $push_id = $this->db->insert_id();
           $push_data = $this->create_push_data($push_id);
-          $custom['type'] = 'titleonly';
-          if (strlen($push_data['content']) > 200) {
-            $custom['type'] = 'titlecontent';
-            $custom['url'] = base_url('p/'.$push_id.".json");
-            $push_data['content'] = strcut($push_data['content'],200);
+          $push_data['content_ios'] = $push_data['content'];
+          $custom = '';
+          if (strlen($push_data['content_ios']) > 200) {
+            $custom = base_url('p/'.$push_id.".json");
+            $push_data['content_ios'] = strcut($push_data['content_ios'],200);
           }
-          $result['ios'] = pushit($push_data['content'], 2, 'ios', $custom);
+          $result['ios'] = pushit($push_data['content_ios'], 2, 'ios', $custom);
 
           $push_data['pName'] = "com.nervenets.kuntingandroid";
           $push_data['cName'] = "com.nervenets.kuntingandroid.Main";
@@ -62,11 +62,10 @@ class Simplepush extends CI_Controller {
     $id = $this->uri->segment(3);
     if($id){
       $push_data = $this->create_push_data($id);
-      $custom['type'] = 'titleonly';
       $push_data['content_ios'] = $push_data['content'];
-      if (strlen($push_data['content']) > 200) {
-        $custom['type'] = 'titlecontent';
-        $custom['url'] = base_url('p/'.$id.".json");
+      $custom = '';
+      if (strlen($push_data['content_ios']) > 200) {
+        $custom = base_url('p/'.$id.".json");
         $push_data['content_ios'] = strcut($push_data['content_ios'],200)."..";
       }
       $result['ios'] = pushit($push_data['content_ios'], 2, 'ios', $custom);
