@@ -205,12 +205,11 @@ class Posts extends CI_Controller {
 
   private function push_ios($id)
   {
-    $custom['type'] = 'article';
     $article        = $this->articles->getById($id, true);
     $message        = '';
     $path           = 'v';
     $push_data      = $article->title;
-    $custom['url']  = base_url($path.'/'.$id.".json");
+    $custom  = base_url($path.'/'.$id.".json");
     $result['ios']  = pushit($push_data, 2, 'ios', $custom);
     $result['ios']  = json_decode($result['ios'],true);
     
