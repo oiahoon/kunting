@@ -35,11 +35,11 @@ class Simplepush extends CI_Controller {
           $push_data = $this->create_push_data($push_id);
           $push_content_ios = $push_data['content'];
           $custom = '';
-          if (strlen($push_content_ios) > 200) {
-            $custom = base_url('p/'.$push_id.".json");
-            $push_content_ios = strcut($push_content_ios,200);
+          if (strlen($push_content_ios) > 160) {
+            // $custom = base_url('p/'.$push_id.".json");
+            $push_content_ios = strcut($push_content_ios,160);
           }
-          $result['ios'] = pushit($push_content_ios, 2, 'ios', $custom);
+          $result['ios'] = pushit($push_content_ios, 2, 'ios');
 
           $push_data['pName'] = "com.nervenets.kuntingandroid";
           $push_data['cName'] = "com.nervenets.kuntingandroid.Main";
@@ -64,11 +64,11 @@ class Simplepush extends CI_Controller {
       $push_data = $this->create_push_data($id);
       $push_content_ios = $push_data['content'];
       $custom = '';
-      if (strlen($push_content_ios) > 200) {
-        $custom = base_url('p/'.$id.".json");
-        $push_content_ios = strcut($push_content_ios,200)."..";
+      if (strlen($push_content_ios) > 160) {
+        // $custom = base_url('p/'.$id.".json");
+        $push_content_ios = strcut($push_content_ios,160)."..";
       }
-      $result['ios'] = pushit($push_content_ios, 2, 'ios', $custom);
+      $result['ios'] = pushit($push_content_ios, 2, 'ios');
 
       //android推送还需要的参数
       $push_data['pName'] = "com.nervenets.kuntingandroid";
