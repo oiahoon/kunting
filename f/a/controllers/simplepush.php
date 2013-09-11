@@ -14,7 +14,7 @@ class Simplepush extends CI_Controller {
   
   function index(){
     $viewdata = array( 
-      'title' => array('top' => '推送列表','small' => ''),
+      'title' => array('top' => '推送列表(根据创建时间逆序)','small' => ''),
       'ctl' =>  strtolower( __CLASS__),
       );
     $viewdata['side_current_id'] = $this->side_current_id;
@@ -37,7 +37,7 @@ class Simplepush extends CI_Controller {
           $custom = '';
           if (strlen($push_content_ios) > 160) {
             $custom = base_url('p/'.$push_id.".json");
-            $push_content_ios = strcut($push_content_ios,160);
+            $push_content_ios = strcut($push_content_ios,158)."..";
           }
           $result['ios'] = pushit($push_content_ios, 2, 'ios', $custom);
 
@@ -45,7 +45,6 @@ class Simplepush extends CI_Controller {
           $push_data['cName'] = "com.nervenets.kuntingandroid.Main";
 
           $push_data = json_encode($push_data);
-          
           $result['android'] = pushit($push_data, 1, 'android');
 
           $this->push->pushcount($push_id);
@@ -66,7 +65,7 @@ class Simplepush extends CI_Controller {
       $custom = '';
       if (strlen($push_content_ios) > 160) {
         $custom = base_url('p/'.$id.".json");
-        $push_content_ios = strcut($push_content_ios,160)."..";
+        $push_content_ios = strcut($push_content_ios,158)."..";
       }
       $result['ios'] = pushit($push_content_ios, 2, 'ios', $custom);
 
@@ -99,7 +98,7 @@ class Simplepush extends CI_Controller {
   {
     $where = ''; //查询条件
     $result = $this->push->getpushs();
-    foreach($result['aaaData'] as $key => $value){
+    foreach(array_reverse($result['aaaData']) as $key => $value){
       $result['aaData'][$key][] = $value['id'];
       $result['aaData'][$key][] = '<a onclick="ajax_push('.$value['id'].')" title="推送"><button class="orange tiny has_text img_icon"><img src="images/icons/small/white/magic_mouse.png"><span>推送</span></button></a>&nbsp;' . "&lt;".$value['title']."&gt;";
       //$result['aaData'][$key][] = $value['title_2nd'];
