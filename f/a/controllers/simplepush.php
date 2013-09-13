@@ -45,7 +45,7 @@ class Simplepush extends CI_Controller {
           $push_data['cName'] = "com.nervenets.kuntingandroid.Main";
 
           $push_data = json_encode($push_data);
-          $result['android'] = pushit($push_data, 1, 'android');
+          //$result['android'] = pushit($push_data, 1, 'android');
 
           $this->push->pushcount($push_id);
           redirect ('simplepush','location');
@@ -75,7 +75,7 @@ class Simplepush extends CI_Controller {
       
       // $push_data = str_replace('\u','\\\u',json_encode($push_data));
       $push_data = json_encode($push_data);
-      $result['android'] = pushit($push_data, 1, 'android');
+      //$result['android'] = pushit($push_data, 1, 'android');
 
       $result['count'] = $this->push->pushcount($id);
     }
