@@ -5,6 +5,8 @@
 |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 */
 
+// 消息和自定义url加起来总长度 其中自定义数据为 array('url'=>'...')
+$config['max_length'] = 134;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +17,7 @@
 | Full server path to this file is required.
 |
 */
-$config['PermissionFile'] = APPPATH.'../apns-dev.pem';
+$config['PermissionFile'] = APPPATH.'../../aps_development.pem';
 
 
 /*
@@ -23,7 +25,7 @@ $config['PermissionFile'] = APPPATH.'../apns-dev.pem';
 | APN Private Key's Passphrase
 |--------------------------------------------------------------------------
 */
-$config['PassPhrase'] = '12345';
+$config['PassPhrase'] = 'kunting';
 
 /*
 |--------------------------------------------------------------------------

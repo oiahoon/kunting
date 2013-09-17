@@ -251,7 +251,7 @@ class APN
     $this->passphrase = $this->_ci->config->item('PassPhrase','apn');
     $this->timeout = $this->_ci->config->item('Timeout','apn') ? $this->_ci->config->item('Timeout','apn') : 60;
     $this->expiry = $this->_ci->config->item('Expiry','apn') ? $this->_ci->config->item('Expiry','apn') : 86400;
-    print_r($this);die;
+
   }
 
   
