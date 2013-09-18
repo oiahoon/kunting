@@ -205,13 +205,13 @@ class Posts extends CI_Controller {
 
   private function push_ios($id)
   {
-    $article        = $this->articles->getById($id, true);
-    $message        = '';
-    $path           = 'v';
-    $push_data      = $article->title;
-    $custom  = base_url($path.'/'.$id.".json");
-    $result['ios']  = pushit($push_data, 2, 'ios', $custom);
-    $result['ios']  = json_decode($result['ios'],true);
+    $article       = $this->articles->getById($id, true);
+    $message       = '';
+    $path          = 'v';
+    $push_data     = $article->title;
+    $custom        = base_url($path.'/'.$id.".json");
+    $result['ios'] = pushit($push_data, 2, 'ios', $custom);
+    $result['ios'] = json_decode($result['ios'],true);
     
     if($result['ios']['result'] == 1){
       $message .= 'ios 成功推送至'.$result['ios']['receiver_count'].'个用户'."\r\n";

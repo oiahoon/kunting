@@ -37,7 +37,7 @@ class Simplepush extends CI_Controller {
           $custom = '';
           if (strlen($push_content_ios) > 200) {
             $custom = base_url('p/'.$push_id.".json");
-            $push_content_ios = strcut($push_content_ios,200);
+            $push_content_ios = strcut($push_content_ios, 200);
           }
           $result['ios'] = pushit($push_content_ios, 2, 'ios', $custom);
 
