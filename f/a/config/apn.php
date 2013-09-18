@@ -6,8 +6,11 @@
 */
 
 // 消息和自定义url加起来总长度 其中自定义数据为 array('url'=>'...')
-$config['max_length'] = 134;
-
+$config['MsgMax'] = 134;
+//是否只推送给测试token
+$config['OnlyTest'] = true;
+//是否验证接口安全
+$config['ApiValidate'] = false;
 /*
 |--------------------------------------------------------------------------
 | APN Permission file 

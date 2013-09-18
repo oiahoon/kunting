@@ -5,13 +5,25 @@ class Apns extends CI_Controller {
   function __construct(){
     parent::__construct();
     $this->load->Model('apns_model','apns');
+    $this->load->library('apn');
+    $this->apn->payloadMethod = 'enhance'; // you can turn on this method for debuggin purpose
   }
 
-  function index()
+  /**
+   * apns推送
+   * @param  [array] $msg [消息数组]
+   * @return [type]      [description]
+   */
+  function apns_push($msg)
   {
-      $this->load->library('apn');
-      $this->apn->payloadMethod = 'enhance'; // you can turn on this method for debuggin purpose
-      $this->apn->connectToPush();
+      $options = array();
+
+      //是否只推送给测试设备
+      if($this->_ci->config->item('OnlyPushTestDevice','apn')){
+        $options['is_test_device'] = 1;
+      }
+
+      //根据条件得到设备信息
       $devices = $this->apns->getDevices();
       // print_r($devices);
 
@@ -21,6 +33,7 @@ class Apns extends CI_Controller {
       $msg = 'Test notif #6 (TIME:'.date('H:i:s').')';
       $msg .= "您的未读邮件数过多您的未读邮件数过多您的";
       echo strlen($msg.'http://jiutianyoubang.cn/p/1234.json111111111');
+      
       $send_result = $this->apn->sendMessage($device_token, $msg, /*badge*/ 99, /*sound*/ 'default'  );
 
       if($send_result){
@@ -36,8 +49,6 @@ class Apns extends CI_Controller {
 
   function send_notifications()
   {
-      $this->load->library('apn');
-      $this->apn->payloadMethod = 'enhance'; // you can turn on this method for debuggin purpose
       $this->apn->connectToPush();
 
       // adding custom variables to the notification
