@@ -9,19 +9,22 @@ class Simplepush extends CI_Controller {
     if(!$this->session->userdata("login")){
       redirect(site_url());
     }
-    $this->load->Model('push_model','push');  
+    $this->load->Model('push_model','push');
+    $this->load->Model('apns_model','apns');
+    $this->load->library('apn');
+    $this->apn->payloadMethod = 'enhance'; // you can turn on this method for debuggin purpose
   }
   
   function index(){
     $viewdata = array( 
-      'title' => array('top' => '推送列表','small' => ''),
+      'title' => array('top' => '推送列表(根据创建时间逆序)','small' => ''),
       'ctl' =>  strtolower( __CLASS__),
       );
     $viewdata['side_current_id'] = $this->side_current_id;
     $this->load->view('pushs',$viewdata);
   }
   
-  /* 新增push */
+  /* 新建的时候保存并推送 push */
   function new_push() {
     $viewdata = array( 
       'title' => array('top' => '新建推送','small' => ''),
@@ -33,20 +36,21 @@ class Simplepush extends CI_Controller {
         if($this->push->insert()){
           $push_id = $this->db->insert_id();
           $push_data = $this->create_push_data($push_id);
-          $push_content_ios = $push_data['content'];
+          /*$push_content_ios = $push_data['content'];
           $custom = '';
-          if (strlen($push_content_ios) > 200) {
+          if (strlen($push_content_ios) > 160) {
             $custom = base_url('p/'.$push_id.".json");
-            $push_content_ios = strcut($push_content_ios, 200);
+            $push_content_ios = strcut($push_content_ios,158)."..";
           }
-          $result['ios'] = pushit($push_content_ios, 2, 'ios', $custom);
+          $result['ios'] = pushit($push_content_ios, 2, 'ios', $custom);*/
+          //ios 用自己寫的推送
+          $result['ios'] = $this->apns_push($push_data,$push_id);
 
           $push_data['pName'] = "com.nervenets.kuntingandroid";
           $push_data['cName'] = "com.nervenets.kuntingandroid.Main";
 
           $push_data = json_encode($push_data);
-          
-          $result['android'] = pushit($push_data, 1, 'android');
+          //$result['android'] = pushit($push_data, 1, 'android');
 
           $this->push->pushcount($push_id);
           redirect ('simplepush','location');
@@ -57,18 +61,20 @@ class Simplepush extends CI_Controller {
     $viewdata['side_current_id'] = $this->side_current_id;
     $this->load->view('pusheditor',$viewdata);
   }
-  /* 按钮推送 */
+  /* 在列表页面按钮推送 */
   function push_it(){
     $id = $this->uri->segment(3);
     if($id){
       $push_data = $this->create_push_data($id);
-      $push_content_ios = $push_data['content'];
+      /*$push_content_ios = $push_data['content'];
       $custom = '';
-      if (strlen($push_content_ios) > 200) {
+      if (strlen($push_content_ios) > 160) {
         $custom = base_url('p/'.$id.".json");
-        $push_content_ios = strcut($push_content_ios,200)."..";
+        $push_content_ios = strcut($push_content_ios,158)."..";
       }
-      $result['ios'] = pushit($push_content_ios, 2, 'ios', $custom);
+      $result['ios'] = pushit($push_content_ios, 2, 'ios', $custom);*/
+      //ios 用自己寫的推送
+      $result['ios'] = $this->apns_push($push_data,$id);
 
       //android推送还需要的参数
       $push_data['pName'] = "com.nervenets.kuntingandroid";
@@ -76,7 +82,7 @@ class Simplepush extends CI_Controller {
       
       // $push_data = str_replace('\u','\\\u',json_encode($push_data));
       $push_data = json_encode($push_data);
-      $result['android'] = pushit($push_data, 1, 'android');
+      //$result['android'] = pushit($push_data, 1, 'android');
 
       $result['count'] = $this->push->pushcount($id);
     }
@@ -99,7 +105,7 @@ class Simplepush extends CI_Controller {
   {
     $where = ''; //查询条件
     $result = $this->push->getpushs();
-    foreach($result['aaaData'] as $key => $value){
+    foreach(array_reverse($result['aaaData']) as $key => $value){
       $result['aaData'][$key][] = $value['id'];
       $result['aaData'][$key][] = '<a onclick="ajax_push('.$value['id'].')" title="推送"><button class="orange tiny has_text img_icon"><img src="images/icons/small/white/magic_mouse.png"><span>推送</span></button></a>&nbsp;' . "&lt;".$value['title']."&gt;";
       //$result['aaData'][$key][] = $value['title_2nd'];
@@ -110,6 +116,58 @@ class Simplepush extends CI_Controller {
     unset($result["aaaData"]);
     header('Content-type:application/json; charset=utf-8');
     echo json_encode($result);
+  }
+
+  //给苹果推送单独写一个server
+  private function apns_push($push_data,$id)
+  {
+    $options = array();
+    $result['success'] = $result['fail'] =  0;
+    //是否只推送给测试设备
+    if($this->config->item('OnlyPushTestDevice','apn')){
+      $options['is_test_device'] = 1;
+    }
+
+    $push_data = $this->deal_iso_push_msg($push_data,$id);
+    //根据条件得到设备信息
+    $devices = $this->apns->getDevices();
+    // print_r($devices);die;
+    
+    $this->apn->connectToPush();
+
+    if(isset($push_data['url'])){
+      // 添加自定义参数
+      $this->apn->setData(array( 'someKey' => true ));
+    }
+    // print_r($push_data);die;
+    foreach ($devices as $row) {
+      $send_result = $this->apn->sendMessage(str_replace(' ', '', $row['device_token']), $push_data['content'], 1);
+
+      if($send_result){
+        $result['success'] ++;
+        log_message('debug','Sending successful');
+      }
+      else{
+        $result['fail'] ++;
+        log_message('error',$this->apn->error);
+      }
+    }
+
+    $this->apn->disconnectPush();
+    return $result;
+  }
+
+  private function deal_iso_push_msg($push_data,$id)
+  {
+    $data = array('content'=>'', 'url'=>'');
+    $data['content'] = $push_data['content'];
+    $max_length = $this->config->item('MsgMax','apn');
+    if (strlen($data['content']) > $max_length) {
+      $data['url'] = base_url('p/'.$id.".json");
+      $data['content'] = strcut($data['content'],$max_length - strlen($data['url']) - 2)."..";
+    }
+    if(empty($data['url'])) unset($data['url']);
+    return $data;
   }
 
 }

@@ -177,7 +177,7 @@ class Posts extends CI_Controller {
       // ios
       $result['ios']     = $this->push_ios($id);
       //android
-      $result['android'] = $this->push_android($id);
+      //$result['android'] = $this->push_android($id);
     }
     echo $result['ios'].$result['android'];
   }

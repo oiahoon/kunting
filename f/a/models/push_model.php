@@ -2,14 +2,14 @@
 
 class Push_model extends CI_Model {
   
-  var $this_table = "push";
-  var $primaryKey = "id";
-  var $titleField = "title";
-  var $contentField = "content";
-  var $commandField = "command";
+  var $this_table        = "push";
+  var $primaryKey        = "id";
+  var $titleField        = "title";
+  var $contentField      = "content";
+  var $commandField      = "command";
   var $last_push_atField = "last_push_at";
-  var $created_atField = "created_at";
-  var $countField = 'count';
+  var $created_atField   = "created_at";
+  var $countField        = 'count';
   
   function __construct(){
     parent::__construct();
