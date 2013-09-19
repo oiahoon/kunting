@@ -93,6 +93,7 @@ class Adonice extends CI_Controller {
   //存入设备token 给ios推送
   public function d()
   {
+    header('Content-type:application/json; charset=utf-8');
     $result['status'] = 0;
     if($this->input->get()){
       $validate     = $this->input->get('validate');    //驗證密鑰

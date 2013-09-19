@@ -121,7 +121,7 @@ class Simplepush extends CI_Controller {
   //给苹果推送单独写一个server
   private function apns_push($push_data,$id)
   {
-    $options = array();
+    $options = $result['whofailed'] = array();
     $result['success'] = $result['fail'] =  0;
     //是否只推送给测试设备
     if($this->config->item('OnlyPushTestDevice','apn')){
@@ -149,6 +149,7 @@ class Simplepush extends CI_Controller {
       }
       else{
         $result['fail'] ++;
+        array_push($result['whofailed'], $row['device_notes']);
         log_message('error',$this->apn->error);
       }
     }
