@@ -15,7 +15,7 @@
 |
 */
 $config['appname'] = 'Kunting '; //网站名字
-$config['base_url']	= 'http://www.yaophpwork.com/kunting/';
+$config['base_url']	= 'http://jiutianyoubang.cn/';
 date_default_timezone_set("Asia/Shanghai");
 /*
 |--------------------------------------------------------------------------

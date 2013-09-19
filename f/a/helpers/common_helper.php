@@ -56,7 +56,7 @@ function pushit($content, $msgType = 1, $clientPlatform = 'android,ios', $custom
 /**
  *  短链
  *  新浪接口短链生成
- *
+ *  使用自己申请的接口
  */
  function short_url($long_url){
    if(empty($long_url)) die;

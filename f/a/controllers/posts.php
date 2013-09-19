@@ -8,6 +8,9 @@ class Posts extends CI_Controller {
     parent::__construct();
     $this->load->Model('post_model','articles');
     $this->load->Model('push_model','push');
+    $this->load->Model('apns_model','apns');
+    $this->load->library('apn');
+    $this->apn->payloadMethod = 'enhance';
   }
 
   /* 文章列表 */
@@ -174,17 +177,17 @@ class Posts extends CI_Controller {
   {
     $id = $this->uri->segment(3);
     if($id){
+      $article           = $this->articles->getById($id, true);
       // ios
-      $result['ios']     = $this->push_ios($id);
+      $result['ios']     = $this->push_ios($article, $id);
       //android
-      //$result['android'] = $this->push_android($id);
+      //$result['android'] = $this->push_android($article, $id);
     }
     echo $result['ios'].$result['android'];
   }
 
-  private function push_android($id)
+  private function push_android($article, $id)
   {
-    $article              = $this->articles->getById($id, true);
     $message              = '';
     $path                 = 'v';
     $push_data['title']   = $article->title;
@@ -203,9 +206,9 @@ class Posts extends CI_Controller {
     return $message;
   }
 
-  private function push_ios($id)
+  //使用推送接口
+  private function push_ios($article, $id)
   {
-    $article       = $this->articles->getById($id, true);
     $message       = '';
     $path          = 'v';
     $push_data     = $article->title;
@@ -221,4 +224,46 @@ class Posts extends CI_Controller {
     return $message;
   }
   
+  //给苹果推送单独写一个server
+  private function apns_push($article, $id)
+  {
+    $options = array();
+    $result['success'] = $result['fail'] =  0;
+    //是否只推送给测试设备
+    if($this->config->item('OnlyPushTestDevice','apn')){
+      $options['is_test_device'] = 1;
+    }
+    
+    //根据条件得到设备信息
+    $devices = $this->apns->getDevices();
+    // print_r($devices);die;
+    
+    $push_data = $article->title;
+    if (strlen($push_data) > $max_length) {
+      $push_data = strcut($push_data, $max_length - 2)."..";
+    }
+    $custom = base_url('v/'.$id.".json");
+
+    $this->apn->connectToPush();
+
+    $this->apn->setData($custom);
+
+    // print_r($push_data);die;
+    foreach ($devices as $row) {
+      $send_result = $this->apn->sendMessage(str_replace(' ', '', $row['device_token']), $push_data, 1);
+
+      if($send_result){
+        $result['success'] ++;
+        log_message('debug','Sending successful');
+      }
+      else{
+        $result['fail'] ++;
+        log_message('error',$this->apn->error);
+      }
+    }
+
+    $this->apn->disconnectPush();
+    return $result;
+  }
+
 }

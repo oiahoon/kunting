@@ -137,7 +137,7 @@ class Simplepush extends CI_Controller {
 
     if(isset($push_data['url'])){
       // 添加自定义参数
-      $this->apn->setData(array( 'someKey' => true ));
+      $this->apn->setData(array( 'url' => $push_data['url'] ));
     }
     // print_r($push_data);die;
     foreach ($devices as $row) {
