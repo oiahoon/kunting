@@ -141,7 +141,7 @@ class Simplepush extends CI_Controller {
     }
     // print_r($push_data);die;
     foreach ($devices as $row) {
-      $send_result = $this->apn->sendMessage(str_replace(' ', '', $row['device_token']), $push_data['content'], 1);
+      $send_result = $this->apn->sendMessage(str_replace(array('<','>',' '), '', $row['device_token']), $push_data['content'], 1);
 
       if($send_result){
         $result['success'] ++;

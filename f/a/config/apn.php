@@ -6,7 +6,7 @@
 */
 
 // 消息和自定义url加起来总长度 其中自定义数据为 array('url'=>'...')
-$config['MsgMax'] = 134;
+$config['MsgMax'] = 127;
 //是否只推送给测试token
 $config['OnlyTest'] = true;
 //是否验证接口安全
