@@ -93,28 +93,30 @@ class Adonice extends CI_Controller {
   //存入设备token 给ios推送
   public function d()
   {
-
+    $result['status'] = 0;
     if($this->input->get()){
       $validate     = $this->input->get('validate');    //驗證密鑰
       $device_token = $this->input->get('token');    //设备token
       $timestamp    = $this->input->get('time');     //时间戳
       if (empty($device_token) || empty($timestamp)) {
-        die('params missing!');
+        $result['msg'] = 'params missing!';
+        die (json_encode($result));
       }
       if($this->config->item('ApiValidate','apn')){
         $PassPhrase    = $this->config->item('PassPhrase','apn');
         $validate_code = md5($PassPhrase.$device_token.$timestamp);
         if ($validate_code != $validate) {
-          die('validate failed!');
+          $result['msg'] = 'validate failed!';
+          die (json_encode($result));
         }
       }
-
       $result['msg'] = $this->apns->saveDevice($device_token);
       $result['status'] = 1;
-      echo json_encode($result);
+      die (json_encode($result));
     }
     else{
-      die('params needs!');
+      $result['msg'] = 'params needs!';
+      die (json_encode($result));
     }
   }
 }
