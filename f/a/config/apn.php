@@ -10,7 +10,7 @@ $config['MsgMax'] = 134;
 //是否只推送给测试token
 $config['OnlyTest'] = true;
 //是否验证接口安全
-$config['ApiValidate'] = false;
+$config['ApiValidate'] = true;
 /*
 |--------------------------------------------------------------------------
 | APN Permission file 
