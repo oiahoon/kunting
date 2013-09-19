@@ -179,11 +179,11 @@ class Posts extends CI_Controller {
     if($id){
       $article           = $this->articles->getById($id, true);
       // ios
-      $result['ios']     = $this->push_ios($article, $id);
+      $result['ios']     = $this->apns_push($article, $id);
       //android
       //$result['android'] = $this->push_android($article, $id);
     }
-    echo $result['ios'].$result['android'];
+    echo json_encode($result['ios']);//.$result['android'];
   }
 
   private function push_android($article, $id)
@@ -227,7 +227,7 @@ class Posts extends CI_Controller {
   //给苹果推送单独写一个server
   private function apns_push($article, $id)
   {
-    $options = array();
+    $options = $result['whofailed'] = array();
     $result['success'] = $result['fail'] =  0;
     //是否只推送给测试设备
     if($this->config->item('OnlyPushTestDevice','apn')){
@@ -237,7 +237,7 @@ class Posts extends CI_Controller {
     //根据条件得到设备信息
     $devices = $this->apns->getDevices();
     // print_r($devices);die;
-    
+    $max_length = $this->config->item('MsgMax','apn');
     $push_data = $article->title;
     if (strlen($push_data) > $max_length) {
       $push_data = strcut($push_data, $max_length - 2)."..";
@@ -258,6 +258,7 @@ class Posts extends CI_Controller {
       }
       else{
         $result['fail'] ++;
+        array_push($result['whofailed'], $row['device_notes']);
         log_message('error',$this->apn->error);
       }
     }
