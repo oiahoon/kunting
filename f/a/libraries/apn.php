@@ -534,9 +534,9 @@ class APN
     }
     $this->disconnectPush();
     $end_time = time();
-    echo "\r\n连接耗时:".($foreach_time-$connect_time)
-        ."\r\n循环耗时:".($end_time-$foreach_time)
-        ."\r\n循环个数:".$this->idCounter."\r\n";
+    // echo "\r\n连接耗时:".($foreach_time-$connect_time)
+    //     ."\r\n循环耗时:".($end_time-$foreach_time)
+    //     ."\r\n循环个数:".$this->idCounter."\r\n";
     return $result;
   }
 
