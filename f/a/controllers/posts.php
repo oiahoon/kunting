@@ -235,35 +235,17 @@ class Posts extends CI_Controller {
     }
     
     //根据条件得到设备信息
-    $devices = $this->apns->getDevices();
+    $devices = $this->apns->getDevices($options);
     // print_r($devices);die;
     $max_length = $this->config->item('MsgMax','apn');
-    $push_data = $article->title;
-    if (strlen($push_data) > $max_length) {
-      $push_data = strcut($push_data, $max_length - 2)."..";
+    $push_data['content'] = $article->title;
+    if (strlen($push_data['content']) > $max_length) {
+      $push_data['content'] = strcut($push_data['content'], $max_length - 2)."..";
     }
-    $custom = base_url('v/'.$id.".json");
+    $push_data['url'] = base_url('v/'.$id.".json");
 
-    $this->apn->connectToPush();
-
-    $this->apn->setData(array('url'=> $custom));
-
-    // print_r($push_data);die;
-    foreach ($devices as $row) {
-      $send_result = $this->apn->sendMessage(str_replace(' ', '', $row['device_token']), $push_data, 1);
-
-      if($send_result){
-        $result['success'] ++;
-        log_message('debug','Sending successful');
-      }
-      else{
-        $result['fail'] ++;
-        array_push($result['whofailed'], $row['device_notes']);
-        log_message('error',$this->apn->error);
-      }
-    }
-
-    $this->apn->disconnectPush();
+    $result = $this->apn->apns_push($push_data, $devices);
+    
     return $result;
   }
 

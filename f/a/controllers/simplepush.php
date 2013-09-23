@@ -122,7 +122,7 @@ class Simplepush extends CI_Controller {
   private function apns_push($push_data,$id)
   {
     $options = $result['whofailed'] = array();
-    $result['success'] = $result['fail'] =  0;
+    $result = array();
     //是否只推送给测试设备
     if($this->config->item('OnlyPushTestDevice','apn')){
       $options['is_test_device'] = 1;
@@ -133,28 +133,8 @@ class Simplepush extends CI_Controller {
     $devices = $this->apns->getDevices();
     // print_r($devices);die;
     
-    $this->apn->connectToPush();
-
-    if(isset($push_data['url'])){
-      // 添加自定义参数
-      $this->apn->setData(array( 'url' => $push_data['url'] ));
-    }
-    // print_r($push_data);die;
-    foreach ($devices as $row) {
-      $send_result = $this->apn->sendMessage(str_replace(array('<','>',' '), '', $row['device_token']), $push_data['content'], 1);
-
-      if($send_result){
-        $result['success'] ++;
-        log_message('debug','Sending successful');
-      }
-      else{
-        $result['fail'] ++;
-        array_push($result['whofailed'], $row['device_notes']);
-        log_message('error',$this->apn->error);
-      }
-    }
-
-    $this->apn->disconnectPush();
+    $result = $this->apn->apns_push($push_data, $devices);
+    
     return $result;
   }
 

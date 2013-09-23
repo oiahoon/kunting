@@ -493,7 +493,52 @@ class APN
     return $this->additionalData = $data;
   }
   
+  /**
+   * 苹果推送服务
+   * @param  [array] $push_data [推送的数组 array('content'=>,'url'=>)]
+   * @param  [array] $devices [推送的设备token]
+   * @return [type]            [description]
+   */
+  public function apns_push($push_data,$devices)
+  {
+    $options = $result['whofailed'] = array();
+    $result['success'] = $result['fail'] =  0;
+    //是否只推送给测试设备
+    if($this->_ci->config->item('OnlyPushTestDevice','apn')){
+      $options['is_test_device'] = 1;
+    }
+    //url用于获取完整内容
+    $url = isset($push_data['url']) ? $push_data['url'] : NULL;
 
+    $connect_time = time();
+    $this->connectToPush();
+
+    if($url){
+      // 添加自定义参数
+      $this->setData(array( 'url' => $url ));
+    }
+    // print_r($push_data);die;
+    $foreach_time = time();
+    foreach ($devices as $row) {
+      $send_result = $this->sendMessage(str_replace(array('<','>'), '', $row['device_token']), $push_data['content'], 1);
+
+      if($send_result){
+        $result['success'] ++;
+        log_message('debug','Sending successful');
+      }
+      else{
+        $result['fail'] ++;
+        array_push($result['whofailed'], $row['device_notes']);
+        log_message('error',$this->error);
+      }
+    }
+    $this->disconnectPush();
+    $end_time = time();
+    // echo "\r\n连接耗时:".($foreach_time-$connect_time)
+    //     ."\r\n循环耗时:".($end_time-$foreach_time)
+    //     ."\r\n循环个数:".$this->idCounter."\r\n";
+    return $result;
+  }
 
   /**
   * Closes the stream

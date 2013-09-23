@@ -130,4 +130,3 @@ function getOfFirstIndex($str,$start){
     return -2;  
   return 0;  
 }  
-
