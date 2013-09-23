@@ -32,7 +32,7 @@
               </div>
             </fieldset>
             <fieldset class="label_side top">
-              <label>内容（选填）<br/><font color="red">不超过50个字，否则会被苹果推送截断。</font></label>
+              <label>内容（选填）</label>
               <div>
                 <textarea id="content" name="content" title="推送内容为选填" class="tooltip autogrow" placeholder="输入推送的内容..."></textarea>
                 <div id="counter"></div>
@@ -47,17 +47,17 @@
           </div>
             </form>
         </div>
-        <script src="<?php echo base_url('scripts/inputlimit.js');?>"></script>
+        <script src="<?php //echo base_url('scripts/inputlimit.js');?>"></script>
         <script type="text/javascript">
-            $(document).ready(function(){
-                $("#content").weiboInputBox({
-                    counter:"counter",
-                    max:50,
-                    textClass:"normal",
-                    normalClass:"text",
-                    errorClass:"error"
-                });
-            });
+            // $(document).ready(function(){
+            //     $("#content").weiboInputBox({
+            //         counter:"counter",
+            //         max:50,
+            //         textClass:"normal",
+            //         normalClass:"text",
+            //         errorClass:"error"
+            //     });
+            // });
         </script>
 
     </div>
