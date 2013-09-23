@@ -246,7 +246,7 @@ class Posts extends CI_Controller {
 
     $this->apn->connectToPush();
 
-    $this->apn->setData($custom);
+    $this->apn->setData(array('url'=> $custom));
 
     // print_r($push_data);die;
     foreach ($devices as $row) {
