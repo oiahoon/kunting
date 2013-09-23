@@ -503,6 +503,7 @@ class APN
   {
     $options = $result['whofailed'] = array();
     $result['success'] = $result['fail'] =  0;
+    // $this->payloadMethod = 'enhance';
     //是否只推送给测试设备
     if($this->_ci->config->item('OnlyPushTestDevice','apn')){
       $options['is_test_device'] = 1;
