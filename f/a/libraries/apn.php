@@ -520,7 +520,7 @@ class APN
     // print_r($push_data);die;
     $foreach_time = time();
     foreach ($devices as $row) {
-      $send_result = $this->sendMessage(str_replace(array('<','>'), '', $row['device_token']), $push_data['content'], 1);
+      $send_result = $this->sendMessage(str_replace(array('<','>',' '), '', $row['device_token']), $push_data['content'], 1);
 
       if($send_result){
         $result['success'] ++;
@@ -534,9 +534,9 @@ class APN
     }
     $this->disconnectPush();
     $end_time = time();
-    // echo "\r\n连接耗时:".($foreach_time-$connect_time)
-    //     ."\r\n循环耗时:".($end_time-$foreach_time)
-    //     ."\r\n循环个数:".$this->idCounter."\r\n";
+    echo "\r\n连接耗时:".($foreach_time-$connect_time)
+        ."\r\n循环耗时:".($end_time-$foreach_time)
+        ."\r\n循环个数:".$this->idCounter."\r\n";
     return $result;
   }
 
