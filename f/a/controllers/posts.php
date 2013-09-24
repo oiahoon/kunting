@@ -17,11 +17,11 @@ class Posts extends CI_Controller {
   public function articlelists()
   {
     $result['status'] = 0;
-    $category     = $this->input->post("type")  ? $this->input->post("type")  : ''; 
-    $perpage    = $this->input->post('perpage') ? $this->input->post('perpage') : 20; 
-    $page       = $this->input->post('page')  ? $this->input->post('page')  : 1;
-    $dead       = $this->input->post('dead')  ? $this->input->post('dead')  : '';
-    $result['data'] = $this->articles->getArticlesList($category, $dead, $perpage, $page);
+    $category         = $this->input->post("type")  ? $this->input->post("type")  : ''; 
+    $perpage          = $this->input->post('perpage') ? $this->input->post('perpage') : 20; 
+    $page             = $this->input->post('page')  ? $this->input->post('page')  : 1;
+    $dead             = $this->input->post('dead')  ? $this->input->post('dead')  : '';
+    $result['data']   = $this->articles->getArticlesList($category, $dead, $perpage, $page);
     if($page == '1') {
       $tops = $this->articles->gettopbytype($category);
       if (!empty($tops)) {
