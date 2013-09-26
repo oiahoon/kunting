@@ -181,7 +181,7 @@ class Posts extends CI_Controller {
       // ios
       $result['ios']     = $this->apns_push($article, $id);
       //android
-      //$result['android'] = $this->push_android($article, $id);
+      $result['android'] = $this->push_android($article, $id);
     }
     echo json_encode($result['ios']);//.$result['android'];
   }
