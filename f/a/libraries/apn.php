@@ -521,7 +521,7 @@ class APN
     // print_r($push_data);die;
     $foreach_time = time();
     foreach ($devices as $row) {
-      $send_result = $this->sendMessage(str_replace(array('<','>',' '), '', $row['device_token']), $push_data['content'], 1);
+      $send_result = $this->sendMessage(str_replace(array('<','>',' '), '', $row['device_token']), $push_data['content'], 1, 'default');
 
       if($send_result){
         $result['success'] ++;
